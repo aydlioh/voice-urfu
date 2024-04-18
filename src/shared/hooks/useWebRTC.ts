@@ -187,6 +187,7 @@ export const useWebRTC = (roomID: string) => {
       socket.send(
         JSON.stringify({
           action: ACTIONS.LEAVE,
+          room: roomID,
         })
       );
     };
