@@ -13,11 +13,20 @@ export const HomePage = () => {
   const rootNode = useRef(null);
 
   useEffect(() => {
-    socket.onopen = (ACTIONS.SHARE_ROOMS, ({ rooms }: any) => {
-      if (rootNode.current) {
-        setRooms(rooms);
+    socket.onopen = () => {
+      socket.send(JSON.stringify({ action: ACTIONS.SHARE_ROOMS }));
+    };
+
+    socket.onmessage = (event) => {
+      const message = JSON.parse(event.data);
+      if (message.rooms && rootNode.current) {
+        setRooms(message.rooms);
       }
-    });
+    };
+
+    return () => {
+      socket.close();
+    };
   }, []);
 
   return (

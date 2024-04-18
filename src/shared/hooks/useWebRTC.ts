@@ -28,19 +28,18 @@ export const useWebRTC = (roomID: string) => {
 
   useEffect(() => {
     socket.onopen = () => {
-      console.log('WebSocket connection opened');
-      socket.send(JSON.stringify({ type: 'join', room: roomID }));
+      socket.send(JSON.stringify({ action: ACTIONS.JOIN, room: roomID }));
     };
 
     socket.onmessage = (event) => {
       const message = JSON.parse(event.data);
-      const { type, data } = message;
+      const { action, data } = message;
 
-      switch (type) {
-        case 'add_peer':
+      switch (action) {
+        case ACTIONS.ADD_PEER:
           handleNewPeer(data);
           break;
-        case 'session_description':
+        case ACTIONS.SESSION_DESCRIPTION:
           setRemoteMedia(data);
           break;
         case ACTIONS.REMOVE_PEER:
@@ -72,7 +71,7 @@ export const useWebRTC = (roomID: string) => {
       if (e.candidate) {
         socket.send(
           JSON.stringify({
-            type: ACTIONS.RELAY_ICE,
+            action: ACTIONS.RELAY_ICE,
             peerID,
             iceCandidate: e.candidate,
           })
@@ -102,7 +101,7 @@ export const useWebRTC = (roomID: string) => {
       await peerConnections.current[peerID].setLocalDescription(offer);
       socket.send(
         JSON.stringify({
-          type: ACTIONS.RELAY_SDP,
+          action: ACTIONS.RELAY_SDP,
           peerID,
           sessionDescription: offer,
         })
@@ -123,7 +122,7 @@ export const useWebRTC = (roomID: string) => {
       await peerConnections.current[peerID].setLocalDescription(answer);
       socket.send(
         JSON.stringify({
-          type: ACTIONS.RELAY_SDP,
+          action: ACTIONS.RELAY_SDP,
           peerID,
           sessionDescription: answer,
         })
@@ -174,7 +173,7 @@ export const useWebRTC = (roomID: string) => {
       .then(() =>
         socket.send(
           JSON.stringify({
-            type: ACTIONS.JOIN,
+            action: ACTIONS.JOIN,
             room: roomID,
           })
         )
@@ -187,7 +186,7 @@ export const useWebRTC = (roomID: string) => {
         .forEach((track: any) => track.stop());
       socket.send(
         JSON.stringify({
-          type: ACTIONS.LEAVE,
+          action: ACTIONS.LEAVE,
         })
       );
     };
