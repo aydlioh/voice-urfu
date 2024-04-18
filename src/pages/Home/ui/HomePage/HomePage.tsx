@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button } from '@/shared/ui';
 import styles from './HomePage.module.css';
 import { useEffect, useRef, useState } from 'react';
@@ -12,7 +13,7 @@ export const HomePage = () => {
   const rootNode = useRef(null);
 
   useEffect(() => {
-    socket.on(ACTIONS.SHARE_ROOMS, ({ rooms }) => {
+    socket.onopen = (ACTIONS.SHARE_ROOMS, ({ rooms }: any) => {
       if (rootNode.current) {
         setRooms(rooms);
       }
