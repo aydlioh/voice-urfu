@@ -14,6 +14,7 @@ export const HomePage = () => {
 
   useEffect(() => {
     socket.onopen = () => {
+      console.log('Socket connected');
       socket.send(JSON.stringify({ action: ACTIONS.SHARE_ROOMS }));
     };
 
@@ -22,10 +23,6 @@ export const HomePage = () => {
       if (message.rooms && rootNode.current) {
         setRooms(message.rooms);
       }
-    };
-
-    return () => {
-      socket.close();
     };
   }, []);
 
