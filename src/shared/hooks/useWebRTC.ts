@@ -2,7 +2,7 @@
 import { useCallback, useEffect, useRef } from 'react';
 import { useStateWithCallback } from './useStateWithCallback';
 import socket, { ACTIONS } from '../socket';
-import freeice from 'freeice';
+// import freeice from 'freeice';
 
 const LOCAL_VIDEO = 'LOCAL_VIDEO';
 
@@ -38,7 +38,7 @@ export const useWebRTC = (roomID: string) => {
       }
 
       peerConnections.current[peerID] = new RTCPeerConnection({
-        iceServers: freeice(),
+        // iceServers: freeice(),
       });
 
       peerConnections.current[peerID].onicecandidate = (e: any) => {
