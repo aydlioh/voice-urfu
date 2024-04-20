@@ -2,7 +2,7 @@
 import { useCallback, useEffect, useRef } from 'react';
 import { useStateWithCallback } from './useStateWithCallback';
 import socket, { ACTIONS } from '../socket';
-import freeice from 'freeice';
+// import freeice from 'freeice';
 
 const LOCAL_VIDEO = 'LOCAL_VIDEO';
 
@@ -31,21 +31,25 @@ export const useWebRTC = (roomID: string) => {
   }, []);
 
   useEffect(() => {
-    const handleNewPeer = async ({ peerID, createOffer }: any) => {
+    const handleNewPeer = async (data: any) => {
+      const { peerID, createOffer } = data;
       if (peerID in peerConnections.current) {
         return console.warn(`Peer connection already exists ${peerID}`);
       }
 
       peerConnections.current[peerID] = new RTCPeerConnection({
-        iceServers: freeice(),
+        // iceServers: freeice(),
       });
 
       peerConnections.current[peerID].onicecandidate = (e: any) => {
         if (e.candidate) {
-          socket.emit(ACTIONS.RELAY_ICE, {
-            peerID,
-            iceCandidate: e.candidate,
-          });
+          socket.send(
+            JSON.stringify({
+              action: ACTIONS.RELAY_ICE,
+              peerID,
+              iceCandidate: e.candidate,
+            })
+          );
         }
       };
 
@@ -55,7 +59,6 @@ export const useWebRTC = (roomID: string) => {
       }: any) => {
         trackNumber++;
         if (trackNumber === 2) {
-          // Когда загрузит и video и audio
           addNewClient(peerID, () => {
             peerMediaElements.current[peerID].srcObject = remoteStream;
           });
@@ -72,21 +75,18 @@ export const useWebRTC = (roomID: string) => {
       if (createOffer) {
         const offer = await peerConnections.current[peerID].createOffer();
         await peerConnections.current[peerID].setLocalDescription(offer);
-        socket.emit(ACTIONS.RELAY_SDP, {
-          peerID,
-          sessionDescription: offer,
-        });
+        socket.send(
+          JSON.stringify({
+            action: ACTIONS.RELAY_SDP,
+            peerID,
+            sessionDescription: offer,
+          })
+        );
       }
     };
 
-    socket.on(ACTIONS.ADD_PEER, handleNewPeer);
-  }, []);
-
-  useEffect(() => {
-    const setRemoteMedia = async ({
-      peerID,
-      sessionDescription: remoteDescription,
-    }: any) => {
+    const setRemoteMedia = async (data: any) => {
+      const { peerID, sessionDescription: remoteDescription } = data;
       await peerConnections.current[peerID].setRemoteDescription(
         new RTCSessionDescription(remoteDescription)
       );
@@ -94,18 +94,18 @@ export const useWebRTC = (roomID: string) => {
       if (remoteDescription.type === 'offer') {
         const answer = await peerConnections.current[peerID].createAnswer();
         await peerConnections.current[peerID].setLocalDescription(answer);
-        socket.emit(ACTIONS.RELAY_SDP, {
-          peerID,
-          sessionDescription: answer,
-        });
+        socket.send(
+          JSON.stringify({
+            action: ACTIONS.RELAY_SDP,
+            peerID,
+            sessionDescription: answer,
+          })
+        );
       }
     };
 
-    socket.on(ACTIONS.SESSION_DESCRIPTION, setRemoteMedia);
-  }, []);
-
-  useEffect(() => {
-    const handleRemovePeer = ({ peerID }: any) => {
+    const handleRemovePeer = (data: any) => {
+      const { peerID } = data;
       if (peerConnections.current[peerID]) {
         peerConnections.current[peerID].close();
       }
@@ -118,18 +118,42 @@ export const useWebRTC = (roomID: string) => {
       );
     };
 
-    socket.on(ACTIONS.REMOVE_PEER, handleRemovePeer);
-  }, []);
-
-  useEffect(() => {
-    socket.on(ACTIONS.ICE_CANDIDATE, ({ peerID, iceCandidate }) => {
+    const handleIceCandidate = (data: any) => {
+      const { peerID, iceCandidate } = data;
       peerConnections.current[peerID].addIceCandidate(
         new RTCIceCandidate(iceCandidate)
       );
-    });
+    };
+
+    socket.onmessage = (event: any) => {
+      const message = JSON.parse(event.data);
+      if (message.action === ACTIONS.ADD_PEER) {
+        handleNewPeer(message);
+        return;
+      }
+
+      if (message.action === ACTIONS.REMOVE_PEER) {
+        handleRemovePeer(message);
+        return;
+      }
+
+      if (message.action === ACTIONS.ICE_CANDIDATE) {
+        handleIceCandidate(message);
+        return;
+      }
+
+      if (message.action === ACTIONS.SESSION_DESCRIPTION) {
+        setRemoteMedia(message);
+        return;
+      }
+    };
   }, []);
 
   useEffect(() => {
+    socket.onopen = () => {
+      console.log('Socket connected');
+    };
+
     const startCapture = async () => {
       localMediaStream.current = await navigator.mediaDevices.getUserMedia({
         audio: true,
@@ -150,14 +174,16 @@ export const useWebRTC = (roomID: string) => {
     };
 
     startCapture()
-      .then(() => socket.emit(ACTIONS.JOIN, { room: roomID }))
+      .then(() =>
+        socket.send(JSON.stringify({ action: ACTIONS.JOIN, room: roomID }))
+      )
       .catch((e) => console.error('Ошибка: ', e));
 
     return () => {
       localMediaStream.current
         .getTracks()
         .forEach((track: any) => track.stop());
-      socket.emit(ACTIONS.LEAVE);
+      socket.send(JSON.stringify({ action: ACTIONS.LEAVE, room: roomID }));
     };
   }, [roomID]);
 

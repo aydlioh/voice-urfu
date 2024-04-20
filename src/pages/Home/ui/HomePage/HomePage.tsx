@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button } from '@/shared/ui';
 import styles from './HomePage.module.css';
 import { useEffect, useRef, useState } from 'react';
@@ -12,11 +13,17 @@ export const HomePage = () => {
   const rootNode = useRef(null);
 
   useEffect(() => {
-    socket.on(ACTIONS.SHARE_ROOMS, ({ rooms }) => {
-      if (rootNode.current) {
-        setRooms(rooms);
+    socket.onopen = () => {
+      console.log('Socket connected');
+      socket.send(JSON.stringify({ action: ACTIONS.SHARE_ROOMS }));
+    };
+
+    socket.onmessage = (event) => {
+      const message = JSON.parse(event.data);
+      if (message.rooms && rootNode.current) {
+        setRooms(message.rooms);
       }
-    });
+    };
   }, []);
 
   return (

@@ -1,4 +1,4 @@
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useWebRTC } from '@/shared/hooks';
 import { Button } from '@/shared/ui';
 
@@ -15,9 +15,7 @@ export const RoomPage = () => {
     <section>
       <div className="border p-5 my-5 flex items-center justify-between">
         <h2>Комната: {roomId}</h2>
-        <Link to="/">
-          <Button>Выйти</Button>
-        </Link>
+        <Button onClick={() => navigate('/')}>Выйти</Button>
       </div>
       <div className="grid md:grid-cols-2 grid-cols-1 gap-2">
         {clients.map((clientId: string) => (
