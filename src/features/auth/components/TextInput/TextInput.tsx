@@ -5,7 +5,6 @@ export const TextInput = (props: InputProps) => {
   return (
     <Input
       variant="bordered"
-      size="lg"
       {...props}
       classNames={{
         inputWrapper:

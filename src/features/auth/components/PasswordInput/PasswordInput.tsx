@@ -26,7 +26,6 @@ export const PasswordInput = (props: InputProps) => {
         </button>
       }
       type={isVisible ? 'text' : 'password'}
-      size="lg"
       classNames={{
         inputWrapper:
           'border-default-400 data-[hover=true]:border-background group-data-[focus=true]:border-background',
