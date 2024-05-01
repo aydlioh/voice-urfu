@@ -1,9 +1,10 @@
-import { UIProvider} from './UIProvider'
+import { ReduxProvider } from './ReduxProvider';
+import { UIProvider } from './UIProvider';
 
 export const Providers = ({ children }: { children: React.ReactNode }) => {
   return (
-    <UIProvider>
-      {children}
-    </UIProvider>
-  )
-}
+    <ReduxProvider>
+      <UIProvider>{children}</UIProvider>
+    </ReduxProvider>
+  );
+};

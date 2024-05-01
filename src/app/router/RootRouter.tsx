@@ -1,18 +1,30 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { PageLayout } from '../layout/PageLayout';
-import { mainRoutes, settingsRoutes, roomsRoutes, NotFoundPage } from '@/pages';
+import { mainRoutes, settingsRoutes, roomsRoutes, NotFoundPage, authRoutes } from '@/pages';
+import { AuthGuard, PublicGuard } from './guards';
 
 export const RootRouter = createBrowserRouter([
   {
-    element: <PageLayout />,
+    element: <AuthGuard />,
     children: [
-      ...mainRoutes,
-      ...roomsRoutes,
-      ...settingsRoutes,
       {
-        path: '*',
-        element: <NotFoundPage />,
+        element: <PageLayout />,
+        children: [
+          ...mainRoutes,
+          ...roomsRoutes,
+          ...settingsRoutes,
+          {
+            path: '*',
+            element: <NotFoundPage />,
+          },
+        ],
       },
     ],
   },
+  {
+    element: <PublicGuard />,
+    children: [
+      ...authRoutes,
+    ]
+  }
 ]);
