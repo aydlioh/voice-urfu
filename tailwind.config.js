@@ -16,6 +16,8 @@ export default {
         sidebarActiveHover: '#AFAFB4',
         background: '#3B3B3F',
         links: '#006FEE',
+        authForm: '#E3E1E6',
+        authFormSecondary: '#CCCCD1',
       },
       fontFamily: {
         kanit: ['KanitFont', 'sans-serif'],

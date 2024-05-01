@@ -1,2 +1,4 @@
-export * from './AuthButton';
-export * from './AuthInput';
+export * from './SubmitButton';
+export * from './TextInput';
+export * from './PasswordInput';
+export * from './FormSwitcher';
