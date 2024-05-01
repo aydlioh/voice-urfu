@@ -1,1 +1,2 @@
-export { default as VoiceIcon } from './voice.svg';
+export { default as VoiceSvg } from './voice.svg';
+export { default as PandaSvg } from './panda.svg';

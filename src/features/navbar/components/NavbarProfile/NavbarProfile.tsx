@@ -17,8 +17,8 @@ export const NavbarProfile = ({ isOpen }: { isOpen: boolean }) => {
       </div>
       {isOpen && (
         <div className="flex flex-col">
-          <p className="font-medium text-[20px]">{name}</p>
-          <p className="text-[14px] text-links">{email}</p>
+          <p className="font-medium text-[20px] line-clamp-1">{name}</p>
+          <p className="text-[14px] text-links line-clamp-1">{email}</p>
         </div>
       )}
     </div>

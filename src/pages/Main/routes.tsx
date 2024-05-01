@@ -1,5 +1,5 @@
 import { RouteObject } from 'react-router-dom';
-import { MainPage } from './ui';
+import { MainPage } from './pages';
 
 export const mainRoutes: RouteObject[] = [
   {

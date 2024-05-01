@@ -1,5 +1,5 @@
 import { HiMenu } from 'react-icons/hi';
-import { VoiceIcon } from '@/shared/assets/svgs';
+import { VoiceSvg } from '@/shared/assets/svgs';
 
 export const NavbarToggle = ({
   isOpen,
@@ -17,7 +17,7 @@ export const NavbarToggle = ({
         <HiMenu />
       </button>
 
-      {isOpen && <img src={VoiceIcon} alt="Voice" width={130} />}
+      {isOpen && <img src={VoiceSvg} alt="Voice" width={130} />}
     </div>
   );
 };

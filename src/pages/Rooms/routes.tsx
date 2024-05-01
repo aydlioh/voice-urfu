@@ -1,5 +1,5 @@
 import { RouteObject } from 'react-router-dom';
-import { RoomPage, RoomsPage } from './ui';
+import { RoomPage, RoomsPage } from './pages';
 
 export const roomsRoutes: RouteObject[] = [
   {

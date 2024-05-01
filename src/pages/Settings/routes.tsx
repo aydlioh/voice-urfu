@@ -1,5 +1,5 @@
 import { RouteObject } from 'react-router-dom';
-import { SettingsPage } from './ui';
+import { SettingsPage } from './pages';
 
 export const settingsRoutes: RouteObject[] = [
   {
