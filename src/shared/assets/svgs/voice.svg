@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="45.861073mm"
+   height="12.347213mm"
+   viewBox="0 0 45.861074 12.347213"
+   version="1.1"
+   id="svg5"
+   inkscape:export-filename="voice.svg"
+   inkscape:export-xdpi="3.4208755"
+   inkscape:export-ydpi="3.4208755"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Слой 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(66.747964,-16.394723)">
+    <g
+       aria-label="Voice"
+       id="text481"
+       style="font-size:14.1111px;font-family:'Blender Pro';-inkscape-font-specification:'Blender Pro';text-align:center;text-anchor:middle;fill:#343434;stroke-width:3.96875;paint-order:markers stroke fill">
+      <path
+         d="M -63.220192,28.741938 V 26.97805 h 1.763887 v 1.763888 z M -64.98408,26.97805 v -3.527775 h 1.763888 v 3.527775 z m 3.527775,0 v -3.527775 h 1.763888 v 3.527775 z m -5.291662,-3.527775 v -7.05555 h 1.763887 v 7.05555 z m 7.05555,0 v -7.05555 h 1.763887 v 7.05555 z"
+         style="font-family:'F77 Minecraft';-inkscape-font-specification:'F77 Minecraft, Normal';fill:#3b3b3f"
+         id="path2974" />
+      <path
+         d="M -54.400755,28.741938 V 26.97805 h 5.291663 v 1.763888 z m -1.763887,-1.763888 v -5.291662 h 1.763887 v 5.291662 z m 7.05555,0 v -5.291662 h 1.763888 v 5.291662 z m -5.291663,-5.291662 V 19.9225 h 5.291663 v 1.763888 z"
+         style="font-family:'F77 Minecraft';-inkscape-font-specification:'F77 Minecraft, Normal';fill:#3b3b3f"
+         id="path2976" />
+      <path
+         d="M -45.581317,28.741938 V 19.9225 h 1.763888 v 7.05555 h 1.763887 v 1.763888 z m 0,-10.583326 v -1.763887 h 1.763888 v 1.763887 z"
+         style="font-family:'F77 Minecraft';-inkscape-font-specification:'F77 Minecraft, Normal';fill:#3b3b3f"
+         id="path2978" />
+      <path
+         d="M -38.525767,28.741938 V 26.97805 h 5.291663 v 1.763888 z m 5.291663,-1.763888 v -1.763887 h 1.763887 v 1.763887 z m -7.05555,0 v -5.291662 h 1.763887 v 5.291662 z m 7.05555,-3.527775 v -1.763887 h 1.763887 v 1.763887 z m -5.291663,-1.763887 V 19.9225 h 5.291663 v 1.763888 z"
+         style="font-family:'F77 Minecraft';-inkscape-font-specification:'F77 Minecraft, Normal';fill:#3b3b3f"
+         id="path2980" />
+      <path
+         d="M -27.942442,28.741938 V 26.97805 h 7.05555 v 1.763888 z M -29.70633,26.97805 v -5.291662 h 1.763888 v 1.763887 h 5.291662 v -1.763887 h 1.763888 v 3.527775 h -7.05555 v 1.763887 z m 1.763888,-5.291662 V 19.9225 h 5.291662 v 1.763888 z"
+         style="font-family:'F77 Minecraft';-inkscape-font-specification:'F77 Minecraft, Normal';fill:#3b3b3f"
+         id="path2982" />
+    </g>
+  </g>
+</svg>

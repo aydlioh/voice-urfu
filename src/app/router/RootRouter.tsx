@@ -1,15 +1,18 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { PageLayout } from '../layout/PageLayout';
-import { homeRoutes } from '@/pages';
-import { roomRoutes } from '@/pages/Room/routes';
+import { mainRoutes, settingsRoutes, roomsRoutes, NotFoundPage } from '@/pages';
 
 export const RootRouter = createBrowserRouter([
   {
     element: <PageLayout />,
-    errorElement: <div>Error</div>,
     children: [
-      ...homeRoutes,
-      ...roomRoutes,
+      ...mainRoutes,
+      ...roomsRoutes,
+      ...settingsRoutes,
+      {
+        path: '*',
+        element: <NotFoundPage />,
+      },
     ],
   },
 ]);

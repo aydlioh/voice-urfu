@@ -1,0 +1,44 @@
+@font-face {
+  font-family: 'MinecraftFont';
+  src: url('/src/shared/assets/fonts/minecraft/F77\ Minecraft.ttf')
+    format('truetype');
+  font-weight: 400;
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: 'KanitFont';
+  src: url('/src/shared/assets/fonts/kanit/Kanit-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: 'KanitFont';
+  src: url('/src/shared/assets/fonts/kanit/Kanit-Regular.ttf')
+    format('truetype');
+  font-weight: 400;
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: 'KanitFont';
+  src: url('/src/shared/assets/fonts/kanit/Kanit-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: 'KanitFont';
+  src: url('/src/shared/assets/fonts/kanit/Kanit-SemiBold.ttf')
+    format('truetype');
+  font-weight: 600;
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: 'KanitFont';
+  src: url('/src/shared/assets/fonts/kanit/Kanit-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-display: fallback;
+}

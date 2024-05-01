@@ -1,14 +1,13 @@
-import { Header } from '@/widgets/Header';
+import { Sidebar } from '@/widgets/Sidebar';
 import { Outlet } from 'react-router-dom';
-import styles from './PageLayout.module.css';
 
 export const PageLayout = () => {
   return (
-    <>
-      <Header />
-      <main className={styles.container}>
+    <main className="h-screen flex flex-row">
+      <Sidebar />
+      <div className="md:pl-0 pl-16 w-full">
         <Outlet />
-      </main>
-    </>
+      </div>
+    </main>
   );
 };

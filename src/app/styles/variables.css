@@ -1,3 +1,8 @@
 :root {
-  --header: #545472;
+  --primary-text: #e3e1e6;
+  --sidebar: #e3e1e6;
+  --sidebar-active-link: #c5c3c7;
+  --sidebar-hover-link: rgb(204, 204, 204);
+  --background: #3b3b3f;
+  --link: #006fee;
 }
