@@ -1,7 +1,12 @@
+import { useAuthStatus } from '@/entities/auth';
 import { Navigate, Outlet } from 'react-router-dom';
 
 export const AuthGuard = () => {
-  return <Navigate to="/login" />;
+  const isAuth = useAuthStatus();
+
+  if (!isAuth) {
+    return <Navigate to="/login" />;
+  }
 
   return <Outlet />;
 };

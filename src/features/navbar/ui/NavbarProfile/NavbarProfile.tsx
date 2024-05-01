@@ -1,11 +1,9 @@
+import { useAuth } from '@/entities/auth';
 import clsx from 'clsx';
-import { TiUser } from "react-icons/ti";
+import { TiUser } from 'react-icons/ti';
 
 export const NavbarProfile = ({ isOpen }: { isOpen: boolean }) => {
-  const { name, email } = {
-    name: 'Junior Garcia',
-    email: 'Junior_Garcia@urfu.me',
-  };
+  const { name, email } = useAuth();
 
   return (
     <div className="pt-3 px-4 flex gap-4">
