@@ -7,4 +7,9 @@
   --link: #006fee;
   --auth-form: #e3e1e6;
   --auth-form-secondary: #ccccd1;
+
+  --scrollbar-background: #3b3b3f;
+  --scrollbar-active: #f6f3f8;
+  --scrollbar-hover: #e3e1e6;
+  --scrollbar: #ccccd1;
 }
