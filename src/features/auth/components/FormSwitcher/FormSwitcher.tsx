@@ -15,8 +15,8 @@ export const FormSwitcher = ({
   linkTo,
 }: FormSwitcherProps) => {
   return (
-    <div>
-      <div className="text-[14px] md:px-20 px-4 flex justify-end">
+    <div className='sm:max-w-[500px] max-w-[370px]'>
+      <div className="text-[14px] sm:px-20 px-4 flex justify-end">
         <div
           className={clsx(
             'flex justify-center gap-2 bg-authFormSecondary py-4 px-2 w-[300px] rounded-3xl',
