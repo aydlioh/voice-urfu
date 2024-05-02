@@ -1,6 +1,12 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { PageLayout } from '../layout/PageLayout';
-import { mainRoutes, settingsRoutes, roomsRoutes, NotFoundPage, authRoutes } from '@/pages';
+import {
+  mainRoutes,
+  settingsRoutes,
+  roomsRoutes,
+  errorsRoutes,
+  authRoutes,
+} from '@/pages';
 import { AuthGuard, PublicGuard } from './guards';
 
 export const RootRouter = createBrowserRouter([
@@ -13,18 +19,13 @@ export const RootRouter = createBrowserRouter([
           ...mainRoutes,
           ...roomsRoutes,
           ...settingsRoutes,
-          {
-            path: '*',
-            element: <NotFoundPage />,
-          },
+          ...errorsRoutes,
         ],
       },
     ],
   },
   {
     element: <PublicGuard />,
-    children: [
-      ...authRoutes,
-    ]
-  }
+    children: [...authRoutes],
+  },
 ]);
