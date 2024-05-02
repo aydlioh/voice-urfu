@@ -1,5 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { PageLayout } from '../layout/PageLayout';
+import { PageLayout } from '../layout';
 import {
   mainRoutes,
   settingsRoutes,
