@@ -1,9 +1,9 @@
-import { useAuth } from '@/entities/auth';
+import { useAuthStatus } from '@/entities/auth';
 import clsx from 'clsx';
 import { TiUser } from 'react-icons/ti';
 
 export const NavbarProfile = ({ isOpen }: { isOpen: boolean }) => {
-  const { name, email } = useAuth();
+  const { login, email } = useAuthStatus();
 
   return (
     <div className="pt-3 px-4 flex gap-4">
@@ -17,7 +17,7 @@ export const NavbarProfile = ({ isOpen }: { isOpen: boolean }) => {
       </div>
       {isOpen && (
         <div className="flex flex-col">
-          <p className="font-medium text-[20px] line-clamp-1">{name}</p>
+          <p className="font-medium text-[20px] line-clamp-1">{login}</p>
           <p className="text-[14px] text-links line-clamp-1">{email}</p>
         </div>
       )}
