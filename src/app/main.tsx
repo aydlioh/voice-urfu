@@ -1,15 +1,17 @@
 import './styles/index.css';
 import ReactDOM from 'react-dom/client';
 import { Suspense } from 'react';
-import { RouterProvider } from 'react-router-dom';
-import { RootRouter } from './router/RootRouter';
+import { BrowserRouter } from 'react-router-dom';
 import { Providers } from './providers';
 import { PageSpinner } from '@/shared/ui';
+import { RootRouter } from './router';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <Providers>
-    <Suspense fallback={<PageSpinner />}>
-      <RouterProvider router={RootRouter} />
-    </Suspense>
+    <BrowserRouter>
+      <Suspense fallback={<PageSpinner />}>
+        <RootRouter />
+      </Suspense>
+    </BrowserRouter>
   </Providers>
 );

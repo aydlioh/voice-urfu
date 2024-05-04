@@ -1,4 +1,3 @@
-import { createBrowserRouter } from 'react-router-dom';
 import { PageLayout } from '../layout';
 import {
   mainRoutes,
@@ -8,8 +7,13 @@ import {
   authRoutes,
 } from '@/pages';
 import { AuthGuard, PublicGuard } from './guards';
+import { useRoutes } from 'react-router-dom';
 
-export const RootRouter = createBrowserRouter([
+const routes = [
+  {
+    element: <PublicGuard />,
+    children: [...authRoutes],
+  },
   {
     element: <AuthGuard />,
     children: [
@@ -24,8 +28,6 @@ export const RootRouter = createBrowserRouter([
       },
     ],
   },
-  {
-    element: <PublicGuard />,
-    children: [...authRoutes],
-  },
-]);
+];
+
+export const RootRouter = () => useRoutes(routes);
