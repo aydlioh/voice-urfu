@@ -1,0 +1,3 @@
+.button {
+  @apply bg-background text-authForm rounded-lg text-[20px] h-14;
+}

@@ -1,23 +1,16 @@
 import { Input } from '@/shared/ui';
 import { InputProps } from '@nextui-org/react';
 import { forwardRef, useState } from 'react';
-import { FieldError } from 'react-hook-form';
 import { HiLockClosed, HiLockOpen } from 'react-icons/hi2';
 
-type PasswordInputProps = InputProps & {
-  error: FieldError | undefined;
-};
-export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
-  ({ error, ...props }, ref) => {
+export const PasswordInput = forwardRef<HTMLInputElement, InputProps>(
+  (props, ref) => {
     const [isVisible, setIsVisible] = useState(false);
 
     const toggleVisibility = () => setIsVisible(!isVisible);
 
     return (
       <Input
-        isInvalid={error !== undefined}
-        color={error !== undefined ? 'danger' : 'default'}
-        errorMessage={error?.message}
         {...props}
         variant="bordered"
         endContent={
