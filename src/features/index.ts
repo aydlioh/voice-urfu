@@ -1,2 +1,2 @@
 export * from './navbar';
-export * from './navbar';
+export * from './auth';

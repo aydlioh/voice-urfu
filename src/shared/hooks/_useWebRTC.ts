@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useCallback, useEffect, useRef } from 'react';
 import { useStateWithCallback } from './_useStateWithCallback';
-import socket, { ACTIONS } from '../socket/videochat';
+import socket, { ACTIONS } from '../socket/groupcall';
 // import freeice from 'freeice';
 
 const LOCAL_VIDEO = 'LOCAL_VIDEO';
