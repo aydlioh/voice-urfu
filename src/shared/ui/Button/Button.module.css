@@ -1,5 +1,5 @@
 .button {
-  @apply rounded-lg text-[16px] h-12;
+  @apply rounded-lg text-[16px] h-12 text-primary;
 }
 
 .primary {

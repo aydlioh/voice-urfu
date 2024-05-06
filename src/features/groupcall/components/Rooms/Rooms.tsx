@@ -23,17 +23,14 @@ export const Rooms = () => {
   }, [socket]);
 
   return (
-    <ul className="grid sm:grid-cols-2 grid-cols-1 gap-6 mt-8">
+    <ul className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6 mt-8">
       {rooms.map((room, index) => (
         <li
           key={index}
           className="border rounded-lg px-4 py-5 flex justify-between items-center"
         >
           <p>Комната № {room}</p>
-          <Button
-            onClick={() => navigate(`/rooms/${room}`)}
-            color='secondary'
-          >
+          <Button onClick={() => navigate(`/rooms/${room}`)} color="secondary">
             Войти
           </Button>
         </li>
