@@ -46,7 +46,9 @@ export const RegistrationForm = () => {
         label="Пароль"
         autoComplete="current-password"
       />
-      <Button type="submit">Войти</Button>
+      <Button size="lg" type="submit" color="primary">
+        Зарегистрироваться
+      </Button>
     </form>
   );
 };

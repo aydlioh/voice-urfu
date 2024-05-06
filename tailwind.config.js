@@ -11,6 +11,8 @@ export default {
     extend: {
       colors: {
         primaryText: '#E3E1E6',
+        primary: '#3B3B3F',
+        secondary: '#E3E1E6',
         sidebar: '#E3E1E6',
         sidebarActiveLink: '#C5C3C7',
         sidebarActiveHover: '#AFAFB4',

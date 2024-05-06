@@ -27,7 +27,9 @@ export const LoginForm = () => {
         label="Пароль"
         autoComplete="current-password"
       />
-      <Button type="submit">Войти</Button>
+      <Button size='lg' type="submit" color="primary">
+        Войти
+      </Button>
     </form>
   );
 };

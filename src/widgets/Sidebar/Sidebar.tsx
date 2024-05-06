@@ -12,7 +12,7 @@ export const Sidebar = () => {
   return (
     <aside
       className={clsx(
-        'bg-sidebar duration-200 overflow-hidden md:relative fixed top-0 left-0 bottom-0',
+        'bg-sidebar duration-200 overflow-hidden md:relative fixed top-0 left-0 bottom-0 z-20',
         isOpen ? 'min-w-[300px] w-[300px]' : 'min-w-16 w-16'
       )}
     >

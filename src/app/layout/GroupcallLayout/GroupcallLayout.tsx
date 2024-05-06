@@ -1,4 +1,4 @@
-import { GroupcallContext } from '@/shared/context';
+import { GroupcallContext } from '@/entities/groupcall';
 import { PageSpinner } from '@/shared/ui';
 import { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';

@@ -1,4 +1,6 @@
 :root {
+  --primary: #3b3b3f;
+  --secondary: #e3e1e6;
   --primary-text: #e3e1e6;
   --sidebar: #e3e1e6;
   --sidebar-active-link: #c5c3c7;

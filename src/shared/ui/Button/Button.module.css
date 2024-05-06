@@ -1,3 +1,11 @@
 .button {
-  @apply bg-background text-authForm rounded-lg text-[20px] h-14;
+  @apply rounded-lg text-[16px] h-12;
+}
+
+.primary {
+  @apply bg-primary text-secondary;
+}
+
+.secondary {
+  @apply bg-secondary text-primary;
 }
