@@ -15,11 +15,15 @@ export const GroupcallLayout = () => {
       setIsLoading(false);
     };
 
+    ws.onclose = (event) => {
+      console.log('Groupcall disconnected', event);
+      setIsLoading(true);
+    };
+
     setSocket(ws);
 
     return () => {
       ws.close();
-      console.log('Groupcall disconnected');
     };
   }, []);
 

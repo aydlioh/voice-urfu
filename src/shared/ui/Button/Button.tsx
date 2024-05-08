@@ -9,6 +9,7 @@ export const Button = ({ className, ...props }: ButtonProps) => {
       className={clsx(
         styles.button,
         props.color === 'primary' && styles.primary,
+        props.color === 'danger' && styles.danger,
         props.color === 'secondary' && styles.secondary,
         className
       )}

@@ -1,7 +1,8 @@
 export const ACTIONS = {
   GET_ROOMS: 'exploreRooms',
   SHOW_ROOMS: 'showRooms',
-  // JOIN: 'join',
+  JOIN: 'joinRoom',
+  LEAVE: 'leaveRoom',
   // LEAVE: 'leave',
   // SHARE_ROOMS: 'share-rooms',
   // ADD_PEER: 'add-peer',

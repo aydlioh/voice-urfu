@@ -9,3 +9,7 @@
 .secondary {
   @apply bg-secondary text-primary;
 }
+
+.danger {
+  @apply bg-rose-500 text-secondary;
+}
