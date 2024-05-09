@@ -28,7 +28,7 @@ export const GroupcallLayout = () => {
   }, []);
 
   return isLoading ? (
-    <PageSpinner />
+    <PageSpinner variant="sidebar" />
   ) : (
     <GroupcallContext.Provider value={{ socket }}>
       <Outlet />

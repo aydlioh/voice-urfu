@@ -3,7 +3,7 @@ import { useGroupcall } from '@/entities/groupcall';
 import { Button } from '@/shared/ui';
 import { useNavigate, useParams } from 'react-router-dom';
 
-export const RoomPage = () => {
+const RoomPage = () => {
   const navigate = useNavigate();
   const { id: roomId } = useParams();
   const { users, provideMediaRef } = useGroupcall(roomId || '');
@@ -41,3 +41,5 @@ export const RoomPage = () => {
     </section>
   );
 };
+
+export default RoomPage;

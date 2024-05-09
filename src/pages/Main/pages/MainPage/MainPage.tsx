@@ -1,4 +1,4 @@
-export const MainPage = () => {
+const MainPage = () => {
   return (
     <section className="h-full w-full flex justify-center items-center text-primaryText">
       <h1 className="text-2xl">
@@ -7,3 +7,5 @@ export const MainPage = () => {
     </section>
   );
 };
+
+export default MainPage;

@@ -7,7 +7,7 @@ import { RootRouter } from './router';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <Providers>
-    <Suspense fallback={<PageSpinner />}>
+    <Suspense fallback={<PageSpinner variant="screen" />}>
       <RootRouter />
     </Suspense>
   </Providers>

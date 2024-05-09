@@ -1,1 +1,3 @@
-export * from './RoomsPage';
+import RoomsPage from './RoomsPage';
+
+export default RoomsPage;

@@ -21,7 +21,7 @@ export const CreateRoom = () => {
         value={roomId}
         onChange={(e) => setRoomId(e.target.value)}
         label="Номер комнаты"
-        className="max-w-80"
+        className="sm:max-w-80 w-full"
       />
       <Button type="submit" color="success" className="sm:w-auto w-full">
         Создать

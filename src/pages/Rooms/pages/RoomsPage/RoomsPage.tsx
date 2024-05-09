@@ -1,6 +1,6 @@
 import { CreateRoom, Rooms } from '@/features/groupcall';
 
-export const RoomsPage = () => {
+const RoomsPage = () => {
   return (
     <section className="h-full w-full text-primaryText">
       <div className="sm:p-8 p-4">
@@ -11,3 +11,5 @@ export const RoomsPage = () => {
     </section>
   );
 };
+
+export default RoomsPage;

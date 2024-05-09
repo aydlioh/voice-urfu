@@ -1,2 +1,4 @@
-export * from './RoomPage';
-export * from './RoomsPage';
+import { lazy } from 'react';
+
+export const RoomPage = lazy(() => import('./RoomPage'));
+export const RoomsPage = lazy(() => import('./RoomsPage'));
