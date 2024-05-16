@@ -22,7 +22,7 @@ const RoomPage = () => {
                 key={index}
                 className="border-secondary relative border-2 rounded-lg overflow-hidden group"
               >
-                <div className="group-hover:block hidden text-[16px] absolute bottom-2 right-2 bg-background bg-opacity-40 px-4 py-1.5 rounded-md">
+                <div className="sm:group-hover:block sm:hidden text-[16px] absolute bottom-2 right-2 bg-background bg-opacity-40 px-4 py-1.5 rounded-md">
                   <p>{user}</p>
                 </div>
                 <video

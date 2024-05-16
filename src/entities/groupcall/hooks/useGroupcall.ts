@@ -23,105 +23,147 @@ export const useGroupcall = (room: string) => {
   const mediaElements = useRef<any>({});
 
   const provideMediaRef = useCallback(
-    (name: any, node: any) => {
+    (name: string, node: HTMLVideoElement | null) => {
       mediaElements.current[name] = node;
+      if (
+        participants.current[name] &&
+        participants.current[name].stream &&
+        node
+      ) {
+        node.srcObject = participants.current[name].stream;
+      }
     },
-    [mediaElements]
+    []
   );
 
   useEffect(() => {
     const receiveVideo = async (name: string) => {
       participants.current[name] = {};
       setUsers((prev) => [...prev, name]);
+    };
+
+    const onExistingParticipants = async (message: any) => {
+      participants.current[login] = {};
+      setUsers((prev) => [...prev, login]);
 
       const stream = await navigator.mediaDevices.getUserMedia(mediaConfig);
 
-      participants.current[name].stream = stream;
-      mediaElements.current[name].srcObject = stream;
+      participants.current[login].stream = stream;
 
       const peerConnection = new RTCPeerConnection(rtcPeerConfig);
       stream.getTracks().forEach((track) => {
         peerConnection.addTrack(track, stream);
       });
 
+      participants.current[login].rtcPeer = peerConnection;
+
       const offer = await peerConnection.createOffer();
       await peerConnection.setLocalDescription(offer);
 
-      participants.current[name].rtcPeer = peerConnection;
-
       const offerMessage = {
         id: 'receiveVideoFrom',
-        sender: name,
-        sdpOffer: offer,
+        sender: login,
+        sdpOffer: offer.sdp,
       };
 
-      if (socket) {
-        socket.send(JSON.stringify(offerMessage));
-      }
+      socket?.send(JSON.stringify(offerMessage));
 
-      participants.current[name].rtcPeer.onicecandidate = (e: any) => {
-        const candidateMessage = {
-          id: 'onIceCandidate',
-          candidate: e.candidate,
-          name: name,
-        };
-
-        if (socket) {
-          socket.send(JSON.stringify(candidateMessage));
+      peerConnection.onicecandidate = (e: any) => {
+        if (e.candidate) {
+          const candidateMessage = {
+            id: 'onIceCandidate',
+            candidate: e.candidate,
+            name: login,
+          };
+          socket?.send(JSON.stringify(candidateMessage));
         }
       };
 
-      participants.current[name].rtcPeer.ontrack = (e: any) => {
-        mediaElements.current[name].srcObject = e.streams[0];
+      peerConnection.ontrack = (e: RTCTrackEvent) => {
+        const remoteStream = e.streams[0];
+        if (mediaElements.current[login]) {
+          mediaElements.current[login].srcObject = remoteStream;
+        }
       };
-    };
 
-    const onExistingParticipants = async (message: any) => {
-      receiveVideo(login);
       message.data.forEach(receiveVideo);
     };
 
-    const onNewParticipant = (message: any) => {
-      receiveVideo(message.name);
+    const onNewParticipant = async ({ name }: any) => {
+      await receiveVideo(name);
+      const peerConnection = new RTCPeerConnection(rtcPeerConfig);
+
+      participants.current[name].rtcPeer = peerConnection;
+
+      peerConnection.onicecandidate = (e: any) => {
+        if (e.candidate) {
+          const candidateMessage = {
+            id: 'onIceCandidate',
+            candidate: e.candidate,
+            name,
+          };
+          socket?.send(JSON.stringify(candidateMessage));
+        }
+      };
+
+      peerConnection.ontrack = (e: RTCTrackEvent) => {
+        console.log('ontrack event for new participant:', e);
+        const [remoteStream] = e.streams;
+        if (mediaElements.current[name]) {
+          mediaElements.current[name].srcObject = remoteStream;
+        }
+      };
+
+      const offer = await peerConnection.createOffer();
+      await peerConnection.setLocalDescription(offer);
+
+      const offerMessage = {
+        id: 'receiveVideoFrom',
+        sender: login,
+        sdpOffer: offer.sdp,
+      };
+
+      socket?.send(JSON.stringify(offerMessage));
     };
 
-    const onParticipantLeft = (message: any) => {
-      if (participants.current[message.name]) {
-        if (participants.current[message.name].stream) {
-          participants.current[message.name].stream
+    const onParticipantLeft = ({ name }: any) => {
+      if (participants.current[name]) {
+        if (participants.current[name].stream) {
+          participants.current[name].stream
             .getTracks()
             .forEach((track: any) => track.stop());
         }
-
-        delete participants.current[message.name];
+        delete participants.current[name];
+        setUsers((prev) => prev.filter((user) => user !== name));
       }
     };
 
-    const receiveVideoResponse = async (message: any) => {
-      const sdp = new RTCSessionDescription(message.sdpAnswer);
-      participants.current[message.name].rtcPeer.setRemoteDescription(sdp);
-      const answer = await participants.current[
-        message.name
-      ].rtcPeer.createAnswer();
-      participants.current[message.name].rtcPeer.setLocalDescription(answer);
+    const receiveVideoResponse = async ({ name, sdpAnswer }: any) => {
+      const peerConnection = participants.current[name].rtcPeer;
+      const sdp = new RTCSessionDescription({
+        type: 'answer',
+        sdp: sdpAnswer,
+      });
+      await peerConnection.setRemoteDescription(sdp);
     };
 
-    const iceCandidate = (message: any) => {
-      const candidate = new RTCIceCandidate(message.candidate);
-      participants.current[message.name].rtcPeer.addIceCandidate(candidate);
+    const iceCandidate = ({ candidate, name }: any) => {
+      const iceCandidate = new RTCIceCandidate(candidate);
+      const peerConnection = participants.current[name].rtcPeer;
+      if (peerConnection) {
+        peerConnection.addIceCandidate(iceCandidate);
+      }
     };
 
     if (socket) {
       const message = {
         id: ACTIONS.JOIN,
         name: login,
-        room: room,
+        room,
       };
       socket.send(JSON.stringify(message));
       socket.onmessage = (e) => {
         const message = JSON.parse(e.data);
-        console.log('Received message: ', message);
-
         switch (message.id) {
           case 'existingParticipants':
             onExistingParticipants(message);
@@ -155,7 +197,7 @@ export const useGroupcall = (room: string) => {
         );
       }
     };
-  }, []);
+  }, [login, room, socket]);
 
   return { users, provideMediaRef };
 };
