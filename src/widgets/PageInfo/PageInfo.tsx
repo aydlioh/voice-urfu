@@ -6,7 +6,7 @@ export const PageInfo = () => {
 
   return (
     <div className="bg-page h-10 flex justify-center items-center text-secondary">
-      {getPathnameInfoString(pathname)}
+      {pathname === '/' ? 'Главная страница' : getPathnameInfoString(pathname)}
     </div>
   )
 }

@@ -13,7 +13,7 @@ export const SearchInput = (props: InputProps) => {
       }
       autoComplete='off'
       classNames={{
-        input: "bg-primary text-secondary placeholder:text-secondary group-data-[has-value=true]:text-secondary",
+        input: "data-[has-start-content=true]:ps-4 bg-primary text-secondary placeholder:text-secondary group-data-[has-value=true]:text-secondary",
         innerWrapper: "bg-primary py-1",
         inputWrapper: "rounded-md bg-primary data-[hover=true]:bg-primary group-data-[focus=true]:bg-primary",
       }}

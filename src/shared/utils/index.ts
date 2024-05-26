@@ -1,8 +1,5 @@
-export const getPathnameInfoString = (pathname: string) => {
-  const currentString = pathname.slice(1);
-  if (!currentString) return 'Главная страница';
-  return currentString.split('/').map(getTranslatePathname).join(' / ');
-};
+export const getPathnameInfoString = (pathname: string) =>
+  pathname.slice(1).split('/').map(getTranslatePathname).join(' / ');
 
 const getTranslatePathname = (pathname: string) => {
   switch (pathname) {

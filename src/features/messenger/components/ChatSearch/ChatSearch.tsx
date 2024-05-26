@@ -14,7 +14,11 @@ export const ChatSearch = () => {
 
   return (
     <form onSubmit={handleSearch} className="flex flex-row gap-2">
-      <SearchInput placeholder='Поиск' value={search} onChange={(e) => setSearch(e.target.value)} />
+      <SearchInput
+        placeholder="Поиск"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
     </form>
   );
 };
