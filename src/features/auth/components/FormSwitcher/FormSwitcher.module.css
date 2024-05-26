@@ -1,0 +1,21 @@
+.triangle {
+  position: relative;
+}
+
+.triangle::after {
+  content: '';
+  position: absolute;
+  left: 10%;
+  bottom: -40%;
+  rotate: 13deg;
+  border-width: 14px;
+  border-style: solid;
+  border-color: var(--auth-form-secondary) transparent transparent var(--auth-form-secondary);
+}
+
+@media (max-width: 768px) {
+  .triangle::after {
+    bottom: -34%;
+    left: 14%;
+  }
+}

@@ -1,0 +1,38 @@
+@font-face {
+  font-family: 'MinecraftFont';
+  src: url('/src/shared/assets/fonts/minecraft/Minecraft.ttf')
+    format('truetype');
+  font-weight: 400;
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: 'MontserratFont';
+  src: url('/src/shared/assets/fonts/montserrat/Montserrat-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: 'MontserratFont';
+  src: url('/src/shared/assets/fonts/montserrat/Montserrat-SemiBold.ttf')
+    format('truetype');
+  font-weight: 600;
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: 'RobotoFont';
+  src: url('/src/shared/assets/fonts/roboto/Roboto-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: 'RobotoFont';
+  src: url('/src/shared/assets/fonts/roboto/Roboto-Regular.ttf')
+    format('truetype');
+  font-weight: 400;
+  font-display: fallback;
+}
+

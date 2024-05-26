@@ -1,9 +1,16 @@
-import { UIProvider} from './UIProvider'
+import { ErrorBoundary } from '../router';
+import { ReduxProvider } from './ReduxProvider';
+import { UIProvider } from './UIProvider';
+import { BrowserRouter } from 'react-router-dom';
 
 export const Providers = ({ children }: { children: React.ReactNode }) => {
   return (
-    <UIProvider>
-      {children}
-    </UIProvider>
-  )
-}
+    <ErrorBoundary>
+      <ReduxProvider>
+        <UIProvider>
+          <BrowserRouter>{children}</BrowserRouter>
+        </UIProvider>
+      </ReduxProvider>
+    </ErrorBoundary>
+  );
+};

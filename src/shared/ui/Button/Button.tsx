@@ -1,7 +1,18 @@
-import { Button as ButtonNextUI, ButtonProps } from "@nextui-org/react"
+import { Button as ButtonNextUI, ButtonProps } from '@nextui-org/react';
+import styles from './Button.module.css';
+import clsx from 'clsx';
 
-export const Button = (props: ButtonProps) => {
+export const Button = ({ className, ...props }: ButtonProps) => {
   return (
-    <ButtonNextUI {...props} />
-  )
-}
+    <ButtonNextUI
+      {...props}
+      className={clsx(
+        styles.button,
+        props.color === 'primary' && styles.primary,
+        props.color === 'danger' && styles.danger,
+        props.color === 'secondary' && styles.secondary,
+        className
+      )}
+    />
+  );
+};

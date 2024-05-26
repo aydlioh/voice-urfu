@@ -1,14 +1,18 @@
-import { Header } from '@/widgets/Header';
+import { Sidebar, PageInfo } from '@/widgets';
 import { Outlet } from 'react-router-dom';
-import styles from './PageLayout.module.css';
+import { Suspense } from 'react';
+import { PageSpinner } from '@/shared/ui';
 
 export const PageLayout = () => {
   return (
-    <>
-      <Header />
-      <main className={styles.container}>
-        <Outlet />
-      </main>
-    </>
+    <main className="h-screen flex flex-row">
+      <Sidebar />
+      <div className="md:pl-0 pl-16 w-full">
+        <PageInfo />
+        <Suspense fallback={<PageSpinner variant="sidebar" />}>
+          <Outlet />
+        </Suspense>
+      </div>
+    </main>
   );
 };

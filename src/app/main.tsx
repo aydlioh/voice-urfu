@@ -1,14 +1,14 @@
-import { Suspense } from 'react';
-import ReactDOM from 'react-dom/client';
-import { RouterProvider } from 'react-router-dom';
-import { RootRouter } from './router/RootRouter';
 import './styles/index.css';
+import ReactDOM from 'react-dom/client';
+import { Suspense } from 'react';
 import { Providers } from './providers';
+import { PageSpinner } from '@/shared/ui';
+import { RootRouter } from './router';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <Providers>
-    <Suspense fallback={<div>Loading...</div>}>
-      <RouterProvider router={RootRouter} />
+    <Suspense fallback={<PageSpinner variant="screen" />}>
+      <RootRouter />
     </Suspense>
   </Providers>
 );
