@@ -6,6 +6,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     <InputNextUI
       {...props}
       ref={ref}
+      autoComplete="off"
       classNames={{
         inputWrapper:
           'border-default-400 data-[hover=true]:border-background group-data-[focus=true]:border-background',

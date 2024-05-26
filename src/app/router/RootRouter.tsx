@@ -5,6 +5,7 @@ import {
   roomsRoutes,
   errorsRoutes,
   authRoutes,
+  messengerRoutes,
 } from '@/pages';
 import { AuthGuard, PublicGuard } from './guards';
 import { useRoutes } from 'react-router-dom';
@@ -24,6 +25,7 @@ const routes = [
           ...roomsRoutes,
           ...settingsRoutes,
           ...errorsRoutes,
+          ...messengerRoutes,
         ],
       },
     ],

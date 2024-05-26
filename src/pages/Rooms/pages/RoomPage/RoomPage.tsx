@@ -9,7 +9,7 @@ const RoomPage = () => {
   const { users, provideMediaRef } = useGroupcall(roomId || '');
 
   return (
-    <section className="h-full w-full text-primaryText">
+    <section className="h-[calc(100%-40px)] w-full text-primaryText">
       <div className="sm:p-8 p-4">
         <h2 className="text-2xl mb-3">Комната: {roomId}</h2>
         <Button onClick={() => navigate('/rooms')} size="lg" color="danger">

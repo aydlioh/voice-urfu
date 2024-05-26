@@ -1,5 +1,5 @@
 import { MdVideoChat } from 'react-icons/md';
-import { IoMail } from 'react-icons/io5';
+import { FaUserFriends } from "react-icons/fa";
 import { RiSettings5Fill } from 'react-icons/ri';
 
 export const sidebarLinks = [
@@ -10,8 +10,8 @@ export const sidebarLinks = [
   },
   {
     name: 'Чаты',
-    path: '/chat',
-    icon: IoMail,
+    path: '/messenger',
+    icon: FaUserFriends,
   },
   {
     name: 'Настройки',

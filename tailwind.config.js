@@ -16,13 +16,16 @@ export default {
         sidebar: '#E3E1E6',
         sidebarActiveLink: '#C5C3C7',
         sidebarActiveHover: '#AFAFB4',
+        sidebarNested: '#494950',
+        page: '#404046',
         background: '#3B3B3F',
         links: '#006FEE',
         authForm: '#E3E1E6',
         authFormSecondary: '#CCCCD1',
       },
       fontFamily: {
-        kanit: ['KanitFont', 'sans-serif'],
+        montserrat: ['MontserratFont'],
+        roboto: ['RobotoFont'],
         minecraft: ['MinecraftFont'],
       },
       screens: {
