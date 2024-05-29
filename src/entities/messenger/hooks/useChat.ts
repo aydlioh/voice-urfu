@@ -6,6 +6,7 @@ import { Stomp } from '@stomp/stompjs';
 import SockJS from 'sockjs-client/dist/sockjs';
 import { getMessages } from '../api';
 import { IMessage } from '../model';
+import dayjs from 'dayjs';
 
 const headers = {
   Authorization:
@@ -19,16 +20,26 @@ export const useChat = () => {
   const [messages, setMessages] = useState<IMessage[]>([]);
   const stompClient = useRef<any>(null);
 
-  const sendMessage = (body: string) => {
+  const sendMessage = (content: string) => {
+    const newMessage: IMessage = {
+      id: crypto.randomUUID(),
+      content,
+      sender: login,
+      receiver: id ?? '',
+      timestamp: dayjs().format(),
+    };
+
+    setMessages((prev) => [newMessage, ...prev]);
+
     stompClient.current.send(
       `/app/chat/${login}/${id}`,
       {},
-      JSON.stringify({ body, user: login })
+      JSON.stringify({ content })
     );
   };
 
   useEffect(() => {
-    getMessages({ receiverId: String(id), senderId: login }).then(console.log);
+    getMessages({ receiverId: String(id), senderId: login }).then(setMessages);
 
     const socket = new SockJS('https://voice-backend.ru:8082/chat');
     stompClient.current = Stomp.over(() => socket);
@@ -39,8 +50,8 @@ export const useChat = () => {
           stompClient.current.subscribe(
             `/topic/chat/${id}/${login}`,
             (output: any) => {
-              const { content } = JSON.parse(output.body);
-              setMessages((prev) => [...prev, content]);
+              const message = JSON.parse(output.body);
+              setMessages((prev) => [message, ...prev]);
             }
           );
         });
@@ -55,5 +66,5 @@ export const useChat = () => {
     };
   }, [id, login]);
 
-  return { sendMessage, messages };
+  return { user: login, opponent: id, sendMessage, messages };
 };

@@ -21,13 +21,13 @@ export const ChatTools = ({ userName }: { userName: string | undefined }) => {
         <h3>{userName}</h3>
       </div>
       <div className="flex flex-row gap-2 items-center">
-        <SearchInput placeholder="Поиск" />
+        <SearchInput placeholder="Поиск" className='lg:block hidden' />
         <div className="flex flex-row gap-1">
-          <div className="h-12 w-12 flex justify-center items-center p-2 rounded-full hover:bg-page duration-200 cursor-pointer">
-            <BsTelephoneFill size={24} />
+          <div className="sm:h-12 sm:w-12 h-10 w-10 flex justify-center items-center p-2 rounded-full hover:bg-page duration-200 cursor-pointer">
+            <BsTelephoneFill className='sm:text-[24px] text-[20px]' />
           </div>
-          <div className="h-12 w-12 flex justify-center items-center p-2 rounded-full hover:bg-page duration-200 cursor-pointer">
-            <RiSettings5Fill size={28} />
+          <div className="sm:h-12 sm:w-12 h-10 w-10 flex justify-center items-center p-2 rounded-full hover:bg-page duration-200 cursor-pointer">
+            <RiSettings5Fill className='sm:text-[28px] text-[24px]'  />
           </div>
         </div>
       </div>

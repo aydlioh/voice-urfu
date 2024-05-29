@@ -3,21 +3,20 @@
 }
 
 *::-webkit-scrollbar-track {
-  background: var(--background);
+  background: var(--scrollbar-background);
 }
 
 *::-webkit-scrollbar-thumb {
   background-color: var(--scrollbar);
   border-radius: 20px;
-  border: 3px solid var(--background);
+  border: 3px solid var(--scrollbar-background);
 }
 
 *::-webkit-scrollbar-thumb:hover {
   background-color: var(--scrollbar-hover);
-  border: 2px solid var(--background);
+
 }
 
 *::-webkit-scrollbar-thumb:active {
-  background-color: var(--scrollbar-active);
-  border: 1.6px solid var(--background);
+  border: 2px solid var(--scrollbar-background);
 }

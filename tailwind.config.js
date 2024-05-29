@@ -20,6 +20,8 @@ export default {
         page: '#404046',
         pageNested: '#494950',
         background: '#3B3B3F',
+        currentUser: '#494950',
+        opponent: '#3B3B3F',
         links: '#006FEE',
         authForm: '#E3E1E6',
         authFormSecondary: '#CCCCD1',

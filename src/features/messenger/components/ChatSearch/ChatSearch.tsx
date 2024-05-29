@@ -10,6 +10,7 @@ export const ChatSearch = () => {
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     navigate(search);
+    setSearch('');
   };
 
   return (
