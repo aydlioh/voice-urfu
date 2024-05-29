@@ -1,5 +1,7 @@
 import { ChatItem, ChatSearch } from '@/features/messenger';
+import { UserProps } from '@/shared/types';
 import clsx from 'clsx';
+import { useNavigate } from 'react-router-dom';
 
 const mock = [
   {
@@ -37,6 +39,14 @@ const mock = [
 ];
 
 export const Chats = ({ isChat = false }: { isChat?: boolean }) => {
+  const navigate = useNavigate();
+
+  const handleNavigate = (user: UserProps) => {
+    navigate(`${user.id}`, {
+      state: { user },
+    });
+  };
+
   return (
     <aside
       className={clsx(
@@ -50,7 +60,7 @@ export const Chats = ({ isChat = false }: { isChat?: boolean }) => {
         <ChatSearch />
         <ul className="py-1 flex flex-col gap-0.5">
           {mock.map((user) => (
-            <ChatItem user={user} key={user.id} />
+            <ChatItem onClick={handleNavigate} user={user} key={user.id} />
           ))}
         </ul>
       </div>

@@ -1,21 +1,17 @@
+import { UserProps } from '@/shared/types';
 import clsx from 'clsx';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 type Props = {
-  user: {
-    id: string;
-    imgSrc: string;
-    name: string;
-    lastMessage: string;
-    lastMessageTime: string;
-  };
+  user: UserProps,
+  onClick: (user: UserProps) => void;
 };
 
-export const ChatItem = ({ user }: Props) => {
+export const ChatItem = ({ user, onClick }: Props) => {
   const { id: currentId } = useParams();
 
   return (
-    <Link to={user.id}>
+    <div onClick={() => onClick(user)}>
       <li
         className={clsx('p-2 hover:bg-background duration-200 rounded-sm', {
           'bg-background': currentId === user.id,
@@ -38,6 +34,6 @@ export const ChatItem = ({ user }: Props) => {
           </div>
         </div>
       </li>
-    </Link>
+    </div>
   );
 };
