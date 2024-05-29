@@ -1,5 +1,4 @@
-import { Input } from '@/shared/ui';
-import { InputProps } from '@nextui-org/react';
+import { Input, InputProps } from '@/shared/ui';
 import { forwardRef, useState } from 'react';
 import { HiLockClosed, HiLockOpen } from 'react-icons/hi2';
 

@@ -11,7 +11,7 @@ export const ChatItem = ({ user, onClick }: Props) => {
   const { id: currentId } = useParams();
 
   return (
-    <div onClick={() => onClick(user)}>
+    <div onClick={() => onClick(user)} className='cursor-pointer'>
       <li
         className={clsx('p-2 hover:bg-background duration-200 rounded-sm', {
           'bg-background': currentId === user.id,

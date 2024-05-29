@@ -1,5 +1,6 @@
 export * from './LoginForm';
 export * from './RegistrationForm';
 export * from './Sidebar';
-export * from './Chats';
+export * from './ChatList';
+export * from './Chat';
 export * from './PageInfo';

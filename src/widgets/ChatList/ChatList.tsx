@@ -9,7 +9,7 @@ const mock = [
     imgSrc:
       'https://chudo-prirody.com/uploads/posts/2023-04/1682578522_chudo-prirody-com-p-kak-spit-panda-foto-1.jpg',
     name: 'Panda Русская',
-    lastMessage: 'Привет, как дела? Хорошо, что ты здесь qweqwe qweqwe qwe',
+    lastMessage: 'Привет, как дела?',
     lastMessageTime: '10:42',
   },
   {
@@ -17,7 +17,7 @@ const mock = [
     imgSrc:
       'https://chudo-prirody.com/uploads/posts/2023-04/1682578522_chudo-prirody-com-p-kak-spit-panda-foto-1.jpg',
     name: 'Panda Русская',
-    lastMessage: 'Привет, как дела? Хорошо, что ты здесь qweqwe qweqwe qwe',
+    lastMessage: 'Привет! Да вроде норм',
     lastMessageTime: '10:42',
   },
   {
@@ -25,7 +25,7 @@ const mock = [
     imgSrc:
       'https://chudo-prirody.com/uploads/posts/2023-04/1682578522_chudo-prirody-com-p-kak-spit-panda-foto-1.jpg',
     name: 'Panda Русская',
-    lastMessage: 'Привет, как дела? Хорошо, что ты здесь qweqwe qweqwe qwe',
+    lastMessage: 'А у иебя?',
     lastMessageTime: '10:42',
   },
   {
@@ -33,12 +33,12 @@ const mock = [
     imgSrc:
       'https://chudo-prirody.com/uploads/posts/2023-04/1682578522_chudo-prirody-com-p-kak-spit-panda-foto-1.jpg',
     name: 'Panda Русская',
-    lastMessage: 'Привет, как дела? Хорошо, что ты здесь qweqwe qweqwe qwe',
+    lastMessage: 'Да тож норм',
     lastMessageTime: '10:42',
   },
 ];
 
-export const Chats = ({ isChat = false }: { isChat?: boolean }) => {
+export const ChatList = ({ isChat = false }: { isChat?: boolean }) => {
   const navigate = useNavigate();
 
   const handleNavigate = (user: UserProps) => {
@@ -56,9 +56,9 @@ export const Chats = ({ isChat = false }: { isChat?: boolean }) => {
         }
       )}
     >
-      <div className="p-2">
+      <div className="p-2 w-full">
         <ChatSearch />
-        <ul className="py-1 flex flex-col gap-0.5">
+        <ul className="py-1 flex flex-col gap-0.5 ">
           {mock.map((user) => (
             <ChatItem onClick={handleNavigate} user={user} key={user.id} />
           ))}

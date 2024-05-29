@@ -18,6 +18,7 @@ export default {
         sidebarActiveHover: '#AFAFB4',
         sidebarNested: '#494950',
         page: '#404046',
+        pageNested: '#494950',
         background: '#3B3B3F',
         links: '#006FEE',
         authForm: '#E3E1E6',

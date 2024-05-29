@@ -1,9 +1,9 @@
-import { Input as InputNextUI, InputProps } from '@nextui-org/react';
 import { FaSearch } from "react-icons/fa";
+import { Input, InputProps } from "../Input";
 
 export const SearchInput = (props: InputProps) => {
   return (
-    <InputNextUI
+    <Input
       {...props}
       size="lg"
       startContent={
@@ -11,12 +11,8 @@ export const SearchInput = (props: InputProps) => {
           <FaSearch size={20} className="text-secondary" />
         </button>
       }
-      autoComplete='off'
-      classNames={{
-        input: "data-[has-start-content=true]:ps-4 bg-primary text-secondary placeholder:text-secondary group-data-[has-value=true]:text-secondary",
-        innerWrapper: "bg-primary py-1",
-        inputWrapper: "rounded-md bg-primary data-[hover=true]:bg-primary group-data-[focus=true]:bg-primary",
-      }}
+      autoComplete="off"
+      variant='flat'
       type="search"
     />
   );
