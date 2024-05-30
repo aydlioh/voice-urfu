@@ -1,19 +1,23 @@
 import { RouteObject } from 'react-router-dom';
-import { EmptyChatPage, ChatPage } from './pages';
+import { EmptyChatPage, ChatPage, VideocallPage } from './pages';
 import { MessengerLayout } from '@/app/layout';
 
 export const messengerRoutes: RouteObject[] = [
   {
-    element: <MessengerLayout/>,
+    element: <MessengerLayout />,
     path: 'messenger',
     children: [
       {
         path: '',
-        element: <EmptyChatPage/>,
+        element: <EmptyChatPage />,
       },
       {
         path: ':id',
         element: <ChatPage />,
+      },
+      {
+        path: ':id/videocall',
+        element: <VideocallPage />,
       },
     ],
   },

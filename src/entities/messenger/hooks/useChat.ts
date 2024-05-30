@@ -6,7 +6,6 @@ import { Stomp } from '@stomp/stompjs';
 import SockJS from 'sockjs-client/dist/sockjs';
 import { IMessage } from '../model';
 import dayjs from 'dayjs';
-import { getMessages } from '../api';
 import { useMessages } from '../queries';
 
 const headers = {
@@ -49,12 +48,7 @@ export const useChat = () => {
   }, [data]);
 
   useEffect(() => {
-    getMessages({
-      senderId: login,
-      receiverId: String(id),
-    }).then(setMessages);
-
-    const socket = new SockJS('https://voice-backend.ru:8082/chat');
+    const socket = new SockJS('https://voice-backend.ru:9003/chat');
     stompClient.current = Stomp.over(() => socket);
 
     const connect = () => {

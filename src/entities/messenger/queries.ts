@@ -8,7 +8,7 @@ type GetMessages = {
 
 export const useMessages = ({ senderId, receiverId }: GetMessages) => {
   return useQuery({
-    queryKey: ['messages'],
+    queryKey: ['messages', receiverId],
     queryFn: () => getMessages({ senderId, receiverId }),
   });
 };
