@@ -13,16 +13,16 @@ export const ChatMessages = ({
   currentUser,
   isLoading,
 }: ChatMessagesProps) => {
-  if (isLoading) {
+  if (!messages || isLoading) {
     return (
-      <div className='sm:h-[calc(100vh-195px)] h-[calc(100vh-180px)] flex justify-center items-center'>
+      <div className='sm:h-[calc(100vh-200px)] h-[calc(100vh-180px)] flex justify-center items-center'>
         <Spinner />
       </div>
     );
   }
 
   return (
-    <div className="bg-page sm:h-[calc(100vh-195px)] h-[calc(100vh-180px)] flex pl-4">
+    <div className="bg-page sm:h-[calc(100vh-200px)] h-[calc(100vh-180px)] flex pl-4">
       <ul className="flex flex-col-reverse w-full py-10 gap-3 pr-4 overflow-y-auto ">
         {messages.map((message) => (
           <ChatMessage
