@@ -19,13 +19,13 @@ export const ChatMessage = ({ message, currentUser }: ChatMessageProps) => {
   return (
     <li
       className={clsx(
-        'lg:min-w-[300px] lg:max-w-[350px] sm:min-w-[250px] sm:max-w-[300px] min-w-[175px] max-w-[200px] rounded-md py-2 px-3',
+        'lg:min-w-[300px] lg:max-w-[350px] sm:min-w-[250px] sm:max-w-[300px] min-w-[175px] max-w-[200px] rounded-md py-2 px-3  break-all',
         messageStyle
       )}
     >
       <div className="flex justify-between items-center sm:text-[16px] text-[14px]">
         <p>{message.sender}</p>
-        <p>{dayjs(message.timestamp).locale('ru').format('hh:mm')}</p>
+        <p className='w-[50px] text-end'>{dayjs(message.timestamp).locale('ru').format('hh:mm')}</p>
       </div>
       <p className="leading-[20px] sm:text-[14px] text-[12px] font-light">{message.content}</p>
     </li>
