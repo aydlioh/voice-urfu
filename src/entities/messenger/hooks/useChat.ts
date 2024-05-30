@@ -4,9 +4,9 @@ import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Stomp } from '@stomp/stompjs';
 import SockJS from 'sockjs-client/dist/sockjs';
-import { getMessages } from '../api';
 import { IMessage } from '../model';
 import dayjs from 'dayjs';
+import { useMessages } from '../queries';
 
 const headers = {
   Authorization:
@@ -16,6 +16,11 @@ const headers = {
 export const useChat = () => {
   const { id } = useParams();
   const { login } = useAuthStatus();
+
+  const { data, isPending } = useMessages({
+    senderId: login,
+    receiverId: String(id),
+  });
 
   const [messages, setMessages] = useState<IMessage[]>([]);
   const stompClient = useRef<any>(null);
@@ -39,8 +44,12 @@ export const useChat = () => {
   };
 
   useEffect(() => {
-    getMessages({ receiverId: String(id), senderId: login }).then(setMessages);
+    if (data) {
+      setMessages(data);
+    }
+  }, [data]);
 
+  useEffect(() => {
     const socket = new SockJS('https://voice-backend.ru:8082/chat');
     stompClient.current = Stomp.over(() => socket);
 
@@ -66,5 +75,11 @@ export const useChat = () => {
     };
   }, [id, login]);
 
-  return { user: login, opponent: id, sendMessage, messages };
+  return {
+    user: login,
+    opponent: id,
+    sendMessage,
+    messages,
+    isLoading: isPending,
+  };
 };
