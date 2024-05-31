@@ -8,15 +8,15 @@ const mock = [
     id: '1',
     imgSrc:
       'https://chudo-prirody.com/uploads/posts/2023-04/1682578522_chudo-prirody-com-p-kak-spit-panda-foto-1.jpg',
-    name: 'Panda Русская',
+    name: 'Panda',
     lastMessage: 'Привет, как дела?',
     lastMessageTime: '10:42',
   },
   {
-    id: '2',
+    id: 'pavel',
     imgSrc:
       'https://chudo-prirody.com/uploads/posts/2023-04/1682578522_chudo-prirody-com-p-kak-spit-panda-foto-1.jpg',
-    name: 'Panda Русская',
+    name: 'Pavel',
     lastMessage: 'Привет! Да вроде норм',
     lastMessageTime: '10:42',
   },
@@ -24,7 +24,7 @@ const mock = [
     id: '3',
     imgSrc:
       'https://chudo-prirody.com/uploads/posts/2023-04/1682578522_chudo-prirody-com-p-kak-spit-panda-foto-1.jpg',
-    name: 'Panda Русская',
+    name: 'Panda',
     lastMessage: 'А у иебя?',
     lastMessageTime: '10:42',
   },
@@ -32,7 +32,7 @@ const mock = [
     id: '4',
     imgSrc:
       'https://chudo-prirody.com/uploads/posts/2023-04/1682578522_chudo-prirody-com-p-kak-spit-panda-foto-1.jpg',
-    name: 'Panda Русская',
+    name: 'Panda',
     lastMessage: 'Да тож норм',
     lastMessageTime: '10:42',
   },
