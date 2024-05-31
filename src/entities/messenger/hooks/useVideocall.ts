@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useAuthStatus } from '@/entities/auth';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Stomp } from '@stomp/stompjs';
 import SockJS from 'sockjs-client/dist/sockjs';
@@ -27,6 +27,8 @@ export const useVideocall = () => {
 
   const userVideo = useRef<any>(null);
   const opponentVideo = useRef<any>(null);
+
+  const [isOpponentReady, setOpponentReady] = useState(false);
 
   useEffect(() => {
     peerConnection.current = new RTCPeerConnection(configuration);
@@ -61,6 +63,7 @@ export const useVideocall = () => {
     };
 
     peerConnection.current.ontrack = (event: any) => {
+      setOpponentReady(true);
       opponentVideo.current.srcObject = event.streams[0];
     };
 
@@ -148,5 +151,5 @@ export const useVideocall = () => {
     };
   }, []);
 
-  return { user: login, opponent: id, userVideo, opponentVideo };
+  return { user: login, opponent: id, userVideo, opponentVideo, isOpponentReady };
 };

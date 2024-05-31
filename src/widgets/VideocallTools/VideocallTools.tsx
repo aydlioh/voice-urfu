@@ -1,4 +1,5 @@
-import { FaMicrophone, FaMicrophoneSlash, FaPhoneSlash } from 'react-icons/fa6';
+import { FaPhoneSlash } from 'react-icons/fa6';
+import { PiMicrophoneSlashFill, PiMicrophoneFill  } from "react-icons/pi";
 import { PiVideoCameraFill, PiVideoCameraSlashFill } from 'react-icons/pi';
 import { LuMonitor, LuMonitorOff } from 'react-icons/lu';
 import { VideocallTool } from '@/features/videocall';
@@ -26,8 +27,8 @@ export const VideocallTools = () => {
   return (
     <div className="absolute bottom-24 flex justify-center gap-1">
       <VideocallTool
-        activeIcon={FaMicrophone}
-        disabledIcon={FaMicrophoneSlash}
+        activeIcon={PiMicrophoneFill}
+        disabledIcon={PiMicrophoneSlashFill}
         handleToggle={handleMicroToggle}
       />
       <VideocallTool
