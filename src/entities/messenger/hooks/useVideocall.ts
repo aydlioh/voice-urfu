@@ -28,6 +28,8 @@ export const useVideocall = () => {
   const userVideo = useRef<any>(null);
   const opponentVideo = useRef<any>(null);
 
+  const videoStream = useRef<any>(null);
+
   const [isOpponentReady, setOpponentReady] = useState(false);
 
   useEffect(() => {
@@ -102,10 +104,15 @@ export const useVideocall = () => {
           audio: true,
         });
         userVideo.current.srcObject = stream;
+        videoStream.current = stream;
         stream.getTracks().forEach((track) => pc.addTrack(track, stream));
       } catch (error) {
         console.error('Error adding media stream:', error);
       }
+    }
+
+    function destroyMediaStream() {
+      videoStream.current.getTracks().forEach((track: any) => track.stop());
     }
 
     async function goVideo() {
@@ -148,6 +155,10 @@ export const useVideocall = () => {
     };
 
     connect();
+
+    return () => {
+      destroyMediaStream();
+    };
   }, []);
 
   return {
