@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useAuthStatus } from '@/entities/auth';
 import { useEffect, useRef, useState } from 'react';

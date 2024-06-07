@@ -1,8 +1,8 @@
 import { SearchInput } from '@/shared/ui';
 import { BsTelephoneFill } from 'react-icons/bs';
 import { RiSettings5Fill } from 'react-icons/ri';
-import { FaArrowLeft } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import { BackButton } from '@/features/sidebar';
 
 const mockUser = {
   imgSrc:
@@ -12,23 +12,14 @@ const mockUser = {
 export const ChatTools = ({ userName }: { userName: string | undefined }) => {
   const navigate = useNavigate();
 
-  const handleBack = () => {
-    navigate('/messenger');
-  };
-
   const handleVideocall = () => {
     navigate('videocall');
-  }
+  };
 
   return (
     <div className="bg-pageNested p-3 flex justify-between items-center">
       <div className="flex flex-row gap-3 items-center">
-        <button
-          onClick={handleBack}
-          className="sm:h-12 sm:w-12 h-10 w-10 flex justify-center items-center p-2 rounded-full hover:bg-page duration-200"
-        >
-          <FaArrowLeft className="sm:text-[24px] text-[20px]" />
-        </button>
+        <BackButton to='/messenger' />
         <div className="min-w-10">
           <img
             src={mockUser.imgSrc}
@@ -41,7 +32,10 @@ export const ChatTools = ({ userName }: { userName: string | undefined }) => {
       <div className="flex flex-row gap-2 items-center">
         <SearchInput placeholder="Поиск" className="lg:block hidden" />
         <div className="flex flex-row gap-1">
-          <button onClick={handleVideocall} className="sm:h-12 sm:w-12 h-10 w-10 flex justify-center items-center p-2 rounded-full hover:bg-page duration-200 cursor-pointer">
+          <button
+            onClick={handleVideocall}
+            className="sm:h-12 sm:w-12 h-10 w-10 flex justify-center items-center p-2 rounded-full hover:bg-page duration-200 cursor-pointer"
+          >
             <BsTelephoneFill className="sm:text-[24px] text-[20px]" />
           </button>
           <div className="sm:h-12 sm:w-12 h-10 w-10 flex justify-center items-center p-2 rounded-full hover:bg-page duration-200 cursor-pointer">

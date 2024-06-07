@@ -1,3 +1,4 @@
+import { BackButton } from '@/features/sidebar';
 import { settingsNestedSidebarLinks } from '@/shared/const/settingsNestedSidebarLinks';
 import { PageSpinner } from '@/shared/ui';
 import { NestedSidebar } from '@/widgets';
@@ -15,7 +16,8 @@ export const SettingsLayout = () => {
         isActive={isActive}
         nestedLinks={settingsNestedSidebarLinks}
       />
-      <div className={clsx('w-full h-full', { 'md:flex hidden': !isActive })}>
+      <div className={clsx('w-full h-full', { 'md:flex md:flex-col hidden': !isActive })}>
+        <BackButton to="/settings" className='text-secondary m-2'/>
         <Suspense fallback={<PageSpinner variant="sidebar" />}>
           <Outlet />
         </Suspense>

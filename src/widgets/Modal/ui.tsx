@@ -34,7 +34,7 @@ export const Modal = () => {
                 <img src={PandaLogoutSvg} alt="panda logout" />
               </div>
               <div className="max-w-[300px] w-full">
-                <h3 className="font-minecraft text-[30px] text-center">
+                <h3 className="font-minecraft sm:text-[30px] text-[24px] text-center">
                   Выйти из аккаунта?
                 </h3>
               </div>
