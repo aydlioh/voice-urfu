@@ -1,1 +1,1 @@
-export * from './PasswordInput';
+export * from './ui';

@@ -1,3 +1,3 @@
-import RoomsPage from './RoomsPage';
+import RoomsPage from './ui';
 
 export default RoomsPage;

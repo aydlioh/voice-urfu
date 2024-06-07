@@ -4,17 +4,17 @@ import { RiSettings5Fill } from 'react-icons/ri';
 
 export const sidebarLinks = [
   {
-    name: 'Комнаты',
+    label: 'Комнаты',
     path: '/rooms',
     icon: MdVideoChat,
   },
   {
-    name: 'Чаты',
+    label: 'Чаты',
     path: '/messenger',
     icon: FaUserFriends,
   },
   {
-    name: 'Настройки',
+    label: 'Настройки',
     path: '/settings',
     icon: RiSettings5Fill,
   },

@@ -1,28 +1,26 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { RegisterInputs, registerSchema, useAuth } from '@/entities/auth';
+import { RegisterInputs, registerSchema, useRegister } from '@/entities/auth';
 
 export const useRegisterForm = () => {
-  const { signIn } = useAuth();
   const {
-    register,
+    register: formRegister,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm<RegisterInputs>({
     resolver: zodResolver(registerSchema),
   });
 
+  const { register, isPending } = useRegister();
+
   const onSubmit: SubmitHandler<RegisterInputs> = (data) => {
-    const { login, fullname, email } = data;
-    signIn({ login, fullname, email });
-    reset({
-      login: '',
-      password: '',
-      fullname: '',
-      email: '',
-    });
+    register(data);
   };
 
-  return { submit: handleSubmit(onSubmit), register, errors };
+  return {
+    submit: handleSubmit(onSubmit),
+    register: formRegister,
+    errors,
+    isPending,
+  };
 };

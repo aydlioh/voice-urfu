@@ -1,26 +1,21 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { LoginInputs, loginSchema, useAuth } from '@/entities/auth';
+import { LoginInputs, loginSchema, useLogin } from '@/entities/auth';
 
 export const useLoginForm = () => {
-  const { signIn } = useAuth();
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm<LoginInputs>({
     resolver: zodResolver(loginSchema),
   });
 
+  const { login, isPending } = useLogin();
+
   const onSubmit: SubmitHandler<LoginInputs> = (data) => {
-    const { login } = data;
-    signIn({ login });
-    reset({
-      login: '',
-      password: '',
-    });
+    login(data);
   };
 
-  return { submit: handleSubmit(onSubmit), register, errors };
+  return { submit: handleSubmit(onSubmit), register, errors, isPending };
 };

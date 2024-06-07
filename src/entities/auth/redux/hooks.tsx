@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { login, logout } from './authSlice';
 import { RootState } from '@/app/redux';
 
-type UserDataType = {
+type UserDataType = null | {
   login?: string;
   fullname?: string;
   email?: string;

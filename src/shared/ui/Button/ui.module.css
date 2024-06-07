@@ -1,0 +1,19 @@
+.button {
+  @apply rounded-lg text-[16px] h-12 text-primary;
+}
+
+.primary {
+  @apply bg-primary text-secondary;
+}
+
+.secondary {
+  @apply bg-secondary text-primary;
+}
+
+.danger {
+  @apply bg-rose-500 text-secondary;
+}
+
+.bordered {
+  @apply border-primary hover:bg-primary hover:text-white bg-white text-primary;
+}

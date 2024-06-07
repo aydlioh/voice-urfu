@@ -1,5 +1,5 @@
 export type RegisterInputs = {
-  login: string;
+  userName: string;
   password: string;
   fullname: string;
   email: string;

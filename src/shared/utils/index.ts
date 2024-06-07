@@ -9,6 +9,16 @@ const getTranslatePathname = (pathname: string) => {
       return 'Настройки';
     case 'rooms':
       return 'Комнаты';
+    case 'microphone':
+      return 'Микрофон'
+    case 'camera':
+      return 'Камера'
+    case 'security':
+      return 'Конфиденциальность'
+    case 'profile':
+      return 'Профиль'
+    case 'theme':
+      return 'Тема'
     default:
       return pathname;
   }

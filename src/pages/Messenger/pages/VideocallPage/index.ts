@@ -1,1 +1,1 @@
-export * from './VideocallPage';
+export * from './ui';

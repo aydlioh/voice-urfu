@@ -1,1 +1,1 @@
-export * from './PageSpinner';
+export * from './ui';

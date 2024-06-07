@@ -1,1 +1,1 @@
-export * from './ChatPage';
+export * from './ui';
