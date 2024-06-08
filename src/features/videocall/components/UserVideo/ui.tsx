@@ -14,7 +14,7 @@ export const UserVideo = forwardRef(
             <p>{name}</p>
           </div>
         )}
-        <video autoPlay playsInline muted ref={ref} className="w-full h-full" />
+        <video autoPlay playsInline muted ref={ref} className="w-full h-full aspect-auto" />
       </div>
     );
   }
