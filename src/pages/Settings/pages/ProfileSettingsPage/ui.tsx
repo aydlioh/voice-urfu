@@ -1,5 +1,5 @@
-export const ProfileSettingsPage = () => {
-  return (
-    <div>ProfileSettingsPage</div>
-  )
-}
+const ProfileSettingsPage = () => {
+  return <div>ProfileSettingsPage</div>;
+};
+
+export default ProfileSettingsPage;

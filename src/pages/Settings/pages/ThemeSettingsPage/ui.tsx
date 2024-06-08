@@ -1,5 +1,5 @@
-export const ThemeSettingsPage = () => {
-  return (
-    <div>ThemeSettingsPage</div>
-  )
-}
+const ThemeSettingsPage = () => {
+  return <div>ThemeSettingsPage</div>;
+};
+
+export default ThemeSettingsPage;

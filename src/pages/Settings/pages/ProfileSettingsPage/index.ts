@@ -1,1 +1,3 @@
-export * from './ui';
+import ProfileSettingsPage from './ui';
+
+export default ProfileSettingsPage;

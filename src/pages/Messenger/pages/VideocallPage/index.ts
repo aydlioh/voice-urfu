@@ -1,1 +1,3 @@
-export * from './ui';
+import VideocallPage from './ui';
+
+export default VideocallPage;

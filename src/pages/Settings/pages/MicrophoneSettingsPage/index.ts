@@ -1,1 +1,3 @@
-export * from './ui';
+import MicrophoneSettingsPage from './ui';
+
+export default MicrophoneSettingsPage

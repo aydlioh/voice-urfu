@@ -2,7 +2,7 @@ import { VideocallTools } from '@/widgets';
 import { useVideocall } from '@/entities/messenger';
 import { UserVideo } from '@/features/videocall';
 
-export const VideocallPage = () => {
+const VideocallPage = () => {
   const { user, opponent, userVideo, opponentVideo } = useVideocall();
 
   return (
@@ -17,3 +17,5 @@ export const VideocallPage = () => {
     </section>
   );
 };
+
+export default VideocallPage;

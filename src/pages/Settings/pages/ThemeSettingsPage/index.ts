@@ -1,1 +1,3 @@
-export * from './ui';
+import ThemeSettingsPage from './ui';
+
+export default ThemeSettingsPage;

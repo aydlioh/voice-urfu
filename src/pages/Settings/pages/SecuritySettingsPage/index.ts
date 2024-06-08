@@ -1,1 +1,3 @@
-export * from './ui';
+import SecuritySettingsPage from './ui';
+
+export default SecuritySettingsPage;
