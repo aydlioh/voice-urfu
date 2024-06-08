@@ -12,8 +12,10 @@ export const ChatInput = ({
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    onSubmit(message);
-    setMessage('');
+    if (message) {
+      onSubmit(message);
+      setMessage('');
+    }
   };
 
   return (

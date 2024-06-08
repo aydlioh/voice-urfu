@@ -30,7 +30,7 @@ export const ChatTools = ({ userName }: { userName: string | undefined }) => {
         <h3>{userName}</h3>
       </div>
       <div className="flex flex-row gap-2 items-center">
-        <SearchInput placeholder="Поиск" className="lg:block hidden" />
+        <SearchInput placeholder="Поиск" className="xl:block hidden" />
         <div className="flex flex-row gap-1">
           <button
             onClick={handleVideocall}
