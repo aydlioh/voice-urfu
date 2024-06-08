@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { request } from './interceptors';
 
-export const axiosHttp = axios.create({
+export const chatHttp = axios.create({
   baseURL: 'https://voice-backend.ru:9003',
   timeout: 10000,
 });
@@ -11,5 +11,5 @@ export const authHttp = axios.create({
   timeout: 10000,
 });
 
-axiosHttp.interceptors.request.use(request, Promise.reject);
+chatHttp.interceptors.request.use(request, Promise.reject);
 authHttp.interceptors.request.use(request, Promise.reject);

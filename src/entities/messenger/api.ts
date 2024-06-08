@@ -1,4 +1,4 @@
-import { axiosHttp } from '@/shared/api';
+import { chatHttp } from '@/shared/api';
 import { IMessage } from './model';
 
 export const getMessages = async ({
@@ -9,7 +9,7 @@ export const getMessages = async ({
   receiverId: string;
 }) => {
   try {
-    const { data } = await axiosHttp.get<IMessage[]>('/chat/history/messages', {
+    const { data } = await chatHttp.get<IMessage[]>('/chat/history/messages', {
       params: {
         senderId,
         receiverId,

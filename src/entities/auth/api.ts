@@ -1,4 +1,5 @@
-import { ILogin, IRegister, authHttp } from '@/shared/api';
+import { authHttp } from '@/shared/api';
+import { ILogin, IRegister } from './models';
 
 export const register = async (data: IRegister) => {
   try {
