@@ -17,7 +17,7 @@ export const useChat = () => {
   const { id } = useParams();
   const { login } = useAuthStatus();
 
-  const { data, isPending } = useMessages({
+  const { data, isFetching } = useMessages({
     senderId: login,
     receiverId: String(id),
   });
@@ -78,6 +78,6 @@ export const useChat = () => {
     opponent: id,
     sendMessage,
     messages,
-    isLoading: isPending,
+    isLoading: isFetching,
   };
 };
