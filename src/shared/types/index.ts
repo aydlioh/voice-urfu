@@ -1,3 +1,3 @@
 export * from './socketContext';
 export * from './user';
-export * from './nestedLink';
+export * from './sidebarLink';

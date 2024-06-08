@@ -4,13 +4,13 @@ import { SidebarLink } from '../SidebarLink';
 export const SidebarContent = ({ isOpen }: { isOpen: boolean }) => {
   return (
     <nav className="flex flex-col text-background text-[20px]">
-      {sidebarLinks.map((link, index) => (
+      {sidebarLinks.map(({ path, icon, label }, index) => (
         <SidebarLink
           isSidebarOpen={isOpen}
           key={index}
-          to={link.path}
-          Icon={link.icon}
-          label={link.label}
+          to={path}
+          Icon={icon}
+          label={label}
         />
       ))}
     </nav>

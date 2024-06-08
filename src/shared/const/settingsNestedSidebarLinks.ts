@@ -1,4 +1,6 @@
-export const settingsNestedSidebarLinks = [
+import { SidebarLink } from "../types";
+
+export const settingsNestedSidebarLinks: Omit<SidebarLink, 'icon'>[] = [
   {
     label: 'Микрофон',
     path: 'microphone'

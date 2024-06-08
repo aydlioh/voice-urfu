@@ -1,10 +1,10 @@
 import { useModal } from '@/entities/modal';
 import { NestedSidebarLink } from '@/features/sidebar';
-import { NestedLink } from '@/shared/types';
+import { SidebarLink } from '@/shared/types';
 import clsx from 'clsx';
 
 type Props = {
-  nestedLinks: NestedLink[];
+  nestedLinks: Omit<SidebarLink, 'icon'>[];
   isActive: boolean;
 };
 
@@ -22,8 +22,8 @@ export const NestedSidebar = ({ nestedLinks, isActive }: Props) => {
     >
       <div className="p-2 w-full">
         <ul className="py-1 flex flex-col gap-0.5 ">
-          {nestedLinks.map((link, index) => (
-            <NestedSidebarLink to={link.path} label={link.label} key={index} />
+          {nestedLinks.map(({ label, path }, index) => (
+            <NestedSidebarLink to={path} label={label} key={index} />
           ))}
           <li
             onClick={open}
