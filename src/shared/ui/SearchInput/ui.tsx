@@ -11,9 +11,9 @@ export const SearchInput = (props: InputProps) => {
           <FaSearch size={20} className="text-secondary" />
         </button>
       }
+      isClearable
       autoComplete="off"
       variant='flat'
-      type="search"
     />
   );
 };
