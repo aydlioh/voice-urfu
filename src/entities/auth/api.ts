@@ -11,6 +11,7 @@ export const register = async (data: IRegister) => {
     return response;
   } catch (error) {
     console.error('Registration failed: ', error);
+    throw new Error('Не удалось зарегистрироваться!');
   }
 };
 
@@ -20,6 +21,7 @@ export const login = async (data: ILogin) => {
     return response;
   } catch (error) {
     console.error('Login failed: ', error);
+    throw new Error('Неверный логин или пароль!');
   }
 };
 

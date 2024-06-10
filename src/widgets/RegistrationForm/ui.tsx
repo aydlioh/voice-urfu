@@ -4,14 +4,19 @@ import { Button, Input } from '@/shared/ui';
 import styles from './ui.module.css';
 
 export const RegistrationForm = () => {
-  const { submit, errors, register, isPending } = useRegisterForm();
+  const { submit, errors, register, isPending, fetchError } = useRegisterForm();
+
+  const isUserNameError = errors.userName !== undefined || Boolean(fetchError);
+  const isFullNameError = errors.fullname !== undefined || Boolean(fetchError);
+  const isEmailError = errors.email !== undefined || Boolean(fetchError);
+  const isPasswordError = errors.password !== undefined || Boolean(fetchError);
 
   return (
     <form onSubmit={submit} className={styles.registerWrapper}>
       <Input
         {...register('userName')}
-        isInvalid={errors.userName !== undefined}
-        color={errors.userName !== undefined ? 'danger' : 'default'}
+        isInvalid={isUserNameError}
+        color={isUserNameError ? 'danger' : 'default'}
         errorMessage={errors.userName?.message}
         label="Логин"
         autoComplete="username"
@@ -19,8 +24,8 @@ export const RegistrationForm = () => {
       />
       <Input
         {...register('fullname')}
-        isInvalid={errors.fullname !== undefined}
-        color={errors.fullname !== undefined ? 'danger' : 'default'}
+        isInvalid={isFullNameError}
+        color={isFullNameError ? 'danger' : 'default'}
         errorMessage={errors.fullname?.message}
         label="ФИО"
         autoComplete="fullname"
@@ -31,8 +36,8 @@ export const RegistrationForm = () => {
       />
       <Input
         {...register('email')}
-        isInvalid={errors.email !== undefined}
-        color={errors.email !== undefined ? 'danger' : 'default'}
+        isInvalid={isEmailError}
+        color={isEmailError ? 'danger' : 'default'}
         errorMessage={errors.email?.message}
         type="email"
         label="E-mail"
@@ -40,9 +45,9 @@ export const RegistrationForm = () => {
         variant="bordered"
       />
       <PasswordInput
-        isInvalid={errors.password !== undefined}
-        color={errors.password !== undefined ? 'danger' : 'default'}
-        errorMessage={errors.password?.message}
+        isInvalid={isPasswordError}
+        color={isPasswordError ? 'danger' : 'default'}
+        errorMessage={errors.password?.message || fetchError}
         {...register('password')}
         label="Пароль"
         autoComplete="current-password"

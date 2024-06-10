@@ -4,16 +4,16 @@ import { Button, Input } from '@/shared/ui';
 import styles from './ui.module.css';
 
 export const LoginForm = () => {
-  const { submit, errors, register, isPending } = useLoginForm();
+  const { submit, errors, register, isPending, fetchError } = useLoginForm();
+
+  const isLoginError = errors.login !== undefined || Boolean(fetchError);
+  const isPasswordError = errors.password !== undefined || Boolean(fetchError);
 
   return (
-    <form
-      onSubmit={submit}
-      className={styles.loginWrapper}
-    >
+    <form onSubmit={submit} className={styles.loginWrapper}>
       <Input
-        isInvalid={errors.login !== undefined}
-        color={errors.login !== undefined ? 'danger' : 'default'}
+        isInvalid={isLoginError}
+        color={isLoginError ? 'danger' : 'default'}
         errorMessage={errors.login?.message}
         {...register('login')}
         label="Логин / E-mail"
@@ -21,9 +21,9 @@ export const LoginForm = () => {
         variant="bordered"
       />
       <PasswordInput
-        isInvalid={errors.password !== undefined}
-        color={errors.password !== undefined ? 'danger' : 'default'}
-        errorMessage={errors.password?.message}
+        isInvalid={isPasswordError}
+        color={isPasswordError ? 'danger' : 'default'}
+        errorMessage={errors.password?.message || fetchError}
         {...register('password')}
         label="Пароль"
         autoComplete="current-password"
