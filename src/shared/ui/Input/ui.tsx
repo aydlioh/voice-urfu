@@ -24,6 +24,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
       ref={ref}
       autoComplete="off"
       classNames={{
+        ...props.classNames,
         ...(props.variant === 'bordered' ? classNames.border : {}),
         ...(props.variant === 'flat' ? classNames.main : {}),
       }}

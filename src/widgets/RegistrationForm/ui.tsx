@@ -24,6 +24,9 @@ export const RegistrationForm = () => {
         errorMessage={errors.fullname?.message}
         label="ФИО"
         autoComplete="fullname"
+        classNames={{
+          input: 'capitalize',
+        }}
         variant="bordered"
       />
       <Input
