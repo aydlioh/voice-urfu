@@ -11,5 +11,5 @@
 }
 
 .title {
-  @apply font-minecraft text-[32px];
+  @apply font-minecraft text-[28px];
 }

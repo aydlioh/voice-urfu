@@ -13,7 +13,7 @@ export const SidebarToggle = ({ isOpen, toggleSidebar }: Props) => {
       <button onClick={toggleSidebar} className={styles.toggleBtn}>
         <HiMenu />
       </button>
-      {isOpen && <img src={VoiceSvg} alt="Voice" />}
+      {isOpen && <img src={VoiceSvg} alt="Voice" className={styles.logo} />}
     </div>
   );
 };

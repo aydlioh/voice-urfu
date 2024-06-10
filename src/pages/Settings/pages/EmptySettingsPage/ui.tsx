@@ -1,11 +1,12 @@
-import { PandaEmptySvg } from "@/shared/assets/svgs";
+import { PandaEmptySvg } from '@/shared/assets/svgs';
+import styles from './ui.module.css';
 
 const EmptySettingsPage = () => {
   return (
-    <section className="h-full w-full flex justify-center items-center text-primaryText">
-      <div className="max-w-[400px] flex flex-col items-center">
-        <img src={PandaEmptySvg} alt="Panda" className="w-[250px]" />
-        <h1 className="font-minecraft text-[28px]">Выберите раздел</h1>
+    <section className={styles.container}>
+      <div className={styles.wrapper}>
+        <img src={PandaEmptySvg} alt="Panda" className={styles.img} />
+        <h1 className={styles.title}>Выберите раздел</h1>
       </div>
     </section>
   );

@@ -1,7 +1,7 @@
 import { VideocallTools } from '@/widgets';
 import { useVideocall } from '@/entities/messenger';
 import { UserVideo } from '@/features/videocall';
-import styles from './ui.module.css'
+import styles from './ui.module.css';
 
 const VideocallPage = () => {
   const { user, opponent, userVideo, opponentVideo } = useVideocall();

@@ -1,5 +1,9 @@
 .toolsContainer {
-  @apply absolute lg:bottom-24 md:bottom-6 bottom-14 flex justify-center gap-1;
+  @apply absolute lg:bottom-24 md:bottom-6 bottom-14;
+}
+
+.toolsWrapper {
+  @apply flex justify-center gap-1 sm:bg-transparent bg-pageNested sm:px-0 px-2 sm:py-0 py-1 rounded-md z-[100];
 }
 
 .disconnectBtn {
