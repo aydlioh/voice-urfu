@@ -1,6 +1,7 @@
 import { Button, Input } from '@/shared/ui';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import styles from './ui.module.css'
 
 export const CreateRoom = () => {
   const [roomId, setRoomId] = useState('');
@@ -15,15 +16,15 @@ export const CreateRoom = () => {
   return (
     <form
       onSubmit={createRoom}
-      className="flex sm:flex-row flex-col items-center gap-4"
+      className={styles.createRoomForm}
     >
       <Input
         value={roomId}
         onChange={(e) => setRoomId(e.target.value)}
         label="Номер комнаты"
-        className="sm:max-w-80 w-full"
+        className={styles.createRoomInput}
       />
-      <Button type="submit" color="success" className="sm:w-auto w-full">
+      <Button type="submit" color="success" className={styles.createRoomBtn}>
         Создать
       </Button>
     </form>

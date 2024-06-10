@@ -4,6 +4,7 @@ import { PiVideoCameraFill, PiVideoCameraSlashFill } from 'react-icons/pi';
 import { LuMonitor, LuMonitorOff } from 'react-icons/lu';
 import { VideocallTool } from '@/features/videocall';
 import { useNavigate } from 'react-router-dom';
+import styles from './ui.module.css'
 
 export const VideocallTools = () => {
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ export const VideocallTools = () => {
   };
 
   return (
-    <div className="absolute bottom-24 flex justify-center gap-1">
+    <div className={styles.toolsContainer}>
       <VideocallTool
         activeIcon={PiMicrophoneFill}
         disabledIcon={PiMicrophoneSlashFill}
@@ -44,9 +45,9 @@ export const VideocallTools = () => {
       />
       <button
         onClick={handleDisconnect}
-        className="h-12 w-12 flex justify-center items-center p-2 rounded-full hover:bg-rose-500/10 duration-200 cursor-pointer"
+        className={styles.disconnectBtn}
       >
-        <FaPhoneSlash className="text-rose-500 text-[26px]" />
+        <FaPhoneSlash className={styles.disconnectIcon} />
       </button>
     </div>
   );

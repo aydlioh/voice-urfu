@@ -1,0 +1,3 @@
+.loginWrapper {
+  @apply sm:px-20 px-4 pt-10 pb-8 flex flex-col gap-4;
+}

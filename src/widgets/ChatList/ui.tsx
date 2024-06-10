@@ -2,6 +2,7 @@ import { ChatItem, ChatSearch } from '@/features/messenger';
 import { UserProps } from '@/shared/types';
 import clsx from 'clsx';
 import { useNavigate } from 'react-router-dom';
+import styles from './ui.module.css';
 
 const mock = [
   {
@@ -50,15 +51,13 @@ export const ChatList = ({ isChat = false }: { isChat?: boolean }) => {
   return (
     <aside
       className={clsx(
-        'bg-sidebarNested md:max-w-[340px] w-full text-secondary',
-        {
-          'md:flex hidden': isChat,
-        }
+        styles.chatSidebar,
+        isChat && styles.active
       )}
     >
-      <div className="p-2 w-full">
+      <div className={styles.wrapper}>
         <ChatSearch />
-        <ul className="py-1 flex flex-col gap-0.5 ">
+        <ul className={styles.chatList}>
           {mock.map((user) => (
             <ChatItem onClick={handleNavigate} user={user} key={user.id} />
           ))}

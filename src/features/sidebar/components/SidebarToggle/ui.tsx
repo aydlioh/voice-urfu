@@ -1,25 +1,19 @@
 import { HiMenu } from 'react-icons/hi';
 import { VoiceSvg } from '@/shared/assets/svgs';
+import styles from './ui.module.css';
 
 type Props = {
   isOpen: boolean;
   toggleSidebar: () => void;
-}
+};
 
-export const SidebarToggle = ({
-  isOpen,
-  toggleSidebar,
-}: Props) => {
+export const SidebarToggle = ({ isOpen, toggleSidebar }: Props) => {
   return (
-    <div className="flex flex-row items-center px-3 gap-10">
-      <button
-        onClick={toggleSidebar}
-        className="text-[30px] bg-background text-sidebar p-1 rounded-xl flex justify-center items-center hover:bg-opacity-80 duration-200"
-      >
+    <div className={styles.toggleBtnWrapper}>
+      <button onClick={toggleSidebar} className={styles.toggleBtn}>
         <HiMenu />
       </button>
-
-      {isOpen && <img src={VoiceSvg} alt="Voice" width={130} />}
+      {isOpen && <img src={VoiceSvg} alt="Voice" />}
     </div>
   );
 };

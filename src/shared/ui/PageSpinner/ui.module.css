@@ -1,0 +1,8 @@
+.spinnerWrapper {
+  @apply flex justify-center items-center w-full h-[calc(100%-40px)];
+}
+
+.spinnerWrapperScreen {
+  @apply flex justify-center items-center w-screen h-[calc(100vh-40px)];
+}
+

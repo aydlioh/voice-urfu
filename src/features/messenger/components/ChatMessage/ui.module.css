@@ -1,0 +1,27 @@
+.message {
+  @apply lg:min-w-[300px] lg:max-w-[350px] sm:min-w-[250px] sm:max-w-[300px] min-w-[175px] max-w-[200px] rounded-md py-2 px-3 break-all;
+}
+
+.current {
+  @apply bg-currentUser self-end;
+}
+
+.opponent {
+  @apply bg-opponent self-start;
+}
+
+.messageInfoWrapper {
+  @apply flex justify-between items-center;
+}
+
+.messageName {
+  @apply sm:text-[16px] text-[14px];
+}
+
+.messageTime {
+  @apply w-[50px] text-end text-[12px];
+}
+
+.messageBody {
+  @apply leading-[20px] sm:text-[14px] text-[12px] font-light;
+}

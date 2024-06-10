@@ -1,15 +1,13 @@
 import { useRegisterForm } from '@/entities/auth';
 import { PasswordInput } from '@/features/auth';
 import { Button, Input } from '@/shared/ui';
+import styles from './ui.module.css';
 
 export const RegistrationForm = () => {
   const { submit, errors, register, isPending } = useRegisterForm();
 
   return (
-    <form
-      onSubmit={submit}
-      className="md:px-20 px-4 pt-4 pb-8 flex flex-col gap-4"
-    >
+    <form onSubmit={submit} className={styles.registerWrapper}>
       <Input
         {...register('userName')}
         isInvalid={errors.userName !== undefined}

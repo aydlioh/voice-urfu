@@ -1,8 +1,9 @@
 import { Chat } from '@/widgets';
+import styles from './ui.module.css';
 
 const ChatPage = () => {
   return (
-    <section className="max-w-[800px] text-primaryText mx-auto">
+    <section className={styles.container}>
       <Chat />
     </section>
   );

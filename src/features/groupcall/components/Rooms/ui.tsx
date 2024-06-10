@@ -3,6 +3,7 @@ import { ACTIONS } from '@/shared/socket/groupcall';
 import { Button } from '@/shared/ui';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import styles from './ui.module.css';
 
 export const Rooms = () => {
   const navigate = useNavigate();
@@ -23,12 +24,9 @@ export const Rooms = () => {
   }, [socket]);
 
   return (
-    <ul className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6 mt-8">
+    <ul className={styles.roomsWrapper}>
       {rooms.map((room, index) => (
-        <li
-          key={index}
-          className="border rounded-lg px-4 py-5 flex justify-between items-center"
-        >
+        <li key={index} className={styles.room}>
           <p>Комната № {room}</p>
           <Button onClick={() => navigate(`/rooms/${room}`)} color="secondary">
             Войти

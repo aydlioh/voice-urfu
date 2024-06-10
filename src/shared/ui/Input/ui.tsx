@@ -3,6 +3,7 @@ import { Input as InputNextUI, InputProps } from '@nextui-org/react';
 
 const classNames = {
   main: {
+    clearButton: 'text-secondary hover:scale-[115%] transition',
     input:
       'data-[has-start-content=true]:ps-4 bg-primary text-secondary placeholder:text-secondary group-data-[has-value=true]:text-secondary',
     innerWrapper: 'bg-primary py-1',
@@ -10,6 +11,7 @@ const classNames = {
       'rounded-md bg-primary data-[hover=true]:bg-primary group-data-[focus=true]:bg-primary',
   },
   border: {
+    clearButton: 'text-secondary hover:scale-[115%] transition',
     inputWrapper:
       'border-default-400 data-[hover=true]:border-background group-data-[focus=true]:border-background',
   },

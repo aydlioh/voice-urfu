@@ -1,0 +1,11 @@
+.sidebarLink {
+  @apply flex gap-4 py-3 duration-200 hover:bg-sidebarActiveHover px-4;
+}
+
+.active {
+  @apply bg-sidebarActiveLink;
+}
+
+.linkIcon {
+  @apply text-[32px];
+}

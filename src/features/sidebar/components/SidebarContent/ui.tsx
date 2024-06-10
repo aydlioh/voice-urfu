@@ -1,18 +1,22 @@
 import { sidebarLinks } from '@/shared/const';
 import { SidebarLink } from '../SidebarLink';
+import styles from './ui.module.css';
 
 export const SidebarContent = ({ isOpen }: { isOpen: boolean }) => {
   return (
-    <nav className="flex flex-col text-background text-[20px]">
-      {sidebarLinks.map(({ path, icon, label }, index) => (
-        <SidebarLink
-          isSidebarOpen={isOpen}
-          key={index}
-          to={path}
-          Icon={icon}
-          label={label}
-        />
-      ))}
+    <nav>
+      <ul className={styles.contentWrapper}>
+        {sidebarLinks.map(({ path, icon, label }, index) => (
+          <li key={index}>
+            <SidebarLink
+              isSidebarOpen={isOpen}
+              to={path}
+              Icon={icon}
+              label={label}
+            />
+          </li>
+        ))}
+      </ul>
     </nav>
   );
 };

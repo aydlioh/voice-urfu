@@ -1,5 +1,6 @@
 import { FaSearch } from "react-icons/fa";
 import { Input, InputProps } from "../Input";
+import styles from './ui.module.css'
 
 export const SearchInput = (props: InputProps) => {
   return (
@@ -8,7 +9,7 @@ export const SearchInput = (props: InputProps) => {
       size="lg"
       startContent={
         <button type="submit">
-          <FaSearch size={20} className="text-secondary" />
+          <FaSearch className={styles.searchIcon} />
         </button>
       }
       isClearable

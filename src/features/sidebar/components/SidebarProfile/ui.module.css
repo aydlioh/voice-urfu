@@ -1,0 +1,31 @@
+.profileActive {
+  @apply p-1;
+}
+
+.profileWrapper {
+  @apply py-3 px-4 flex items-center gap-4 hover:bg-primary/10 cursor-pointer rounded-md;
+}
+
+.userIconWrapper {
+  @apply rounded-full bg-background;
+}
+
+.userIcon {
+  @apply duration-250 text-sidebar text-[32px];
+}
+
+.userIconActive {
+  @apply text-[36px];
+}
+
+.userInfoWrapper {
+  @apply flex flex-col;
+}
+
+.userLogin {
+  @apply font-medium text-[20px] line-clamp-1;
+}
+
+.userEmail {
+  @apply text-[14px] text-links line-clamp-1;
+}

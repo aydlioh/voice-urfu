@@ -1,0 +1,19 @@
+.wrapper {
+  @apply py-5; 
+}
+
+.innerWrapper {
+  @apply flex flex-row justify-center items-center gap-1;
+}
+
+.titleWrapper {
+  @apply max-w-[300px] w-full;
+}
+
+.title {
+  @apply font-minecraft sm:text-[30px] text-[24px] text-center;
+}
+
+.btnsWrapper {
+  @apply flex flex-row px-4 gap-3 mt-10;
+}

@@ -1,0 +1,15 @@
+img {
+  @apply w-[250px];
+}
+
+.container {
+  @apply h-full w-full flex justify-center items-center text-primaryText;
+}
+
+.wrapper {
+  @apply max-w-[400px] flex flex-col items-center;
+}
+
+.title {
+  @apply font-minecraft text-[32px];
+}

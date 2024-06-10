@@ -1,0 +1,11 @@
+.videoWrapper {
+  @apply rounded-lg h-full overflow-hidden relative lg:w-1/2 md:w-3/4 mobile:w-3/5  w-full bg-page;
+}
+
+.userName {
+  @apply sm:hidden text-[16px] absolute bottom-2 right-2 bg-background bg-opacity-40 px-4 py-1.5 rounded-md;
+}
+
+.userVideo {
+  @apply w-full h-full aspect-auto;
+}

@@ -1,0 +1,11 @@
+.container {
+  @apply min-h-screen py-10 flex justify-center items-center text-background;
+}
+
+.wrapper {
+  @apply sm:w-[500px] w-full bg-authForm sm:rounded-xl pt-6;
+}
+
+.title {
+  @apply font-minecraft text-[36px] text-center;
+}

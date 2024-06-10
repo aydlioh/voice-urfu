@@ -1,0 +1,15 @@
+.settingsContainer {
+  @apply h-[calc(100%-40px)] flex flex-row;
+}
+
+.backBtn {
+  @apply text-secondary m-2;
+}
+
+.settingsWrapper {
+  @apply w-full h-full;
+}
+
+.active {
+  @apply md:flex md:flex-col hidden;
+}

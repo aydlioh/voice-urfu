@@ -4,3 +4,4 @@ export * from './SidebarProfile';
 export * from './SidebarToggle';
 export * from './NestedSidebarLink';
 export * from './BackButton';
+export * from './UserCard';

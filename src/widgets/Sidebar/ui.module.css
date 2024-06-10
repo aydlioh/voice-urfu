@@ -1,0 +1,19 @@
+.sidebar {
+  @apply bg-sidebar duration-200 overflow-hidden lg:relative fixed top-0 left-0 bottom-0 z-20;
+}
+
+.active {
+  @apply min-w-[300px] w-[300px];
+}
+
+.disabled {
+  @apply min-w-16 w-16;
+}
+
+.wrapper {
+  @apply h-full py-3 flex flex-col justify-between;
+}
+
+.innerWrapper {
+  @apply flex flex-col gap-10;
+}

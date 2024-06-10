@@ -1,0 +1,11 @@
+.container {
+  @apply h-[calc(100%-40px)] w-full flex justify-center items-center text-primaryText;
+}
+
+.title {
+  @apply text-2xl;
+}
+
+.accentTitle {
+  @apply font-minecraft text-links;
+}

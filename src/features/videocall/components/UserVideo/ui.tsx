@@ -1,20 +1,25 @@
 import { forwardRef } from 'react';
+import styles from './ui.module.css';
+import clsx from 'clsx';
 
-type Props = { name?: string; };
+type Props = { name?: string };
 
 export const UserVideo = forwardRef(
-  (
-    { name }: Props,
-    ref: React.ForwardedRef<HTMLVideoElement>
-  ) => {
+  ({ name }: Props, ref: React.ForwardedRef<HTMLVideoElement>) => {
     return (
-      <div className="rounded-lg h-full overflow-hidden relative group lg:w-1/2 w-full bg-page">
+      <div className={clsx(styles.videoWrapper, 'group')}>
         {name && (
-          <div className="sm:group-hover:block sm:hidden text-[16px] absolute bottom-2 right-2 bg-background bg-opacity-40 px-4 py-1.5 rounded-md">
+          <div className={clsx(styles.userName, 'sm:group-hover:block')}>
             <p>{name}</p>
           </div>
         )}
-        <video autoPlay playsInline muted ref={ref} className="w-full h-full aspect-auto" />
+        <video
+          autoPlay
+          playsInline
+          muted
+          ref={ref}
+          className={styles.userVideo}
+        />
       </div>
     );
   }

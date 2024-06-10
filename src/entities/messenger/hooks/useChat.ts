@@ -14,6 +14,7 @@ const headers = {
 };
 
 export const useChat = () => {
+  // TODO переделать через useNavigate, когда будет работать список
   const { id } = useParams();
   const { login } = useAuthStatus();
 
@@ -34,7 +35,9 @@ export const useChat = () => {
       timestamp: dayjs().format(),
     };
 
-    setMessages((prev) => [newMessage, ...prev]);
+    if (id !== login) {
+      setMessages((prev) => [newMessage, ...prev]);
+    }
 
     stompClient.current.send(
       `/app/chat/${login}/${id}`,

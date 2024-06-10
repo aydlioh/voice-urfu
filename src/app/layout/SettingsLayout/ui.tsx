@@ -5,19 +5,20 @@ import { NestedSidebar } from '@/widgets';
 import clsx from 'clsx';
 import { Suspense } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
+import styles from './ui.module.css';
 
 export const SettingsLayout = () => {
   const { pathname } = useLocation();
   const isActive = pathname.slice(1).split('/').length > 1;
 
   return (
-    <section className="h-[calc(100%-40px)] flex flex-row">
+    <section className={styles.settingsContainer}>
       <NestedSidebar
         isActive={isActive}
         nestedLinks={settingsNestedSidebarLinks}
       />
-      <div className={clsx('w-full h-full', { 'md:flex md:flex-col hidden': !isActive })}>
-        <BackButton to="/settings" className='text-secondary m-2'/>
+      <div className={clsx(styles.settingsWrapper, !isActive && styles.active)}>
+        <BackButton to="/settings" className={styles.backBtn} />
         <Suspense fallback={<PageSpinner variant="sidebar" />}>
           <Outlet />
         </Suspense>

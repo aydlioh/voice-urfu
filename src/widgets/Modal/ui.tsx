@@ -8,6 +8,7 @@ import {
   ModalContent,
 } from '@nextui-org/react';
 import { useEffect } from 'react';
+import styles from './ui.module.css'
 
 export const Modal = () => {
   const { isOpen, close } = useModal();
@@ -28,18 +29,18 @@ export const Modal = () => {
     <ModalNextUI placement="center" size="xl" isOpen={isOpen} onClose={close}>
       <ModalContent>
         <ModalBody>
-          <div className="py-5">
-            <div className="flex flex-row justify-center items-center gap-1">
+          <div className={styles.wrapper}>
+            <div className={styles.innerWrapper}>
               <div>
                 <img src={PandaLogoutSvg} alt="panda logout" />
               </div>
-              <div className="max-w-[300px] w-full">
-                <h3 className="font-minecraft sm:text-[30px] text-[24px] text-center">
+              <div className={styles.titleWrapper}>
+                <h3 className={styles.title}>
                   Выйти из аккаунта?
                 </h3>
               </div>
             </div>
-            <div className="flex flex-row px-4 gap-3 mt-10">
+            <div className={styles.btnsWrapper}>
               <Button
                 isLoading={isPending}
                 onClick={handleLogout}

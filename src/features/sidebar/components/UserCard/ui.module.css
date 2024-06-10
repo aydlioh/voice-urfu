@@ -1,0 +1,35 @@
+.userCardContainer {
+  @apply w-full mb-3;
+}
+
+.wrapper {
+  @apply bg-pageNested px-4 py-3 text-secondary rounded-md;
+}
+
+.innerWrapper {
+  @apply flex justify-between items-center;
+}
+
+.iconWrapper {
+  @apply rounded-full bg-background;
+}
+
+.icon {
+  @apply duration-250 text-sidebar text-[36px];
+}
+
+.editBtn {
+  @apply sm:h-12 sm:w-12 h-10 w-10 flex justify-center items-center p-2 rounded-full hover:bg-page duration-200 cursor-pointer text-[26px];
+}
+
+.userInfoWrapper {
+  @apply flex flex-col gap-2 mt-3 mb-6;
+}
+
+.userInfo {
+  @apply flex flex-row gap-3;
+}
+
+.accentUserInfo {
+  @apply text-secondary/50;
+}

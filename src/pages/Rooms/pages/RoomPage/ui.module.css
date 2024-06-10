@@ -1,0 +1,31 @@
+.container {
+  @apply h-[calc(100%-40px)] w-full text-primaryText;
+}
+
+.wrapper {
+  @apply sm:p-8 p-4;
+}
+
+.title {
+  @apply text-2xl mb-3;
+}
+
+.innerWrapper {
+  @apply mt-4;
+}
+
+.usersGrid {
+  @apply gap-4 grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1;
+}
+
+.userWrapper {
+  @apply border-secondary relative border-2 rounded-lg overflow-hidden;
+}
+
+.userName {
+  @apply sm:hidden text-[16px] absolute bottom-2 right-2 bg-background bg-opacity-40 px-4 py-1.5 rounded-md;
+}
+
+.userVideo {
+  @apply w-full;
+}

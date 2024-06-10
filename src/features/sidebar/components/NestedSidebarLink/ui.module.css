@@ -1,0 +1,7 @@
+.nestedSidebarLink {
+  @apply flex gap-4 py-3 rounded-sm duration-200 hover:bg-background px-4;
+}
+
+.active {
+  @apply bg-background;
+}

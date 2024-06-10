@@ -2,6 +2,7 @@ import { useModal } from '@/entities/modal';
 import { NestedSidebarLink } from '@/features/sidebar';
 import { SidebarLink } from '@/shared/types';
 import clsx from 'clsx';
+import styles from './ui.module.css';
 
 type Props = {
   nestedLinks: Omit<SidebarLink, 'icon'>[];
@@ -12,26 +13,20 @@ export const NestedSidebar = ({ nestedLinks, isActive }: Props) => {
   const { open } = useModal();
 
   return (
-    <aside
-      className={clsx(
-        'bg-sidebarNested md:max-w-[300px] w-full text-secondary',
-        {
-          'md:flex hidden': isActive,
-        }
-      )}
-    >
-      <div className="p-2 w-full">
-        <ul className="py-1 flex flex-col gap-0.5 ">
-          {nestedLinks.map(({ label, path }, index) => (
-            <NestedSidebarLink to={path} label={label} key={index} />
-          ))}
-          <li
-            onClick={open}
-            className="cursor-pointer rounded-sm flex gap-4 py-3 duration-200 hover:bg-background px-4"
-          >
-            Выйти из аккаунта
-          </li>
-        </ul>
+    <aside className={clsx(styles.sidebar, isActive && styles.active)}>
+      <div className={styles.wrapper}>
+        <nav>
+          <ul className={styles.navInner}>
+            {nestedLinks.map(({ label, path }, index) => (
+              <li key={index}>
+                <NestedSidebarLink to={path} label={label} />
+              </li>
+            ))}
+            <li onClick={open} className={styles.logoutBtn}>
+              Выйти из аккаунта
+            </li>
+          </ul>
+        </nav>
       </div>
     </aside>
   );

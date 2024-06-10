@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import { ComponentProps } from 'react';
 import { FaArrowLeft } from 'react-icons/fa';
 import { useLocation, useNavigate } from 'react-router-dom';
+import styles from './ui.module.css';
 
 type Props = ComponentProps<'button'> & {
   to: string;
@@ -21,12 +22,9 @@ export const BackButton = ({ to, className, ...props }: Props) => {
         <button
           {...props}
           onClick={handleBack}
-          className={clsx(
-            'sm:h-12 sm:w-12 h-10 w-10 flex justify-center items-center p-2 rounded-full hover:bg-page duration-200',
-            className
-          )}
+          className={clsx(styles.backBtn, className)}
         >
-          <FaArrowLeft className="sm:text-[24px] text-[20px]" />
+          <FaArrowLeft />
         </button>
       )}
     </>

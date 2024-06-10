@@ -1,0 +1,7 @@
+.pageContainer {
+  @apply h-screen flex flex-row;
+}
+
+.pageWrapper {
+  @apply lg:pl-0 pl-16 w-full;
+}

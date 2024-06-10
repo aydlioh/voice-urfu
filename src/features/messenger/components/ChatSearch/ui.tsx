@@ -1,6 +1,7 @@
 import { SearchInput } from '@/shared/ui';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import styles from './ui.module.css';
 
 export const ChatSearch = () => {
   // TODO Когда будет работать список чатов, нужно переделать на поиск по этому списку и убрать функциональность перехода на другую страницу.
@@ -14,7 +15,7 @@ export const ChatSearch = () => {
   };
 
   return (
-    <form onSubmit={handleSearch} className="flex flex-row gap-2">
+    <form onSubmit={handleSearch} className={styles.formSearch}>
       <SearchInput
         onClear={() => setSearch('')}
         placeholder="Название чата"

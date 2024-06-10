@@ -1,0 +1,11 @@
+.createRoomForm {
+  @apply flex sm:flex-row flex-col items-center gap-4;
+}
+
+.createRoomInput {
+  @apply sm:max-w-80 w-full;
+}
+
+.createRoomBtn {
+  @apply sm:w-auto w-full;
+}

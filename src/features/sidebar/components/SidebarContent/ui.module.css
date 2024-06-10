@@ -1,0 +1,3 @@
+.contentWrapper {
+  @apply flex flex-col text-background text-[20px];
+}

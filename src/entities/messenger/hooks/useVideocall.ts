@@ -157,7 +157,9 @@ export const useVideocall = () => {
     connect();
 
     return () => {
-      destroyMediaStream();
+      if (videoStream.current) {
+        destroyMediaStream();
+      }
     };
   }, []);
 

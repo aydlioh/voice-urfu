@@ -1,0 +1,3 @@
+.chatContainer {
+  @apply m-1.5 rounded-sm overflow-hidden;
+}

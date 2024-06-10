@@ -1,0 +1,11 @@
+.chatSpinnerWrapper {
+  @apply sm:h-[calc(100vh-200px)] h-[calc(100vh-180px)] flex justify-center items-center;
+}
+
+.chatWrapper {
+  @apply bg-page sm:h-[calc(100vh-200px)] h-[calc(100vh-180px)] flex pl-4;
+}
+
+.messagesWrapper {
+  @apply flex flex-col-reverse w-full py-10 gap-3 pr-4 overflow-y-auto;
+}

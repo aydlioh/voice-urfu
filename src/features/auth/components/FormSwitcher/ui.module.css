@@ -1,21 +1,19 @@
+.formSwitcherWrapper {
+  @apply sm:max-w-[500px] max-w-[370px];
+}
+
+.innerWrapper {
+  @apply text-[14px] sm:px-20 px-4 flex justify-end;
+}
+
+.imgWrapper {
+  @apply ml-8 mb-5 md:mt-2 mt-5;
+}
+
+.link {
+  @apply text-links hover:underline;
+}
+
 .triangle {
-  position: relative;
-}
-
-.triangle::after {
-  content: '';
-  position: absolute;
-  left: 10%;
-  bottom: -40%;
-  rotate: 13deg;
-  border-width: 14px;
-  border-style: solid;
-  border-color: var(--auth-form-secondary) transparent transparent var(--auth-form-secondary);
-}
-
-@media (max-width: 768px) {
-  .triangle::after {
-    bottom: -34%;
-    left: 14%;
-  }
+  @apply flex justify-center gap-2 bg-authFormSecondary py-4 px-2 w-[300px] rounded-3xl relative after:absolute after:left-[14%] after:bottom-[-34%] md:after:left-[10%] md:after:bottom-[-40%] after:rotate-[13deg] after:border-[14px] after:border-[#ccccd1_transparent_transparent_#ccccd1];
 }

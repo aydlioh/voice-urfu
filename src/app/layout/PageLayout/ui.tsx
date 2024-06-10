@@ -2,12 +2,13 @@ import { Sidebar, PageInfo, Modal } from '@/widgets';
 import { Outlet } from 'react-router-dom';
 import { Suspense } from 'react';
 import { PageSpinner } from '@/shared/ui';
+import styles from './ui.module.css';
 
 export const PageLayout = () => {
   return (
-    <main className="h-screen flex flex-row">
+    <main className={styles.pageContainer}>
       <Sidebar />
-      <div className="lg:pl-0 pl-16 w-full">
+      <div className={styles.pageWrapper}>
         <PageInfo />
         <Suspense fallback={<PageSpinner variant="sidebar" />}>
           <Outlet />

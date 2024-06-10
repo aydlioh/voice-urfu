@@ -1,6 +1,7 @@
 import { PasswordInput } from '@/features/auth';
 import { useLoginForm } from '@/entities/auth';
 import { Button, Input } from '@/shared/ui';
+import styles from './ui.module.css';
 
 export const LoginForm = () => {
   const { submit, errors, register, isPending } = useLoginForm();
@@ -8,7 +9,7 @@ export const LoginForm = () => {
   return (
     <form
       onSubmit={submit}
-      className="md:px-20 px-4 pt-10 pb-8 flex flex-col gap-4"
+      className={styles.loginWrapper}
     >
       <Input
         isInvalid={errors.login !== undefined}

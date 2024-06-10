@@ -1,0 +1,11 @@
+.messengerContainer {
+  @apply h-[calc(100%-40px)] flex flex-row;
+}
+
+.chatWrapper {
+  @apply w-full h-full;
+}
+
+.active {
+  @apply md:flex hidden;
+}

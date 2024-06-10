@@ -1,0 +1,35 @@
+.toolsWrapper {
+  @apply bg-pageNested p-3 flex justify-between items-center;
+}
+
+.innerWrapper {
+  @apply flex flex-row gap-2 items-center;
+}
+
+.userInfoWrapper {
+  @apply flex flex-row gap-3 items-center;
+}
+
+.userImg {
+  @apply min-w-10 w-10 h-10 rounded-full object-cover;
+}
+
+.search {
+  @apply xl:block hidden;
+}
+
+.btnsWrapper {
+  @apply flex flex-row gap-1;
+}
+
+.btn {
+  @apply sm:h-12 sm:w-12 h-10 w-10 flex justify-center items-center p-2 rounded-full hover:bg-page duration-200 cursor-pointer;
+}
+
+.telephoneIcon {
+  @apply sm:text-[24px] text-[20px];
+}
+
+.settingsIcon {
+  @apply sm:text-[28px] text-[24px];
+}

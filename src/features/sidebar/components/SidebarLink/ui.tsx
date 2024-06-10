@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import { IconType } from 'react-icons';
 import { NavLink, NavLinkProps } from 'react-router-dom';
+import styles from './ui.module.css';
 
 type Props = NavLinkProps & {
   Icon: IconType;
@@ -18,13 +19,10 @@ export const SidebarLink = ({
     <NavLink
       {...props}
       className={({ isActive }) =>
-        clsx(
-          'flex gap-4 py-3 duration-200 hover:bg-sidebarActiveHover px-4',
-          isActive ? 'bg-sidebarActiveLink' : ''
-        )
+        clsx(styles.sidebarLink, isActive && styles.active)
       }
     >
-      <div className="text-[32px]">
+      <div className={styles.linkIcon}>
         <Icon />
       </div>
       {isSidebarOpen && <span>{label}</span>}

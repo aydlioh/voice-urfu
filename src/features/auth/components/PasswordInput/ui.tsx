@@ -1,6 +1,7 @@
 import { Input, InputProps } from '@/shared/ui';
 import { forwardRef, useState } from 'react';
 import { HiLockClosed, HiLockOpen } from 'react-icons/hi2';
+import styles from './ui.module.css';
 
 export const PasswordInput = forwardRef<HTMLInputElement, InputProps>(
   (props, ref) => {
@@ -14,14 +15,14 @@ export const PasswordInput = forwardRef<HTMLInputElement, InputProps>(
         variant="bordered"
         endContent={
           <button
-            className="focus:outline-none"
+            className={styles.changeVisibleBtn}
             type="button"
             onClick={toggleVisibility}
           >
             {isVisible ? (
-              <HiLockOpen className="text-2xl text-default-400 pointer-events-none" />
+              <HiLockOpen className="pointer-events-none" />
             ) : (
-              <HiLockClosed className="text-2xl text-default-400 pointer-events-none" />
+              <HiLockClosed className="pointer-events-none" />
             )}
           </button>
         }

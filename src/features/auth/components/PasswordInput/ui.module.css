@@ -1,0 +1,3 @@
+.changeVisibleBtn {
+  @apply focus:outline-none ml-2 text-2xl text-default-400;
+}

@@ -3,14 +3,15 @@ import { Suspense } from 'react';
 import { PageSpinner } from '@/shared/ui';
 import { ChatList } from '@/widgets';
 import clsx from 'clsx';
+import styles from './ui.module.css';
 
 export const MessengerLayout = () => {
   const { id } = useParams();
-  
+
   return (
-    <section className='h-[calc(100%-40px)] flex flex-row'>
-      <ChatList isChat={Boolean(id)}/>
-      <div className={clsx("w-full h-full", {'md:flex hidden' : !id})}>
+    <section className={styles.messengerContainer}>
+      <ChatList isChat={Boolean(id)} />
+      <div className={clsx(styles.chatWrapper, !id && styles.active)}>
         <Suspense fallback={<PageSpinner variant="sidebar" />}>
           <Outlet />
         </Suspense>

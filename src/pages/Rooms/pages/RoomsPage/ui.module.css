@@ -1,0 +1,11 @@
+.container {
+  @apply h-[calc(100%-40px)] w-full text-primaryText;
+}
+
+.wrapper {
+  @apply sm:p-8 p-4;
+}
+
+.title {
+  @apply text-2xl font-bold mb-8;
+}
