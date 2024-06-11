@@ -6,7 +6,7 @@ import { useAuth } from './redux';
 
 export const useRegister = () => {
   const navigate = useNavigate();
-  const { mutate, isPending, error } = useMutation({
+  const { mutateAsync, isPending, error } = useMutation({
     mutationKey: ['auth/register'],
     mutationFn: register,
     onSuccess: (response) => {
@@ -16,12 +16,12 @@ export const useRegister = () => {
     },
   });
 
-  return { register: mutate, isPending, error };
+  return { register: mutateAsync, isPending, error };
 };
 
 export const useLogin = () => {
   const navigate = useNavigate();
-  const { mutate, isPending, error } = useMutation({
+  const { mutateAsync, isPending, error } = useMutation({
     mutationKey: ['auth/login'],
     mutationFn: login,
     onSuccess: (response) => {
@@ -33,7 +33,7 @@ export const useLogin = () => {
     },
   });
 
-  return { login: mutate, isPending, error };
+  return { login: mutateAsync, isPending, error };
 };
 
 export const useLogout = () => {

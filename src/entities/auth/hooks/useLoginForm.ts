@@ -16,11 +16,12 @@ export const useLoginForm = () => {
   const { login, isPending, error } = useLogin();
 
   const onSubmit: SubmitHandler<LoginInputs> = (data) => {
-    login(data);
-    reset({
-      login: '',
-      password: '',
-    });
+    login(data).finally(() =>
+      reset({
+        login: '',
+        password: '',
+      })
+    );
   };
 
   useEffect(() => {

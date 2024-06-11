@@ -1,10 +1,13 @@
 import { InternalAxiosRequestConfig } from 'axios';
 import { TokenService } from '../services';
+import { isRequestPrivate } from '../utils';
 
-export const request = (config: InternalAxiosRequestConfig) => {
-  const token = TokenService.get()?.jwtToken;
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
+export const addTokenInterceptor = (config: InternalAxiosRequestConfig) => {
+  if (isRequestPrivate(config.url)) {
+    const token = TokenService.get()?.jwtToken;
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
   }
   return config;
 };

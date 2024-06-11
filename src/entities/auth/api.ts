@@ -3,7 +3,7 @@ import { ILogin, IRegister } from './models';
 
 export const register = async (data: IRegister) => {
   try {
-    const response = await authHttp.post('/api/Order/Register', {
+    const response = await authHttp.post('/Register', {
       ...data,
       rolesCommaDelimited: 'ADMIN',
     });
@@ -17,7 +17,7 @@ export const register = async (data: IRegister) => {
 
 export const login = async (data: ILogin) => {
   try {
-    const response = await authHttp.post('/api/Order/Login', data);
+    const response = await authHttp.post('/Login', data);
     return response;
   } catch (error) {
     console.error('Login failed: ', error);
@@ -27,7 +27,7 @@ export const login = async (data: ILogin) => {
 
 export const logout = async () => {
   try {
-    const response = await authHttp.post('/api/Order/Logout');
+    const response = await authHttp.post('/Logout');
     return response;
   } catch (error) {
     console.error('Logout failed: ', error);

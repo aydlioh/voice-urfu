@@ -16,13 +16,14 @@ export const useRegisterForm = () => {
   const { register, isPending, error } = useRegister();
 
   const onSubmit: SubmitHandler<RegisterInputs> = (data) => {
-    register(data);
-    reset({
-      userName: '',
-      fullname: '',
-      email: '',
-      password: '',
-    });
+    register(data).finally(() =>
+      reset({
+        userName: '',
+        fullname: '',
+        email: '',
+        password: '',
+      })
+    );
   };
 
   useEffect(() => {
