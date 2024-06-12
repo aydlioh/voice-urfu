@@ -11,6 +11,7 @@ export const useRegisterForm = () => {
     formState: { errors },
   } = useForm<RegisterInputs>({
     resolver: zodResolver(registerSchema),
+    mode: 'onChange',
   });
   const [fetchError, setFetchError] = useState('');
   const { register, isPending, error } = useRegister();
