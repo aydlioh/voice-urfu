@@ -1,9 +1,9 @@
 .chatSpinnerWrapper {
-  @apply sm:h-[calc(100vh-200px)] h-[calc(100vh-180px)] flex justify-center items-center;
+  @apply bg-page h-full flex justify-center items-center;
 }
 
 .chatWrapper {
-  @apply bg-page sm:h-[calc(100vh-200px)] h-[calc(100vh-180px)] flex pl-4;
+  @apply bg-page h-full flex pl-4 overflow-hidden;
 }
 
 .messagesWrapper {

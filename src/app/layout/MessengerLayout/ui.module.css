@@ -3,7 +3,7 @@
 }
 
 .chatWrapper {
-  @apply w-full h-full;
+  @apply w-full h-[calc(100%-10px)];
 }
 
 .active {

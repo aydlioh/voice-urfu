@@ -1,5 +1,5 @@
 .wrapper {
-  @apply bg-pageNested p-3 flex gap-1.5 justify-between items-center;
+  @apply bg-pageNested p-3 flex gap-1.5 justify-between items-end;
 }
 
 .fileBtn {
@@ -7,5 +7,5 @@
 }
 
 .submitBtn {
-  @apply hover:bg-pageNested duration-200 rounded-full h-8 w-8 p-2 flex justify-center items-center;
+  @apply hover:bg-pageNested duration-200 rounded-full h-8 w-8 p-2 flex justify-center items-center self-end;
 }

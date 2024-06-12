@@ -1,6 +1,6 @@
 import { GoPaperclip } from 'react-icons/go';
 import { IoSend } from 'react-icons/io5';
-import { Input } from '@/shared/ui';
+import { Textarea } from '@/shared/ui';
 import { useState } from 'react';
 import styles from './ui.module.css';
 
@@ -25,7 +25,8 @@ export const ChatInput = ({
         <button className={styles.fileBtn}>
           <GoPaperclip />
         </button>
-        <Input
+        <Textarea
+          minRows={1}
           variant="flat"
           placeholder="Введите сообщение"
           endContent={
