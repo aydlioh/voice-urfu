@@ -1,4 +1,5 @@
 import { Textarea as TextareaNextUI, TextAreaProps } from '@nextui-org/react';
+import { forwardRef } from 'react';
 
 const classNames = {
   input:
@@ -8,6 +9,8 @@ const classNames = {
     'rounded-md bg-primary data-[hover=true]:bg-primary group-data-[focus=true]:bg-primary',
 };
 
-export const Textarea = (props: TextAreaProps) => {
-  return <TextareaNextUI {...props} classNames={classNames} />;
-};
+export const Textarea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
+  (props, ref) => {
+    return <TextareaNextUI {...props} ref={ref} classNames={classNames} />;
+  }
+);
