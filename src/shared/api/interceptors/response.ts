@@ -44,7 +44,7 @@ export const refreshTokensInterceptor = async (error: AxiosError) => {
   if (
     error.config &&
     error.response &&
-    (error.response.status === 500 || error.response.status === 400) &&
+    (error.response.status === 500 || error.response.status === 400) && // TODO 401
     !isResponseRefresh(error.config.url)
   ) {
     const response = await refreshTokens();

@@ -1,15 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useAuthStatus } from '@/entities/auth';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
-import { Stomp } from '@stomp/stompjs';
+import Stomp from 'stompjs';
+// import { Stomp } from '@stomp/stompjs';
 import SockJS from 'sockjs-client/dist/sockjs';
 import { TokenService } from '@/shared/api/services';
 
 const headers = {
   Authorization: `Bearer ${TokenService.get()?.jwtToken}`,
 };
+
+const cbTimeout = 3000;
 
 const configuration = {
   iceServers: [{ urls: 'stun:stun.l.google.com:19302' }],
@@ -20,6 +23,7 @@ export const useVideocall = () => {
   const { login } = useAuthStatus();
 
   const stompClient = useRef<any>(null);
+  const peerConnection = useRef<any>(null);
 
   const answerReceived = useRef<boolean>(false);
   const answerSent = useRef<boolean>(false);
@@ -30,12 +34,7 @@ export const useVideocall = () => {
 
   const videoStream = useRef<any>(null);
 
-  const [isOpponentReady, setOpponentReady] = useState(false);
-
   useEffect(() => {
-    const socket = new SockJS('https://voice-backend.ru:9000/signaling');
-    stompClient.current = Stomp.over(() => socket);
-
     const pc = new RTCPeerConnection(configuration);
 
     pc.onicecandidate = (e: any) => {
@@ -57,74 +56,70 @@ export const useVideocall = () => {
       }
     }, 1000);
 
-    pc.oniceconnectionstatechange = () => {
-      console.log('ICE connection state change:', pc.iceConnectionState);
-      if (pc.iceConnectionState === 'connected') {
-        console.log(
-          'ICE candidates successfully registered, connection established'
-        );
-      }
-    };
-
     pc.ontrack = (e: any) => {
-      setOpponentReady(true);
       opponentVideo.current.srcObject = e.streams[0];
     };
 
-    async function handleOffer(offer: any) {
-      await pc.setRemoteDescription(offer);
-      const answer = await pc.createAnswer();
-      await pc.setLocalDescription(answer);
-      stompClient.current.send(
-        `/app/signaling/${login}/${id}`,
-        {},
-        JSON.stringify({ type: 'answer', answer })
-      );
-      answerSent.current = true;
-    }
+    peerConnection.current = pc;
+  }, []);
 
-    async function createOffer() {
-      const offer = await pc.createOffer();
-      await pc.setLocalDescription(offer);
-      stompClient.current.send(
-        `/app/signaling/${login}/${id}`,
-        {},
-        JSON.stringify({ type: 'offer', offer })
-      );
-    }
+  useEffect(() => {
+    const socket = new SockJS('https://voice-backend.ru:9000/signaling');
+    stompClient.current = Stomp.over(socket);
+    const pc = peerConnection.current;
 
-    async function handleAnswer(answer: any) {
-      await pc.setRemoteDescription(answer);
-    }
-
-    async function addMediaStream() {
-      try {
-        const stream = await navigator.mediaDevices.getUserMedia({
-          video: true,
-          audio: true,
-        });
-        userVideo.current.srcObject = stream;
-        videoStream.current = stream;
-        stream.getTracks().forEach((track) => pc.addTrack(track, stream));
-      } catch (error) {
-        console.error('Error adding media stream:', error);
+    const goVideo = async () => {
+      async function addMediaStream() {
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({
+            video: true,
+            audio: true,
+          });
+          userVideo.current.srcObject = stream;
+          videoStream.current = stream;
+          stream.getTracks().forEach((track) => pc.addTrack(track, stream));
+        } catch (error) {
+          console.error('Error adding media stream:', error);
+        }
       }
-    }
 
-    function destroyMediaStream() {
-      videoStream.current.getTracks().forEach((track: any) => track.stop());
-    }
+      async function createOffer() {
+        const offer = await pc.createOffer();
+        await pc.setLocalDescription(offer);
+        stompClient.current.send(
+          `/app/signaling/${login}/${id}`,
+          {},
+          JSON.stringify({ type: 'offer', offer })
+        );
+      }
 
-    async function goVideo() {
       await addMediaStream();
       createOffer();
-    }
-
-    function addIceCandidate(candidate: any) {
-      pc.addIceCandidate(new RTCIceCandidate(candidate));
-    }
+    };
 
     const subscribe = () => {
+      async function handleOffer(offer: any) {
+        await pc.setRemoteDescription(offer);
+        const answer = await pc.createAnswer();
+        await pc.setLocalDescription(answer);
+        stompClient.current.send(
+          `/app/signaling/${login}/${id}`,
+          {},
+          JSON.stringify({ type: 'answer', answer })
+        );
+        answerSent.current = true;
+      }
+
+      async function handleAnswer(answer: any) {
+        await pc.setRemoteDescription(answer);
+      }
+
+      async function addIceCandidate(candidate: any) {
+        if (candidate.current) {
+          await pc.addIceCandidate(new RTCIceCandidate(candidate.current));
+        }
+      }
+
       stompClient.current.subscribe(
         `/topic/signaling/${id}/${login}`,
         (output: any) => {
@@ -147,16 +142,22 @@ export const useVideocall = () => {
 
     const connect = () => {
       if (!stompClient.current.connected) {
-        stompClient.current.connect(headers, () => {
+        stompClient.current.connect(headers, (frame: any) => {
+          console.log('Connected: ' + frame);
           subscribe();
-          goVideo();
+          setTimeout(goVideo, cbTimeout);
         });
       }
+    };
+
+    const destroyMediaStream = () => {
+      videoStream.current.getTracks().forEach((track: any) => track.stop());
     };
 
     connect();
 
     return () => {
+      stompClient.current.disconnect();
       if (videoStream.current) {
         destroyMediaStream();
       }
@@ -168,6 +169,5 @@ export const useVideocall = () => {
     opponent: id,
     userVideo,
     opponentVideo,
-    isOpponentReady,
   };
 };

@@ -2,10 +2,10 @@ import { forwardRef } from 'react';
 import styles from './ui.module.css';
 import clsx from 'clsx';
 
-type Props = { name?: string };
+type Props = { name?: string; muted?: boolean };
 
 export const UserVideo = forwardRef(
-  ({ name }: Props, ref: React.ForwardedRef<HTMLVideoElement>) => {
+  ({ name, muted = true }: Props, ref: React.ForwardedRef<HTMLVideoElement>) => {
     return (
       <div className={clsx(styles.videoWrapper, 'group')}>
         {name && (
@@ -16,7 +16,7 @@ export const UserVideo = forwardRef(
         <video
           autoPlay
           playsInline
-          muted
+          muted={muted}
           ref={ref}
           className={styles.userVideo}
         />

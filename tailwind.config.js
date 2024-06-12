@@ -32,7 +32,7 @@ export default {
         minecraft: ['MinecraftFont'],
       },
       screens: {
-        mobile: '450px',
+        mobile: '435px',
         sm: '640px',
         md: '768px',
         lg: '1024px',

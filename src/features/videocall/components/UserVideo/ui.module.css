@@ -1,5 +1,5 @@
 .videoWrapper {
-  @apply rounded-lg h-full overflow-hidden relative lg:w-1/2 md:w-3/4 mobile:w-3/5  w-full bg-page;
+  @apply rounded-lg h-full overflow-hidden relative lg:w-1/2 md:w-3/4 sm:w-3/5 mobile:w-[72%] w-full bg-page;
 }
 
 .userName {

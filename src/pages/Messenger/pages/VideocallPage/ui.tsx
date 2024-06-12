@@ -11,7 +11,7 @@ const VideocallPage = () => {
       <div className={styles.wrapper}>
         <div className={styles.videoWrapper}>
           <UserVideo ref={userVideo} name={user} />
-          <UserVideo ref={opponentVideo} name={opponent} />
+          <UserVideo muted={false} ref={opponentVideo} name={opponent} />
         </div>
         <VideocallTools />
       </div>

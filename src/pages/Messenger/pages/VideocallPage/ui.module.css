@@ -3,9 +3,9 @@
 }
 
 .wrapper {
-  @apply h-[calc(100vh-40px)] w-full flex flex-col sm:justify-center items-center relative;
+  @apply h-[calc(100vh-40px)] w-full flex flex-col md:justify-center items-center relative;
 }
 
 .videoWrapper {
-  @apply w-full flex lg:flex-row flex-col sm:justify-center sm:mt-0 mt-6 items-center gap-4;
+  @apply sm:w-[95%] w-full flex lg:flex-row flex-col md:justify-center md:mt-0 mt-6 items-center gap-4;
 }
