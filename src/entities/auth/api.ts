@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { authHttp } from '@/shared/api';
 import { ILogin, IRegister } from './models';
 
@@ -9,9 +10,9 @@ export const register = async (data: IRegister) => {
     });
 
     return response;
-  } catch (error) {
+  } catch (error: any) {
     console.error('Registration failed: ', error);
-    throw new Error('Не удалось зарегистрироваться!');
+    throw new Error(error.response.data);
   }
 };
 
@@ -19,9 +20,9 @@ export const login = async (data: ILogin) => {
   try {
     const response = await authHttp.post('/Login', data);
     return response;
-  } catch (error) {
+  } catch (error: any) {
     console.error('Login failed: ', error);
-    throw new Error('Неверный логин или пароль!');
+    throw new Error(error.response.data);
   }
 };
 
