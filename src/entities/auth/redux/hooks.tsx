@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { login, logout } from './authSlice';
-import { RootState } from '@/app/redux';
+import { RootState, store } from '@/app/redux';
 
 type UserDataType = null | {
   login?: string;
@@ -27,3 +27,8 @@ export const useAuth = () => {
 
   return { auth, signIn, signOut };
 };
+
+export const refreshAuthStore = () => ({
+  signOut: () => store.dispatch(logout()),
+  signIn: (userData: UserDataType) => store.dispatch(login(userData)),
+});

@@ -4,7 +4,16 @@ import { UserVideo } from '@/features/videocall';
 import styles from './ui.module.css';
 
 const VideocallPage = () => {
-  const { user, opponent, userVideo, opponentVideo } = useVideocall();
+  const {
+    user,
+    opponent,
+    userVideo,
+    opponentVideo,
+    toggleMicrophone,
+    toggleCamera,
+    isMicrophone,
+    isCamera,
+  } = useVideocall();
 
   return (
     <section className={styles.container}>
@@ -13,7 +22,12 @@ const VideocallPage = () => {
           <UserVideo ref={userVideo} name={user} />
           <UserVideo muted={false} ref={opponentVideo} name={opponent} />
         </div>
-        <VideocallTools />
+        <VideocallTools
+          isMicrophone={isMicrophone}
+          isCamera={isCamera}
+          toggleMicrophone={toggleMicrophone}
+          toggleCamera={toggleCamera}
+        />
       </div>
     </section>
   );

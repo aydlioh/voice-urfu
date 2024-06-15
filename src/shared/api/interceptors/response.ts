@@ -2,12 +2,11 @@ import axios, { AxiosError, InternalAxiosRequestConfig } from 'axios';
 import { TokenService, UserService } from '../services';
 import { authHttp } from '../instance';
 import { isResponseRefresh } from '../utils';
-
-import { redirect } from 'react-router-dom';
-import { store } from '@/app/redux';
-import { login, logout } from '@/entities/auth';
+import { refreshAuthStore } from '@/entities/auth';
 
 const refreshTokens = async () => {
+  const { signIn, signOut } = refreshAuthStore();
+
   try {
     const tokens = TokenService.get();
 
@@ -25,7 +24,7 @@ const refreshTokens = async () => {
     if (response.status === 200) {
       TokenService.save(response.data.tokens);
       UserService.save(response.data.user);
-      store.dispatch(login(response.data.user));
+      signIn(response.data.user);
     }
 
     return response;
@@ -37,8 +36,7 @@ const refreshTokens = async () => {
     ) {
       TokenService.destroy();
       UserService.destroy();
-      store.dispatch(logout());
-      redirect('/login');
+      signOut();
     }
   }
 };

@@ -6,15 +6,27 @@ import { VideocallTool } from '@/features/videocall';
 import { useNavigate } from 'react-router-dom';
 import styles from './ui.module.css';
 
-export const VideocallTools = () => {
+type Props = {
+  toggleCamera: () => void;
+  toggleMicrophone: () => void;
+  isCamera: boolean;
+  isMicrophone: boolean;
+};
+
+export const VideocallTools = ({
+  toggleMicrophone,
+  toggleCamera,
+  isCamera,
+  isMicrophone,
+}: Props) => {
   const navigate = useNavigate();
 
   const handleMicroToggle = () => {
-    console.log('Micro switch');
+    toggleMicrophone();
   };
 
   const handleVideoToggle = () => {
-    console.log('Video switch');
+    toggleCamera();
   };
 
   const handleScreenDemoToggle = () => {
@@ -29,11 +41,13 @@ export const VideocallTools = () => {
     <div className={styles.toolsContainer}>
       <div className={styles.toolsWrapper}>
         <VideocallTool
+          defaultActive={isMicrophone}
           activeIcon={PiMicrophoneFill}
           disabledIcon={PiMicrophoneSlashFill}
           handleToggle={handleMicroToggle}
         />
         <VideocallTool
+          defaultActive={isCamera}
           activeIcon={PiVideoCameraFill}
           disabledIcon={PiVideoCameraSlashFill}
           handleToggle={handleVideoToggle}

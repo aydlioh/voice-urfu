@@ -11,13 +11,30 @@ export const ChatInput = ({
 }) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const submitRef = useRef<HTMLButtonElement>(null);
+  const filepicker = useRef<HTMLInputElement>(null);
+
   const [message, setMessage] = useState('');
+  const [file, setFile] = useState<File | null>(null);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (message) {
       onSubmit(message);
       setMessage('');
+
+      console.log(file) // TODO
+    }
+  };
+
+  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setFile(e.target.files[0]);
+    }
+  };
+
+  const handleFilePick = () => {
+    if (filepicker.current) {
+      filepicker.current.click();
     }
   };
 
@@ -40,7 +57,18 @@ export const ChatInput = ({
   return (
     <form onSubmit={handleSubmit}>
       <div className={styles.wrapper}>
-        <button className={styles.fileBtn}>
+        <button
+          type="button"
+          onClick={handleFilePick}
+          className={styles.fileBtn}
+        >
+          <input
+            onChange={handleFileSelect}
+            ref={filepicker}
+            className="hidden"
+            type="file"
+            accept="image/*, video/*, .pdf, .docx"
+          />
           <GoPaperclip />
         </button>
         <Textarea
