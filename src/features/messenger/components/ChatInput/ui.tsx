@@ -1,8 +1,8 @@
-import { GoPaperclip } from 'react-icons/go';
 import { IoSend } from 'react-icons/io5';
 import { Textarea } from '@/shared/ui';
 import { useEffect, useRef, useState } from 'react';
 import styles from './ui.module.css';
+import { Filepicker } from '../Filepicker';
 
 export const ChatInput = ({
   onSubmit,
@@ -11,7 +11,6 @@ export const ChatInput = ({
 }) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const submitRef = useRef<HTMLButtonElement>(null);
-  const filepicker = useRef<HTMLInputElement>(null);
 
   const [message, setMessage] = useState('');
   const [file, setFile] = useState<File | null>(null);
@@ -22,19 +21,7 @@ export const ChatInput = ({
       onSubmit(message);
       setMessage('');
 
-      console.log(file) // TODO
-    }
-  };
-
-  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      setFile(e.target.files[0]);
-    }
-  };
-
-  const handleFilePick = () => {
-    if (filepicker.current) {
-      filepicker.current.click();
+      console.log(file); // TODO
     }
   };
 
@@ -57,20 +44,7 @@ export const ChatInput = ({
   return (
     <form onSubmit={handleSubmit}>
       <div className={styles.wrapper}>
-        <button
-          type="button"
-          onClick={handleFilePick}
-          className={styles.fileBtn}
-        >
-          <input
-            onChange={handleFileSelect}
-            ref={filepicker}
-            className="hidden"
-            type="file"
-            accept="image/*, video/*, .pdf, .docx"
-          />
-          <GoPaperclip />
-        </button>
+        <Filepicker setFile={setFile} />
         <Textarea
           ref={textareaRef}
           minRows={1}

@@ -2,10 +2,6 @@
   @apply bg-pageNested p-3 flex gap-1.5 justify-between items-end;
 }
 
-.fileBtn {
-  @apply sm:h-12 sm:w-12 h-10 w-10 flex justify-center items-center p-3 rounded-full hover:bg-page duration-200 cursor-pointer sm:text-[24px] text-[20px];
-}
-
 .submitBtn {
   @apply hover:bg-pageNested duration-200 rounded-full h-8 w-8 p-2 flex justify-center items-center self-end;
 }
