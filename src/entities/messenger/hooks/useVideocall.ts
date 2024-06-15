@@ -12,7 +12,7 @@ const headers = {
   Authorization: `Bearer ${TokenService.get()?.jwtToken}`,
 };
 
-const cbTimeout = 3000;
+const intervalTime = 1000;
 
 const configuration = {
   iceServers: [{ urls: 'stun:stun.l.google.com:19302' }],
@@ -22,6 +22,7 @@ export const useVideocall = () => {
   const { id } = useParams();
   const { login } = useAuthStatus();
 
+  const connectionInterval = useRef<any>(null);
   const stompClient = useRef<any>(null);
   const peerConnection = useRef<any>(null);
 
@@ -57,6 +58,7 @@ export const useVideocall = () => {
     }, 1000);
 
     pc.ontrack = (e: any) => {
+      clearInterval(connectionInterval.current);
       opponentVideo.current.srcObject = e.streams[0];
     };
 
@@ -94,7 +96,7 @@ export const useVideocall = () => {
       }
 
       await addMediaStream();
-      createOffer();
+      connectionInterval.current = setInterval(createOffer, intervalTime);
     };
 
     const subscribe = () => {
@@ -145,7 +147,7 @@ export const useVideocall = () => {
         stompClient.current.connect(headers, (frame: any) => {
           console.log('Connected: ' + frame);
           subscribe();
-          setTimeout(goVideo, cbTimeout);
+          goVideo();
         });
       }
     };
