@@ -26,8 +26,8 @@ export const useVideocall = () => {
       const audioTracks = videoStream.current.getAudioTracks();
       if (audioTracks.length > 0) {
         const firstAudioTrack = audioTracks[0];
-        firstAudioTrack.enabled = !firstAudioTrack.enabled;
-        setMicrophone(firstAudioTrack.enabled);
+        firstAudioTrack.enabled = !isMicrophone;
+        setMicrophone(prev => !prev);
       }
     }
   };
@@ -37,8 +37,8 @@ export const useVideocall = () => {
       const videoTracks = videoStream.current.getVideoTracks();
       if (videoTracks.length > 0) {
         const firstVideoTrack = videoTracks[0];
-        firstVideoTrack.enabled = !firstVideoTrack.enabled;
-        setCamera(firstVideoTrack.enabled);
+        firstVideoTrack.enabled = !isCamera;
+        setCamera(prev => !prev);
       }
     }
   };
