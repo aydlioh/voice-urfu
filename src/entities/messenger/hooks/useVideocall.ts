@@ -163,7 +163,7 @@ export const useVideocall = () => {
         `/topic/signaling/${id}/${login}`,
         (output: any) => {
           const message = JSON.parse(output.body);
-          clearInterval(connectionInterval.current);
+          setTimeout(() => clearInterval(connectionInterval.current), 5000); // TODO + проверка 
           switch (message.type) {
             case 'offer':
               handleOffer(message.offer);
