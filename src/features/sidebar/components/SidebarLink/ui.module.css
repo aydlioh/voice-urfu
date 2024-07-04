@@ -1,5 +1,5 @@
 .sidebarLink {
-  @apply flex gap-4 py-3 duration-200 hover:bg-sidebarActiveHover px-4;
+  @apply flex gap-4 py-3 duration-200 hover:bg-background/10 px-4;
 }
 
 .active {

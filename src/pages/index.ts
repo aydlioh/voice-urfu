@@ -4,3 +4,4 @@ export * from './Settings';
 export * from './Errors';
 export * from './Auth';
 export * from './Messenger';
+export * from './Friends';

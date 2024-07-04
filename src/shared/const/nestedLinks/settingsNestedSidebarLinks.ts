@@ -1,24 +1,24 @@
-import { SidebarLink } from "../types";
+import { SidebarLink } from "@/shared/types";
 
 export const settingsNestedSidebarLinks: Omit<SidebarLink, 'icon'>[] = [
   {
     label: 'Микрофон',
-    path: 'microphone'
+    path: '/settings/microphone',
   },
   {
     label: 'Камера',
-    path: 'camera'
+    path: '/settings/camera',
   },
   {
     label: 'Настройки конфиденциальности',
-    path: 'security'
+    path: '/settings/security',
   },
   {
     label: 'Настройки профиля',
-    path: 'profile'
+    path: '/settings/profile',
   },
   {
     label: 'Тема',
-    path: 'theme'
+    path: '/settings/theme',
   },
-]
+];

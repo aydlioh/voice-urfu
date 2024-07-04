@@ -1,4 +1,4 @@
-import { SettingsLayout } from '@/app/layout';
+import { NestedLayout } from '@/app/layout';
 import { RouteObject } from 'react-router-dom';
 import {
   CameraSettingsPage,
@@ -8,11 +8,18 @@ import {
   SecuritySettingsPage,
   ThemeSettingsPage,
 } from './pages';
+import { settingsNestedSidebarLinks } from '@/shared/const/nestedLinks';
 
 export const settingsRoutes: RouteObject[] = [
   {
     path: '/settings',
-    element: <SettingsLayout />,
+    element: (
+      <NestedLayout
+        backPath="/settings"
+        nestedLinks={settingsNestedSidebarLinks}
+        withLogout
+      />
+    ),
     children: [
       {
         path: '',

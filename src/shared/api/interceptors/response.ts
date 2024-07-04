@@ -1,6 +1,6 @@
 import axios, { AxiosError, InternalAxiosRequestConfig } from 'axios';
 import { TokenService, UserService } from '../services';
-import { authHttp } from '../instance';
+import { userHttp } from '../instance';
 import { isResponseRefresh } from '../utils';
 import { refreshAuthStore } from '@/entities/auth';
 
@@ -16,7 +16,7 @@ const refreshTokens = async () => {
 
     if (!jwtToken || !refreshToken) return;
 
-    const response = await authHttp.post('/RefreshToken', {
+    const response = await userHttp.post('/RefreshToken', {
       jwtToken,
       refreshToken,
     });
@@ -53,7 +53,7 @@ export const refreshTokensInterceptor = async (error: AxiosError) => {
   if (
     error.config &&
     error.response &&
-    error.response.status === 500 && // TODO 401
+    error.response.status === 401 &&
     !isResponseRefresh(error.config.url)
   ) {
     const response = await refreshTokens();

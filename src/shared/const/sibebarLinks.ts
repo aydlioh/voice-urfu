@@ -1,9 +1,15 @@
 import { MdVideoChat } from 'react-icons/md';
 import { FaUserFriends } from "react-icons/fa";
 import { RiSettings5Fill } from 'react-icons/ri';
+import { IoChatboxEllipses } from "react-icons/io5";
 import { SidebarLink } from '../types';
 
 export const sidebarLinks: SidebarLink[] = [
+  {
+    label: 'Друзья',
+    path: '/friends',
+    icon: FaUserFriends,
+  },
   {
     label: 'Комнаты',
     path: '/rooms',
@@ -12,7 +18,7 @@ export const sidebarLinks: SidebarLink[] = [
   {
     label: 'Чаты',
     path: '/messenger',
-    icon: FaUserFriends,
+    icon: IoChatboxEllipses,
   },
   {
     label: 'Настройки',

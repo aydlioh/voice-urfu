@@ -1,6 +1,5 @@
-import { HiMenu } from 'react-icons/hi';
-import { VoiceSvg } from '@/shared/assets/svgs';
 import styles from './ui.module.css';
+import { TfiMenuAlt } from 'react-icons/tfi';
 
 type Props = {
   isOpen: boolean;
@@ -11,9 +10,9 @@ export const SidebarToggle = ({ isOpen, toggleSidebar }: Props) => {
   return (
     <div className={styles.toggleBtnWrapper}>
       <button onClick={toggleSidebar} className={styles.toggleBtn}>
-        <HiMenu />
+        <TfiMenuAlt />
       </button>
-      {isOpen && <img src={VoiceSvg} alt="Voice" className={styles.logo} />}
+      {isOpen && <h1 className={styles.logo}>Voice</h1>}
     </div>
   );
 };

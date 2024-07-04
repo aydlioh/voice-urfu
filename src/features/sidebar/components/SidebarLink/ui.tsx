@@ -7,17 +7,20 @@ type Props = NavLinkProps & {
   Icon: IconType;
   label: string;
   isSidebarOpen: boolean;
+  closeSidebar: () => void;
 };
 
 export const SidebarLink = ({
   Icon,
   label,
   isSidebarOpen,
+  closeSidebar,
   ...props
 }: Props) => {
   return (
     <NavLink
       {...props}
+      onClick={closeSidebar}
       className={({ isActive }) =>
         clsx(styles.sidebarLink, isActive && styles.active)
       }

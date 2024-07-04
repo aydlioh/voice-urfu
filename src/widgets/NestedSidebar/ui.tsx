@@ -7,9 +7,14 @@ import styles from './ui.module.css';
 type Props = {
   nestedLinks: Omit<SidebarLink, 'icon'>[];
   isActive: boolean;
+  withLogout?: boolean;
 };
 
-export const NestedSidebar = ({ nestedLinks, isActive }: Props) => {
+export const NestedSidebar = ({
+  nestedLinks,
+  isActive,
+  withLogout = false,
+}: Props) => {
   const { open } = useModal();
 
   return (
@@ -22,9 +27,11 @@ export const NestedSidebar = ({ nestedLinks, isActive }: Props) => {
                 <NestedSidebarLink to={path} label={label} />
               </li>
             ))}
-            <li onClick={open} className={styles.logoutBtn}>
-              Выйти из аккаунта
-            </li>
+            {withLogout && (
+              <li onClick={open} className={styles.logoutBtn}>
+                Выйти из аккаунта
+              </li>
+            )}
           </ul>
         </nav>
       </div>

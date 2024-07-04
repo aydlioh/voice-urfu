@@ -14,6 +14,10 @@ export const Sidebar = () => {
     setIsOpen((current) => !current);
   };
 
+  const closeSidebar = () => {
+    setIsOpen(false)
+  }
+
   return (
     <aside
       className={clsx(styles.sidebar, isOpen ? styles.active : styles.disabled)}
@@ -21,7 +25,7 @@ export const Sidebar = () => {
       <div className={styles.wrapper}>
         <div className={styles.innerWrapper}>
           <SidebarToggle isOpen={isOpen} toggleSidebar={toggleSidebar} />
-          <SidebarContent isOpen={isOpen} />
+          <SidebarContent isOpen={isOpen} closeSidebar={closeSidebar} />
         </div>
         <SidebarProfile isOpen={isOpen} toggleSidebar={toggleSidebar} />
       </div>

@@ -6,4 +6,5 @@ export * from './ChatList';
 export * from './Chat';
 export * from './PageInfo';
 export * from './VideocallTools';
+export * from './Notification';
 export * from './Modal';

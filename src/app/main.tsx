@@ -1,3 +1,4 @@
+import 'react-toastify/dist/ReactToastify.css';
 import './styles/index.css';
 import ReactDOM from 'react-dom/client';
 import { Suspense } from 'react';

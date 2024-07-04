@@ -1,4 +1,4 @@
-import { Sidebar, PageInfo, Modal } from '@/widgets';
+import { Sidebar, PageInfo, Modal, Notification } from '@/widgets';
 import { Outlet } from 'react-router-dom';
 import { Suspense } from 'react';
 import { PageSpinner } from '@/shared/ui';
@@ -15,6 +15,7 @@ export const PageLayout = () => {
         </Suspense>
       </div>
       <Modal />
+      <Notification />
     </main>
   );
 };

@@ -1,0 +1,3 @@
+.toastContainer {
+  @apply bg-[#1a1a1a] text-white/50 shadow-xl hover:bg-[#1d1d1d] font-roboto;
+}

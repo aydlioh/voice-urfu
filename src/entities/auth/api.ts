@@ -1,10 +1,10 @@
-import { authHttp } from '@/shared/api';
+import { userHttp } from '@/shared/api';
 import { ILogin, IRegister } from './models';
 import axios from 'axios';
 
 export const register = async (data: IRegister) => {
   try {
-    const response = await authHttp.post('/Register', {
+    const response = await userHttp.post('/Register', {
       ...data,
       rolesCommaDelimited: 'ADMIN',
     });
@@ -19,7 +19,7 @@ export const register = async (data: IRegister) => {
 
 export const login = async (data: ILogin) => {
   try {
-    const response = await authHttp.post('/Login', data);
+    const response = await userHttp.post('/Login', data);
     return response;
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -30,7 +30,7 @@ export const login = async (data: ILogin) => {
 
 export const logout = async () => {
   try {
-    const response = await authHttp.post('/Logout');
+    const response = await userHttp.post('/Logout');
     return response;
   } catch (error) {
     console.error('Logout failed: ', error);

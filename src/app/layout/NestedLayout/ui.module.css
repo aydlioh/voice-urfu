@@ -1,4 +1,4 @@
-.settingsContainer {
+.nestedContainer {
   @apply h-[calc(100%-40px)] flex flex-row;
 }
 
@@ -6,7 +6,7 @@
   @apply text-secondary m-2;
 }
 
-.settingsWrapper {
+.nestedWrapper {
   @apply w-full h-full;
 }
 
