@@ -1,34 +1,33 @@
 import { userHttp } from '@/shared/api';
-import axios from 'axios';
+import { IFriend } from './models';
 
-export const getFriends = async (query: string = '') => {
+export const getFriends = async (friendName: string = '') => {
   try {
-    const response = await userHttp.get('/GetUser', {
+    const response = await userHttp.get<IFriend[]>('/GetUser', {
       params: {
-        friendName: query,
+        friendName,
       },
     });
 
     return response;
   } catch (error) {
-    if (axios.isAxiosError(error)) {
-      throw new Error(error.response?.data);
-    }
+    console.error('Error fetching friends:', error);
+    throw error;
   }
 };
 
-export const getUsers = async (query: string = '') => {
+export const getUsers = async (friendName: string = '') => {
   try {
-    const response = await userHttp.get('/GetUser', {
+    console.log(friendName)
+    const { data } = await userHttp.get<IFriend[]>('/GetUser', {
       params: {
-        friendName: query,
+        friendName,
       },
     });
 
-    return response;
+    return data;
   } catch (error) {
-    if (axios.isAxiosError(error)) {
-      throw new Error(error.response?.data);
-    }
+    console.error('Error fetching friends:', error);
+    throw error;
   }
 };

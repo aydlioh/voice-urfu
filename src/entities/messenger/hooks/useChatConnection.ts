@@ -13,7 +13,7 @@ const headers = {
   Authorization: `Bearer ${TokenService.get()?.jwtToken}`,
 };
 
-export const useChat = () => {
+export const useChatConnection = () => {
   // TODO переделать через useNavigate, когда будет работать список
   const { id } = useParams();
   const { login } = useAuthStatus();

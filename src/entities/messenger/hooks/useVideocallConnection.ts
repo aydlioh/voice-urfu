@@ -17,7 +17,7 @@ const configuration = {
   iceServers: [{ urls: 'stun:stun.l.google.com:19302' }],
 };
 
-export const useVideocall = () => {
+export const useVideocallConnection = () => {
   const [isMicrophone, setMicrophone] = useState<boolean>(false);
   const [isCamera, setCamera] = useState<boolean>(false);
 

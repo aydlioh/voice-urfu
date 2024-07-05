@@ -1,2 +1,2 @@
-export * from './useChat';
-export * from './useVideocall';
+export * from './useChatConnection';
+export * from './useVideocallConnection';

@@ -1,5 +1,5 @@
 import { VideocallTools } from '@/widgets';
-import { useVideocall } from '@/entities/messenger';
+import { useVideocallConnection } from '@/entities/messenger';
 import { UserVideo } from '@/features/videocall';
 import styles from './ui.module.css';
 
@@ -13,7 +13,7 @@ const VideocallPage = () => {
     toggleCamera,
     isMicrophone,
     isCamera,
-  } = useVideocall();
+  } = useVideocallConnection();
 
   return (
     <section className={styles.container}>

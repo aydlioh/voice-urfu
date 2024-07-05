@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { getFriends } from './api';
+import { getFriends, getUsers } from './api';
 import { useEffect, useState } from 'react';
 import { useDebounce } from '@/shared/hooks';
 
@@ -18,5 +18,29 @@ export const useFriends = () => {
     }
   }, [debounceSearch]);
 
-  return { data, isLoading, error, search, setSearch };
+  return { friends: data, isLoading, error, search, setSearch };
+};
+
+export const useUserList = () => {
+  const [search, setSearch] = useState('a');
+  const debounceSearch = useDebounce(search, 500);
+
+  const { data, isLoading, isFetching, isError, refetch } = useQuery({
+    queryKey: ['friends', search],
+    queryFn: () => getUsers(search),
+  });
+
+  // useEffect(() => {
+  //   if (debounceSearch) {
+  //     refetch();
+  //   }
+  // }, [debounceSearch]);
+
+  return {
+    users: data,
+    isLoading: isLoading || isFetching,
+    isError,
+    search,
+    setSearch,
+  };
 };
