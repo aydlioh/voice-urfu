@@ -1,17 +1,10 @@
 import { chatHttp } from '@/shared/api';
 import { IMessage } from './model';
 
-export const getMessages = async ({
-  senderId,
-  receiverId,
-}: {
-  senderId: string;
-  receiverId: string;
-}) => {
+export const getMessages = async ({ receiverId }: { receiverId: string }) => {
   try {
     const { data } = await chatHttp.get<IMessage[]>('/chat/history/messages', {
       params: {
-        senderId,
         receiverId,
         page: 0,
         length: 1000,

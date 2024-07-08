@@ -19,7 +19,6 @@ export const useChatConnection = () => {
   const { login } = useAuthStatus();
 
   const { data, isFetching } = useMessages({
-    senderId: login,
     receiverId: String(id),
   });
 
