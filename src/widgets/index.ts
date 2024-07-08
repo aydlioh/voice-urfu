@@ -8,3 +8,4 @@ export * from './PageInfo';
 export * from './VideocallTools';
 export * from './Notification';
 export * from './Modal';
+export * from './FriendCard';

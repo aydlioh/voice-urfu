@@ -1,0 +1,3 @@
+.container {
+  @apply max-w-[800px] text-primaryText mx-auto h-full px-2;
+}
