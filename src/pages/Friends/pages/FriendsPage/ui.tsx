@@ -5,6 +5,7 @@ import { FriendCard } from '@/widgets';
 import { BsTelephoneFill } from 'react-icons/bs';
 import { IoChatboxEllipses } from 'react-icons/io5';
 import { useNavigate } from 'react-router-dom';
+import { FriendCardTool } from '@/features/user';
 
 const mockUsers = [
   {
@@ -86,18 +87,14 @@ export const FriendsPage = () => {
                 user={user}
                 endContent={
                   <div className="sm:flex flex-row gap-1 hidden">
-                    <button
+                    <FriendCardTool
                       onClick={() => handleWrite(user.login)}
-                      className="flex justify-center items-center p-2.5 rounded-full hover:bg-background/70 duration-200 text-[22px] text-primaryText/70"
-                    >
-                      <IoChatboxEllipses />
-                    </button>
-                    <button
+                      Icon={IoChatboxEllipses}
+                    />
+                    <FriendCardTool
                       onClick={() => handleCall(user.login)}
-                      className="flex justify-center items-center p-2.5 rounded-full hover:bg-background/70 duration-200 text-[22px] text-primaryText/70"
-                    >
-                      <BsTelephoneFill />
-                    </button>
+                      Icon={BsTelephoneFill}
+                    />
                   </div>
                 }
               />

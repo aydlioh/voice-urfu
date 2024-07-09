@@ -1,0 +1,15 @@
+.container {
+  @apply flex flex-row gap-2 cursor-pointer;
+}
+
+.wrapper {
+  @apply flex flex-col w-full;
+}
+
+.btnsWrapper {
+  @apply flex flex-row gap-2 items-center mt-3;
+}
+
+.btn {
+  @apply p-2 rounded-md text-background font-bold w-1/2;
+}

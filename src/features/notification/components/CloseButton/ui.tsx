@@ -1,4 +1,5 @@
 import { MdClose } from 'react-icons/md';
+import styles from './ui.module.css';
 
 type Props = {
   closeToast?: () => void;
@@ -13,10 +14,7 @@ export const CloseButton = ({ closeToast }: Props) => {
 
   return (
     <div>
-      <div
-        onClick={closeHandler}
-        className="hover:bg-black/10 duration p-1 rounded-full cursor-pointer"
-      >
+      <div onClick={closeHandler} className={styles.closeBtn}>
         <MdClose />
       </div>
     </div>

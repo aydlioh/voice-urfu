@@ -1,0 +1,3 @@
+.closeBtn {
+  @apply hover:bg-black/10 duration-200 p-1 rounded-full cursor-pointer;
+}

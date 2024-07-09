@@ -1,5 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import styles from './ui.module.css';
+import clsx from 'clsx';
 
 type Props = {
   closeToast?: () => void;
@@ -46,19 +48,19 @@ export const FriendRequest = ({
   };
 
   return (
-    <div className="flex flex-row gap-2 cursor-pointer" onMouseUp={handleOpen}>
-      <div className="flex flex-col w-full">
-        <p className="mb-3">Заявка в друзья от {message.sender}</p>
-        <div className="flex flex-row gap-2 items-center">
+    <div className={styles.container} onMouseUp={handleOpen}>
+      <div className={styles.wrapper}>
+        <p>Заявка в друзья от {message.sender}</p>
+        <div className={styles.btnsWrapper}>
           <button
             onClick={acceptHandler}
-            className="bg-green-300 p-2 rounded-md text-background font-bold w-1/2"
+            className={clsx(styles.btn, 'bg-green-300')}
           >
             Принять
           </button>
           <button
             onClick={refuseHandler}
-            className="bg-rose-300 p-2 rounded-md text-background font-bold w-1/2"
+            className={clsx(styles.btn, 'bg-rose-300')}
           >
             Отклонить
           </button>

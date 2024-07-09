@@ -1,0 +1,23 @@
+.container {
+  @apply flex flex-row gap-2 cursor-pointer;
+}
+
+.imgWrapper {
+  @apply w-[15%] flex items-start;
+}
+
+.avatar {
+  @apply rounded-full h-10 w-10 object-cover;
+}
+
+.message {
+  @apply flex flex-col w-[85%];
+}
+
+.author {
+  @apply font-bold text-[#646cff];
+}
+
+.body {
+  @apply line-clamp-3 text-[12px];
+}

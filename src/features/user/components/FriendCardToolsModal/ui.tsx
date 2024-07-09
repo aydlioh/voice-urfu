@@ -1,6 +1,7 @@
 import { useClickOutside } from '@/shared/hooks';
 import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import styles from './ui.module.css';
 
 type Props = {
   close: () => void;
@@ -19,22 +20,13 @@ export const FriendCardToolsModal = ({ close, isOpen, user }: Props) => {
   useClickOutside(close, modalRef, isOpen);
 
   return (
-    <div
-      className="absolute right-0 bg-pageNested py-2 px-1 rounded-md z-10"
-      ref={modalRef}
-    >
-      <div className="border-solid border-b-pageNested border-b-8 border-x-transparent border-x-[6px] border-t-0 absolute right-[15px] -top-[7px]" />
-      <ul className="flex flex-col gap-1">
-        <li
-          onClick={handleWrite}
-          className="hover:bg-background p-1 px-2 rounded-md duration-200 w-full cursor-pointer sm:text-[16px] text-[15px]"
-        >
+    <div ref={modalRef} className={styles.modalContainer}>
+      <div className={styles.triangle} />
+      <ul className={styles.wrapper}>
+        <li onClick={handleWrite} className={styles.modalElement}>
           Написать
         </li>
-        <li
-          onClick={handleCall}
-          className="hover:bg-background p-1 px-2 rounded-md duration-200 w-full cursor-pointer sm:text-[16px] text-[15px]"
-        >
+        <li onClick={handleCall} className={styles.modalElement}>
           Позвонить
         </li>
       </ul>

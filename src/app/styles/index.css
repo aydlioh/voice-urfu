@@ -10,7 +10,3 @@ body {
   background-color: var(--background);
   font-family: 'RobotoFont', 'MontserratFont';
 }
-
-.pageContainer {
-  @apply max-w-[800px] text-primaryText mx-auto h-full;
-}

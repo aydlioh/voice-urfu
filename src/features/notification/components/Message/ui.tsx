@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import styles from './ui.module.css';
 
 type Props = {
   closeToast?: () => void;
@@ -22,20 +23,17 @@ export const Message = ({ closeToast, message }: Props) => {
   };
 
   return (
-    <div
-      className="flex flex-row gap-2 cursor-pointer"
-      onMouseUp={openChatHandler}
-    >
-      <div className="w-[15%] flex items-start">
+    <div className={styles.container} onMouseUp={openChatHandler}>
+      <div className={styles.imgWrapper}>
         <img
           src="https://chudo-prirody.com/uploads/posts/2023-04/1682578522_chudo-prirody-com-p-kak-spit-panda-foto-1.jpg"
           alt="Logo"
-          className="rounded-full h-10 w-10 object-cover"
+          className={styles.avatar}
         />
       </div>
-      <div className="flex flex-col w-[85%]">
-        <h4 className="font-bold text-[#646cff]">{message.author}</h4>
-        <p className="line-clamp-3 text-[12px]">{message.body}</p>
+      <div className={styles.message}>
+        <h4 className={styles.author}>{message.author}</h4>
+        <p className={styles.body}>{message.body}</p>
       </div>
     </div>
   );
