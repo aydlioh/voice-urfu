@@ -21,7 +21,7 @@ const classNames = {
   border: {
     clearButton: 'text-secondary hover:scale-[115%] transition',
     inputWrapper:
-      'border-default-400 data-[hover=true]:border-background group-data-[focus=true]:border-background bg-background',
+      'border-default-400 data-[hover=true]:border-background group-data-[focus=true]:border-background',
   },
 };
 
@@ -32,6 +32,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
       ref={ref}
       autoComplete="off"
       classNames={{
+        ...props.classNames,
         ...(props.variant === 'bordered' ? classNames.border : {}),
         ...(props.variant === 'flat' ? classNames.primary : {}),
         ...(props.variant === 'flat' && props.color === 'secondary'

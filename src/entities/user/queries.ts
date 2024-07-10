@@ -23,9 +23,8 @@ export const useFriends = () => {
 
 export const useUserList = () => {
   const [search, setSearch] = useState('a');
-  const debounceSearch = useDebounce(search, 500);
 
-  const { data, isLoading, isFetching, isError, refetch } = useQuery({
+  const { data, isLoading, isFetching, isError } = useQuery({
     queryKey: ['friends', search],
     queryFn: () => getUsers(search),
   });
