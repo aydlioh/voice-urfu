@@ -1,4 +1,4 @@
-import { Chat } from '@/widgets';
+import { Chat } from '@/widgets/messenger';
 import styles from './ui.module.css';
 
 const ChatPage = () => {

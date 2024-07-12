@@ -1,15 +1,5 @@
 :root {
-  --primary: #3b3b3f;
-  --secondary: #e3e1e6;
-  --primary-text: #e3e1e6;
-  --sidebar: #e3e1e6;
-  --sidebar-active-link: #c5c3c7;
-  --sidebar-hover-link: rgb(204, 204, 204);
   --background: #3b3b3f;
-  --link: #006fee;
-  --auth-form: #e3e1e6;
-  --auth-form-secondary: #ccccd1;
-
   --scrollbar-background: #404046;
   --scrollbar-hover: #98989c;
   --scrollbar: #5b5b63;

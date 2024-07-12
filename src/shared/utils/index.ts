@@ -1,7 +1,12 @@
-import { translatedPathnames } from "../const";
+import { translatedPathnames } from '../const';
 
 export const getPathnameInfoString = (pathname: string) =>
-  pathname.slice(1).split('/').map(getTranslatePathname).join(' / ');
+  pathname
+    .replace('all', '')
+    .split('/')
+    .filter(Boolean)
+    .map(getTranslatePathname)
+    .join(' / ');
 
 const getTranslatePathname = (pathname: string) => {
   return translatedPathnames[pathname] ?? pathname;

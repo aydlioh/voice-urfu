@@ -20,14 +20,14 @@ export const ChatTools = ({ userName }: { userName: string | undefined }) => {
   return (
     <div className={styles.toolsWrapper}>
       <div className={styles.innerWrapper}>
-        <BackButton to="/messenger" />
+        <BackButton to='/messenger' />
         <div className={styles.userInfoWrapper}>
-          <img src={mockUser.imgSrc} alt="avatar" className={styles.userImg} />
+          <img src={mockUser.imgSrc} alt='avatar' className={styles.userImg} />
           <h3>{userName}</h3>
         </div>
       </div>
       <div className={styles.innerWrapper}>
-        <SearchInput placeholder="Поиск" className={styles.search} />
+        <SearchInput placeholder='Поиск' className={styles.search} />
         <div className={styles.btnsWrapper}>
           <button onClick={handleVideocall} className={styles.btn}>
             <BsTelephoneFill className={styles.telephoneIcon} />

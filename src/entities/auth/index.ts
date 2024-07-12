@@ -3,3 +3,4 @@ export * from './inputs';
 export * from './validation';
 export * from './hooks';
 export * from './mutations';
+export * from './models';

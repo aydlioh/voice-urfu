@@ -1,4 +1,4 @@
-import { IUser } from '../../../entities/auth/models';
+import { IUser } from '@/entities/users';
 import { LocalStorageService } from './LocalStorageService';
 
 class UserService extends LocalStorageService<IUser> {

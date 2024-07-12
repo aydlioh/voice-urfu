@@ -1,5 +1,5 @@
 import { FormSwitcher } from '@/features/auth';
-import { LoginForm } from '@/widgets';
+import { LoginForm } from '@/widgets/auth';
 import styles from './ui.module.css';
 
 export const LoginPage = () => {

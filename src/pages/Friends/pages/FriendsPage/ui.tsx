@@ -1,35 +1,33 @@
+import { FriendCard } from '@/widgets/user';
+import { FriendCardTool } from '@/features/friends';
+import { FetchError } from '@/features/errors';
+import { IFriend } from '@/entities/friends';
 import { SearchInput, Spinner } from '@/shared/ui';
 import { useState } from 'react';
-import styles from './ui.module.css';
-import { FriendCard } from '@/widgets';
+import { useNavigate } from 'react-router-dom';
 import { BsTelephoneFill } from 'react-icons/bs';
 import { IoChatboxEllipses } from 'react-icons/io5';
-import { useNavigate } from 'react-router-dom';
-import { FriendCardTool } from '@/features/user';
+import styles from './ui.module.css';
 
-const mockUsers = [
+const mockUsers: IFriend[] = [
   {
-    imgSrc:
-      'https://chudo-prirody.com/uploads/posts/2023-04/1682578522_chudo-prirody-com-p-kak-spit-panda-foto-1.jpg',
-    login: 'Ivan777',
+    id: 1,
+    username: 'Ivan777',
     fullname: 'Иванов Иван',
   },
   {
-    imgSrc:
-      'https://chudo-prirody.com/uploads/posts/2023-04/1682578522_chudo-prirody-com-p-kak-spit-panda-foto-1.jpg',
-    login: 'Stepashka',
+    id: 2,
+    username: 'Stepashka',
     fullname: 'Степан Степанов',
   },
   {
-    imgSrc:
-      'https://chudo-prirody.com/uploads/posts/2023-04/1682578522_chudo-prirody-com-p-kak-spit-panda-foto-1.jpg',
-    login: 'Olga_Sokol',
+    id: 3,
+    username: 'Olga_Sokol',
     fullname: 'Ольга Соколова',
   },
   {
-    imgSrc:
-      'https://chudo-prirody.com/uploads/posts/2023-04/1682578522_chudo-prirody-com-p-kak-spit-panda-foto-1.jpg',
-    login: 'Timamakar',
+    id: 4,
+    username: 'Timamakar',
     fullname: 'Тимофей Макаров',
   },
 ];
@@ -45,54 +43,43 @@ export const FriendsPage = () => {
   const mockCount = 4;
 
   if (mockIsError) {
-    return (
-      <section className="h-[calc(100vh-40px)] flex justify-center items-center">
-        <div className="flex flex-col items-center">
-          <h2 className="font-minecraft text-rose-500 text-[22px]">
-            Fetch Error
-          </h2>
-          <p className="text-[14px] text-secondary/60">
-            Ошибка получения списка друзей
-          </p>
-        </div>
-      </section>
-    );
+    return <FetchError message='Ошибка получения списка друзей' />;
   }
 
   return (
     <section className={styles.container}>
-      <div className="flex flex-row justify-end pt-5">
+      <div className='flex flex-row justify-end pt-5'>
         <SearchInput
-          color="secondary"
-          className="md:max-w-[400px]"
-          placeholder="Найти друга"
+          color='secondary'
+          className='md:max-w-[400px]'
+          placeholder='Найти друга'
           value={search ? search : ''}
           onChange={(e) => setSearch(e.target.value)}
           onClear={() => setSearch('')}
         />
       </div>
       {mockIsLoading ? (
-        <div className="h-[calc(100vh-160px)] w-full flex justify-center items-center">
+        <div className='h-[calc(100vh-160px)] w-full flex justify-center items-center'>
           <Spinner />
         </div>
       ) : (
-        <div>
-          <h4 className="sm:text-[18px] pb-6 pt-5 md:pl-0 pl-6">
+        <div className='overflow-hidden'>
+          <h4 className='sm:text-[18px] pb-6 pt-5 md:pl-0 pl-6'>
             Друзей в списке — {mockCount}
           </h4>
-          <ul className="flex flex-col gap-1">
-            {mockUsers?.map((user: any, index: number) => (
+          <ul className='flex flex-col gap-1 overflow-y-auto h-[calc(100vh-200px)] pr-1.5 rounded-scroll'>
+            {mockUsers?.map((user: IFriend, index: number) => (
               <FriendCard
                 key={index}
                 user={user}
                 endContent={
-                  <div className="sm:flex flex-row gap-1 hidden">
+                  <div className='sm:flex flex-row gap-1 hidden'>
                     <FriendCardTool
-                      onClick={() => handleWrite(user.login)}
+                      onClick={() => handleWrite(user.username)}
                       Icon={IoChatboxEllipses}
                     />
                     <FriendCardTool
-                      onClick={() => handleCall(user.login)}
+                      onClick={() => handleCall(user.username)}
                       Icon={BsTelephoneFill}
                     />
                   </div>

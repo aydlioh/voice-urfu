@@ -1,5 +1,5 @@
 import { FormSwitcher } from '@/features/auth';
-import { RegistrationForm } from '@/widgets';
+import { RegistrationForm } from '@/widgets/auth';
 import styles from './ui.module.css';
 
 export const RegistrationPage = () => {

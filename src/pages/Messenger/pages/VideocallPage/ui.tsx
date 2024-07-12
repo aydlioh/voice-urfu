@@ -1,6 +1,6 @@
-import { VideocallTools } from '@/widgets';
-import { useVideocallConnection } from '@/entities/messenger';
+import { VideocallTools } from '@/widgets/messenger';
 import { UserVideo } from '@/features/videocall';
+import { useVideocallConnection } from '@/entities/messenger';
 import styles from './ui.module.css';
 
 const VideocallPage = () => {

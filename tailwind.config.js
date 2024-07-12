@@ -25,6 +25,7 @@ export default {
         links: '#006FEE',
         authForm: '#E3E1E6',
         authFormSecondary: '#CCCCD1',
+        greenColor: '#0A8507'
       },
       fontFamily: {
         montserrat: ['MontserratFont'],

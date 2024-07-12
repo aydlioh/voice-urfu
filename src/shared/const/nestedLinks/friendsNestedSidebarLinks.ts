@@ -1,9 +1,10 @@
 import { SidebarLink } from "@/shared/types";
 
-export const friendsNestedSidebarLinks: Omit<SidebarLink, 'icon'>[] = [
+export const friendsNestedSidebarLinks: Omit<SidebarLink, 'icon'> [] = [
   {
     label: 'Все друзья',
-    path: '/friends'
+    path: '/friends',
+    otherPath: '/friends/all'
   },
   {
     label: 'Добавить друга',

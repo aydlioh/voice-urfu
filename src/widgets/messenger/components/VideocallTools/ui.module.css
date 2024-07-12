@@ -1,0 +1,15 @@
+.toolsContainer {
+  @apply absolute lg:bottom-24 md:bottom-6 bottom-14;
+}
+
+.toolsWrapper {
+  @apply flex justify-center gap-1 md:bg-transparent bg-pageNested px-2 py-1 rounded-md z-[100];
+}
+
+.disconnectBtn {
+  @apply h-12 w-12 flex justify-center items-center p-2 rounded-full hover:bg-rose-500/10 duration-200 cursor-pointer;
+}
+
+.disconnectIcon {
+  @apply text-rose-500 text-[26px];
+}

@@ -7,7 +7,7 @@
 }
 
 .secondary {
-  @apply bg-secondary text-primary;
+  @apply bg-pageNested text-secondary hover:bg-pageNested/70;
 }
 
 .danger {

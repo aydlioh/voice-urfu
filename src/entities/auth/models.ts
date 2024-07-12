@@ -18,7 +18,7 @@ export interface ISecret {
   jwtTokenExpiry: number;
 }
 
-export interface IUser {
+export interface IUserInfo {
   login: string;
   fullname: string;
   email: string;

@@ -11,15 +11,14 @@ import { friendsNestedSidebarLinks } from '@/shared/const/nestedLinks';
 export const friendsRoutes: RouteObject[] = [
   {
     path: '/friends',
-    element: (
-      <NestedLayout
-        backPath="/friends"
-        nestedLinks={friendsNestedSidebarLinks}
-      />
-    ),
+    element: <NestedLayout nestedLinks={friendsNestedSidebarLinks} />,
     children: [
       {
         path: '',
+        element: <FriendsPage />,
+      },
+      {
+        path: 'all',
         element: <FriendsPage />,
       },
       {

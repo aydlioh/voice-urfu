@@ -3,11 +3,11 @@
 }
 
 .backBtn {
-  @apply text-secondary m-2;
+  @apply text-secondary sm:m-2;
 }
 
 .nestedWrapper {
-  @apply w-full h-full;
+  @apply w-full h-full relative;
 }
 
 .active {
