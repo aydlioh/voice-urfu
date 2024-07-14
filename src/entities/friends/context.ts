@@ -1,8 +1,8 @@
 import { createContext, useContext } from 'react';
 
 type FriendsContextType = {
-  handleAccept: (sender: string) => void;
-  handleRefuse: (sender: string) => void;
+  handleAccept: () => void;
+  handleRefuse: () => void;
   handleRequest: (receiver: string) => void;
 };
 

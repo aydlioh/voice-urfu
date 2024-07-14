@@ -1,11 +1,10 @@
 import { IUser } from '@/entities/users';
 import { Fragment } from 'react';
-import { FriendCard } from '../FriendCard';
 import { useObserver } from '@/shared/hooks/useObserver';
 import { Spinner } from '@/shared/ui';
 import { InfiniteData } from '@tanstack/react-query';
 import { useFriendsContext } from '@/entities/friends';
-import { FriendAddButton } from '@/features/friends';
+import { FriendAddButton, FriendCard } from '@/features/friends';
 
 type Props = {
   data?: InfiniteData<IUser[], unknown>;
@@ -27,9 +26,7 @@ export const UserList = ({ data, fetchNext, isFetching, hasNext }: Props) => {
               key={user.id || userIndex}
               user={user}
               endContent={
-                <FriendAddButton
-                  handleRequest={() => handleRequest(user.username)}
-                />
+                <FriendAddButton onClick={() => handleRequest(user.username)} />
               }
             />
           ))}

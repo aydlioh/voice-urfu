@@ -9,9 +9,10 @@ type Props = {
     fullname: string;
   };
   endContent?: React.ReactNode;
+  withDelete?: boolean;
 };
 
-export const FriendCard = ({ user, endContent }: Props) => {
+export const FriendCard = ({ user, endContent, withDelete = false }: Props) => {
   return (
     <div className={styles.cardContainer}>
       <div className={styles.cardWrapper}>
@@ -30,7 +31,7 @@ export const FriendCard = ({ user, endContent }: Props) => {
         </div>
         <div className={styles.toolsWrapper}>
           {endContent}
-          <FriendCardTools user={user} />
+          <FriendCardTools withDelete={withDelete} user={user} />
         </div>
       </div>
     </div>

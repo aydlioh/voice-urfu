@@ -7,9 +7,10 @@ type Props = {
   user: {
     username: string;
   };
+  withDelete: boolean;
 };
 
-export const FriendCardTools = ({ user }: Props) => {
+export const FriendCardTools = ({ user, withDelete }: Props) => {
   const [isModal, setIsModal] = useState(false);
 
   const toggleModal = () => {
@@ -21,12 +22,17 @@ export const FriendCardTools = ({ user }: Props) => {
   };
 
   return (
-    <div className="relative">
+    <div className='relative'>
       <button onClick={toggleModal} className={styles.modalBtn}>
         <FaEllipsisVertical />
       </button>
       {isModal && (
-        <FriendCardToolsModal user={user} close={closeModal} isOpen={isModal} />
+        <FriendCardToolsModal
+          withDelete={withDelete}
+          user={user}
+          close={closeModal}
+          isOpen={isModal}
+        />
       )}
     </div>
   );

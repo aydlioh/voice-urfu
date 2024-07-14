@@ -15,7 +15,7 @@ export const useFriendsConnection = () => {
   const { login } = useAuthStatus();
   const friendshipClient = useRef<any>(null);
 
-  const sendMessage = ({ user, status }: {user: string, status: string }) => {
+  const sendMessage = ({ user, status }: { user: string; status: string }) => {
     friendshipClient.current.send(
       `/app/friendship/${user}`,
       {},
@@ -25,18 +25,18 @@ export const useFriendsConnection = () => {
         status,
       })
     );
-  }
-
-  const handleAccept = (sender: string) => {
-    sendMessage({user: sender, status: 'accepted' })
   };
 
-  const handleRefuse = (sender: string) => {
-    sendMessage({user: sender, status: 'refused' })
+  const handleAccept = () => {
+    sendMessage({ user: login, status: 'accepted' });
+  };
+
+  const handleRefuse = () => {
+    sendMessage({ user: login, status: 'refused' });
   };
 
   const handleRequest = (receiver: string) => {
-    sendMessage({user: receiver, status: 'pending' })
+    sendMessage({ user: receiver, status: 'pending' });
   };
 
   useEffect(() => {

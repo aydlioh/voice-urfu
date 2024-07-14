@@ -1,25 +1,25 @@
 import { Spinner } from '@/shared/ui';
-import clsx from 'clsx';
 import { useState } from 'react';
 import { MdPersonAddAlt1 } from 'react-icons/md';
+import clsx from 'clsx';
 
 type Props = {
-  handleRequest: () => void;
+  onClick: () => void;
 };
 
-export const FriendAddButton = ({ handleRequest }: Props) => {
+export const FriendAddButton = ({ onClick }: Props) => {
   const [isLoading, setIsLoading] = useState(false);
 
-  const requestHandler = (e: React.FormEvent<HTMLButtonElement>) => {
+  const clickHandler = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setIsLoading(true);
-    handleRequest();
+    onClick();
     setTimeout(() => setIsLoading(false), 500);
   };
 
   return (
     <button
-      onClick={requestHandler}
+      onClick={clickHandler}
       disabled={isLoading}
       className={clsx(
         'flex justify-center items-center p-2 rounded-full duration-200 sm:text-[26px] text-[24px] text-green-700',

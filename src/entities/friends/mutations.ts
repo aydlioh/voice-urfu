@@ -1,5 +1,5 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { deleteFriend } from "./api";
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { deleteFriend } from './api';
 
 export const useDeleteFriend = () => {
   const queryClient = useQueryClient();
@@ -7,4 +7,4 @@ export const useDeleteFriend = () => {
     mutationFn: deleteFriend,
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ['friends'] }),
   });
-}
+};

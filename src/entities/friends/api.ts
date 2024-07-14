@@ -1,11 +1,11 @@
-import { friendsHttp } from "@/shared/api";
-import { IFriend } from "./model";
-import { QueryParams } from "@/shared/types";
+import { friendsHttp } from '@/shared/api';
+import { IFriend } from './model';
+import { FriendRequestParams, SearchParams } from '@/shared/types';
 
-export const getFriends = async ({ pageParam, query }: QueryParams) => {
+export const getFriends = async ({ pageParam, query }: SearchParams) => {
   // TODO
   try {
-    const { data } = await friendsHttp.get<IFriend[]>("/getFriends", {
+    const { data } = await friendsHttp.get<IFriend[]>('/getFriends', {
       params: {
         friendName: query,
         page: pageParam,
@@ -15,7 +15,7 @@ export const getFriends = async ({ pageParam, query }: QueryParams) => {
 
     return data;
   } catch (error) {
-    console.error("Error fetching friends:", error);
+    console.error('Error fetching friends:', error);
     throw error;
   }
 };
@@ -24,7 +24,25 @@ export const deleteFriend = async ({ friend }: { friend: string }) => {
   try {
     await friendsHttp.post(`/friendship/remove/${friend}`);
   } catch (error) {
-    console.error("Error delete friend:", error);
+    console.error('Error delete friend:', error);
+    throw error;
+  }
+};
+
+export const getFriendRequests = async ({ belonging, type }: FriendRequestParams) => {
+  try {
+    const { data } = await friendsHttp.get<IFriend[]>(
+      `/friendship/history/${type}`,
+      {
+        params: {
+          belonging,
+        },
+      }
+    );
+
+    return data;
+  } catch (error) {
+    console.error('Error fetching friend requests:', error);
     throw error;
   }
 };
