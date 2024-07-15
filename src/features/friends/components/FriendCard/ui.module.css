@@ -11,7 +11,7 @@
 }
 
 .imgWrapper {
-  @apply flex justify-center items-center w-14;
+  @apply flex justify-center items-center w-16;
 }
 
 .avatar {
@@ -19,7 +19,7 @@
 }
 
 .fullname {
-  @apply sm:text-[16px] text-[14px];
+  @apply sm:text-[16px] text-[12px];
 }
 
 .username {
@@ -27,5 +27,5 @@
 }
 
 .toolsWrapper {
-  @apply flex flex-row gap-1 items-center;
+  @apply flex flex-row sm:gap-1 items-center;
 }

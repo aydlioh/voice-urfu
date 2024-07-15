@@ -29,16 +29,17 @@ export const deleteFriend = async ({ friend }: { friend: string }) => {
   }
 };
 
-export const getFriendRequests = async ({ belonging, type }: FriendRequestParams) => {
+export const getFriendRequests = async ({
+  belonging,
+  type,
+}: FriendRequestParams) => {
   try {
-    const { data } = await friendsHttp.get<IFriend[]>(
-      `/friendship/history/${type}`,
-      {
-        params: {
-          belonging,
-        },
-      }
-    );
+    const { data } = await friendsHttp.get<IFriend[]>(`/friendship/history`, {
+      params: {
+        type,
+        belonging,
+      },
+    });
 
     return data;
   } catch (error) {

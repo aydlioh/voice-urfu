@@ -12,17 +12,16 @@ export const ChatMessage = ({ message, currentUser }: ChatMessageProps) => {
   const messageStyle =
     message.sender === currentUser ? styles.current : styles.opponent;
 
+  console.log(message.timestamp);
   return (
     <li className={clsx(styles.message, messageStyle)}>
       <div className={styles.messageInfoWrapper}>
         <p className={styles.messageName}>{message.sender}</p>
         <p className={styles.messageTime}>
-          {dayjs(message.timestamp).locale('ru').format('hh:mm')}
+          {dayjs(message.timestamp).format('HH:mm')}
         </p>
       </div>
-      <p className={styles.messageBody}>
-        {message.content}
-      </p>
+      <p className={styles.messageBody}>{message.content}</p>
     </li>
   );
 };

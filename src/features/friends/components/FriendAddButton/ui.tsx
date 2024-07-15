@@ -22,7 +22,7 @@ export const FriendAddButton = ({ onClick }: Props) => {
       onClick={clickHandler}
       disabled={isLoading}
       className={clsx(
-        'flex justify-center items-center p-2 rounded-full duration-200 sm:text-[26px] text-[24px] text-green-700',
+        'flex justify-center items-center p-2.5 rounded-full duration-200 sm:text-[26px] text-[20px] text-green-700',
         !isLoading && 'hover:bg-green-700/10'
       )}
     >
