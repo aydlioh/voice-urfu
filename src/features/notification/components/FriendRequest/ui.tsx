@@ -5,11 +5,10 @@ import clsx from 'clsx';
 
 type Props = {
   closeToast?: () => void;
-  handleAccept: (sender: string) => void;
-  handleRefuse: (sender: string) => void;
+  handleAccept: (receiver: string) => void;
+  handleRefuse: (receiver: string) => void;
   message: {
     sender: string;
-    receiver: string;
   };
 };
 

@@ -23,9 +23,9 @@ export const IncomingFriendList = ({ data }: Props) => {
           user={user}
           endContent={
             <div className='flex flex-row sm:gap-1'>
-              <FriendAddButton onClick={handleAccept} />
+              <FriendAddButton onClick={() => handleAccept(user.username)} />
               <FriendCardTool
-                onClick={handleRefuse}
+                onClick={() => handleRefuse(user.username)}
                 Icon={MdPersonRemoveAlt1}
               />
             </div>

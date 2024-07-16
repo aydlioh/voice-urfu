@@ -27,12 +27,12 @@ export const useFriendsConnection = () => {
     );
   };
 
-  const handleAccept = () => {
-    sendMessage({ user: login, status: 'accepted' });
+  const handleAccept = (receiver: string) => {
+    sendMessage({ user: receiver, status: 'accepted' });
   };
 
-  const handleRefuse = () => {
-    sendMessage({ user: login, status: 'refused' });
+  const handleRefuse = (receiver: string) => {
+    sendMessage({ user: receiver, status: 'refused' });
   };
 
   const handleRequest = (receiver: string) => {
@@ -47,11 +47,21 @@ export const useFriendsConnection = () => {
 
     const connect = () => {
       if (!friendshipClient.current.connected) {
-        friendshipClient.current.connect(headers, () => {
-          friendshipClient.current.subscribe(
-            `/topic/friendship/${login}`,
-            (output: any) => {
-              const message = JSON.parse(output.body);
+        friendshipClient.current.connect(headers, () => {});
+      }
+    };
+
+    connect();
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (login && friendshipClient.current.connected) {
+        friendshipClient.current.subscribe(
+          `/topic/friendship/${login}`,
+          (output: any) => {
+            const message = JSON.parse(output.body);
+            if (message.type === 'friendRequest') {
               toast(
                 <FriendRequest
                   handleRefuse={handleRefuse}
@@ -62,14 +72,20 @@ export const useFriendsConnection = () => {
                   closeButton: <CloseButton />,
                 }
               );
+            } else {
+              console.log(message);
             }
-          );
-        });
-      }
-    };
+          }
+        );
 
-    connect();
-  }, []);
+        clearInterval(interval);
+      }
+    }, 100);
+
+    () => {
+      clearInterval(interval);
+    };
+  }, [login]);
 
   return { handleAccept, handleRefuse, handleRequest };
 };
