@@ -11,7 +11,7 @@
 }
 
 .link {
-  @apply text-links hover:underline;
+  @apply text-accent hover:underline;
 }
 
 .triangle {

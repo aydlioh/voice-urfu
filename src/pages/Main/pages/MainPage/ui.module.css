@@ -7,5 +7,5 @@
 }
 
 .accentTitle {
-  @apply font-minecraft text-links;
+  @apply font-minecraft text-accent;
 }

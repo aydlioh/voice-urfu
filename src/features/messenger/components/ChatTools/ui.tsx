@@ -27,7 +27,7 @@ export const ChatTools = ({ userName }: { userName: string | undefined }) => {
         </div>
       </div>
       <div className={styles.innerWrapper}>
-        <SearchInput placeholder='Поиск' className={styles.search} />
+        <SearchInput placeholder='Поиск' className={styles.search} size='md' />
         <div className={styles.btnsWrapper}>
           <button onClick={handleVideocall} className={styles.btn}>
             <BsTelephoneFill className={styles.telephoneIcon} />

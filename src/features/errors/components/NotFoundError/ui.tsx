@@ -14,7 +14,7 @@ export const NotFoundError = ({ message, containerClassName }: Props) => {
       )}
     >
       <div className='flex flex-col items-center'>
-        <h2 className='font-minecraft text-links text-[28px]'>
+        <h2 className='font-minecraft text-accent text-[28px]'>
           404
         </h2>
         <p className='text-[14px] text-secondary/60'>{message}</p>

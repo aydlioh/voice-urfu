@@ -1,18 +1,29 @@
-import { Button as ButtonNextUI, ButtonProps } from '@nextui-org/react';
-import styles from './ui.module.css';
-import clsx from 'clsx';
+import {
+  Button as ButtonNextUI,
+  extendVariants,
+  ButtonProps,
+} from '@nextui-org/react';
 
-export const Button = ({ className, ...props }: ButtonProps) => {
-  return (
-    <ButtonNextUI
-      {...props}
-      className={clsx(
-        props.color === 'primary' && styles.primary,
-        props.color === 'danger' && styles.danger,
-        props.color === 'secondary' && styles.secondary,
-        (props.color === 'primary' && props.variant === 'bordered') && styles.bordered,
-        className
-      )}
-    />
-  );
-};
+export const Button = extendVariants(ButtonNextUI, {
+  variants: {
+    color: {
+      primary: 'bg-primary text-secondary',
+      secondary: 'bg-pageNested text-secondary hover:bg-pageNested/70',
+      danger: 'bg-rose-500 text-secondary',
+    },
+    variant: {
+      bordered:
+        'border-primary hover:bg-primary hover:text-white bg-white text-primary',
+    },
+    radius: {
+      default: 'rounded-md',
+    },
+  },
+  defaultVariants: {
+    radius: 'default',
+    color: 'primary',
+    size: 'lg',
+  },
+});
+
+export type { ButtonProps };

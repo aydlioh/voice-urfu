@@ -3,5 +3,5 @@
 }
 
 .submitBtn {
-  @apply hover:bg-pageNested duration-200 rounded-full h-8 w-8 p-2 flex justify-center items-center self-end;
+  @apply text-secondary hover:bg-pageNested/50 bg-pageNested duration-200 rounded-full h-8 w-8 p-2 flex justify-center items-center self-end;
 }

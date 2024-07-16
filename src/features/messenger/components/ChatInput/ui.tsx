@@ -48,7 +48,6 @@ export const ChatInput = ({
         <Textarea
           ref={textareaRef}
           minRows={1}
-          variant="flat"
           placeholder="Введите сообщение"
           endContent={
             <button type="submit" className={styles.submitBtn} ref={submitRef}>

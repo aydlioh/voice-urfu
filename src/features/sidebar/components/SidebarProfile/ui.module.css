@@ -27,5 +27,5 @@
 }
 
 .userEmail {
-  @apply text-[14px] text-links line-clamp-1;
+  @apply text-[14px] text-accent line-clamp-1;
 }

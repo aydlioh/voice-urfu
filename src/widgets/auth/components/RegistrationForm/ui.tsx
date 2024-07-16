@@ -18,41 +18,41 @@ export const RegistrationForm = () => {
         isInvalid={isUserNameError}
         color={isUserNameError ? 'danger' : 'default'}
         errorMessage={errors.userName?.message}
-        label="Логин"
-        autoComplete="username"
-        variant="bordered"
+        label='Логин'
+        autoComplete='username'
+        variant='bordered'
       />
       <Input
         {...register('fullname')}
         isInvalid={isFullNameError}
         color={isFullNameError ? 'danger' : 'default'}
         errorMessage={errors.fullname?.message}
-        label="ФИО"
-        autoComplete="fullname"
+        label='ФИО'
+        autoComplete='fullname'
         classNames={{
           input: 'capitalize',
         }}
-        variant="bordered"
+        variant='bordered'
       />
       <Input
         {...register('email')}
         isInvalid={isEmailError}
         color={isEmailError ? 'danger' : 'default'}
         errorMessage={errors.email?.message}
-        type="email"
-        label="E-mail"
-        autoComplete="email"
-        variant="bordered"
+        type='email'
+        label='E-mail'
+        autoComplete='email'
+        variant='bordered'
       />
       <PasswordInput
         isInvalid={isPasswordError}
         color={isPasswordError ? 'danger' : 'default'}
         errorMessage={errors.password?.message || fetchError}
         {...register('password')}
-        label="Пароль"
-        autoComplete="current-password"
+        label='Пароль'
+        autoComplete='current-password'
       />
-      <Button isLoading={isPending} size="lg" type="submit" color="primary">
+      <Button isLoading={isPending} type='submit'>
         Зарегистрироваться
       </Button>
     </form>

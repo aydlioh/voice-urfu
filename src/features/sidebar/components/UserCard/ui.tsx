@@ -37,7 +37,7 @@ export const UserCard = ({ user }: Props) => {
             <p>{user.email}</p>
           </div>
         </div>
-        <Button onClick={open} className='w-full' size='lg' color='primary'>
+        <Button onClick={open} className='w-full'>
           Сменить аккаунт
         </Button>
       </div>

@@ -22,7 +22,7 @@ export default {
         background: '#3B3B3F',
         currentUser: '#494950',
         opponent: '#3B3B3F',
-        links: '#006FEE',
+        accent: '#006FEE',
         authForm: '#E3E1E6',
         authFormSecondary: '#CCCCD1',
         greenColor: '#0A8507'

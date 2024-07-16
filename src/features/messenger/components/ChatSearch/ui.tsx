@@ -1,5 +1,5 @@
 import { SearchInput } from '@/shared/ui';
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './ui.module.css';
 
@@ -14,13 +14,21 @@ export const ChatSearch = () => {
     setSearch('');
   };
 
+  const handleClear = () => {
+    setSearch('');
+  };
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+  };
+
   return (
     <form onSubmit={handleSearch} className={styles.formSearch}>
       <SearchInput
-        onClear={() => setSearch('')}
-        placeholder="Название чата"
         value={search}
-        onChange={(e) => setSearch(e.target.value)}
+        onClear={handleClear}
+        onChange={handleChange}
+        placeholder='Название чата'
       />
     </form>
   );

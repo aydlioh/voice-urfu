@@ -43,8 +43,6 @@ export const Modal = () => {
                 isLoading={isPending}
                 onClick={handleLogout}
                 className='w-1/2'
-                size='lg'
-                color='primary'
               >
                 Да, выйти
               </Button>
@@ -52,8 +50,6 @@ export const Modal = () => {
                 onClick={close}
                 className='w-1/2'
                 variant='bordered'
-                color='primary'
-                size='lg'
               >
                 Отмена
               </Button>

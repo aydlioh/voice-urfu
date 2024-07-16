@@ -16,19 +16,19 @@ export const LoginForm = () => {
         color={isLoginError ? 'danger' : 'default'}
         errorMessage={errors.login?.message}
         {...register('login')}
-        label="Логин / E-mail"
-        autoComplete="username"
-        variant="bordered"
+        label='Логин / E-mail'
+        autoComplete='username'
+        variant='bordered'
       />
       <PasswordInput
         isInvalid={isPasswordError}
         color={isPasswordError ? 'danger' : 'default'}
         errorMessage={errors.password?.message || fetchError}
         {...register('password')}
-        label="Пароль"
-        autoComplete="current-password"
+        label='Пароль'
+        autoComplete='current-password'
       />
-      <Button isLoading={isPending} size="lg" type="submit" color="primary">
+      <Button isLoading={isPending} type='submit'>
         Войти
       </Button>
     </form>
