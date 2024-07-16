@@ -12,7 +12,6 @@ export const ChatMessage = ({ message, currentUser }: ChatMessageProps) => {
   const messageStyle =
     message.sender === currentUser ? styles.current : styles.opponent;
 
-  console.log(message.timestamp);
   return (
     <li className={clsx(styles.message, messageStyle)}>
       <div className={styles.messageInfoWrapper}>

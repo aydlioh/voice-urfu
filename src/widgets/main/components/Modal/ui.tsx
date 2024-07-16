@@ -8,7 +8,7 @@ import {
   ModalContent,
 } from '@nextui-org/react';
 import { useEffect } from 'react';
-import styles from './ui.module.css'
+import styles from './ui.module.css';
 
 export const Modal = () => {
   const { isOpen, close } = useModal();
@@ -22,38 +22,38 @@ export const Modal = () => {
     return () => {
       close();
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <ModalNextUI placement="center" size="xl" isOpen={isOpen} onClose={close}>
+    <ModalNextUI placement='center' size='xl' isOpen={isOpen} onClose={close}>
       <ModalContent>
         <ModalBody>
           <div className={styles.wrapper}>
             <div className={styles.innerWrapper}>
               <div>
-                <img src={PandaLogoutSvg} alt="panda logout" />
+                <img src={PandaLogoutSvg} alt='panda logout' />
               </div>
               <div className={styles.titleWrapper}>
-                <h3 className={styles.title}>
-                  Выйти из аккаунта?
-                </h3>
+                <h3 className={styles.title}>Выйти из аккаунта?</h3>
               </div>
             </div>
             <div className={styles.btnsWrapper}>
               <Button
                 isLoading={isPending}
                 onClick={handleLogout}
-                className="w-1/2"
-                color="primary"
+                className='w-1/2'
+                size='lg'
+                color='primary'
               >
                 Да, выйти
               </Button>
               <Button
                 onClick={close}
-                className="w-1/2"
-                variant="bordered"
-                color="primary"
+                className='w-1/2'
+                variant='bordered'
+                color='primary'
+                size='lg'
               >
                 Отмена
               </Button>

@@ -56,7 +56,7 @@ export const FriendsPage = () => {
         </div>
       ) : (
         <div className='overflow-hidden'>
-          <h4 className='sm:text-[18px] pb-6 pt-5 md:pl-0 pl-6'>
+          <h4 className='sm:text-[18px] pb-6 pt-5 xl:pl-0 pl-6'>
             Друзей в списке — {mockCount}
           </h4>
           <FriendList data={mockUsers} />

@@ -7,7 +7,6 @@ export const Button = ({ className, ...props }: ButtonProps) => {
     <ButtonNextUI
       {...props}
       className={clsx(
-        styles.button,
         props.color === 'primary' && styles.primary,
         props.color === 'danger' && styles.danger,
         props.color === 'secondary' && styles.secondary,

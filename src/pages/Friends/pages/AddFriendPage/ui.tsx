@@ -41,7 +41,7 @@ export const AddFriendPage = () => {
         </div>
       ) : (
         <div className='overflow-hidden'>
-          <h4 className='sm:text-[18px] pb-6 pt-5 md:pl-0 pl-6'>
+          <h4 className='sm:text-[18px] pb-6 pt-5 xl:pl-0 pl-6'>
             Найдено пользователей — {data?.totalCount}
           </h4>
           <UserList

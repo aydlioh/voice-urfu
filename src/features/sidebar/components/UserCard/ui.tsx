@@ -6,7 +6,7 @@ import styles from './ui.module.css';
 import { IUserInfo } from '@/entities/auth';
 
 type Props = {
-  user: IUserInfo
+  user: IUserInfo;
 };
 
 export const UserCard = ({ user }: Props) => {
@@ -37,7 +37,7 @@ export const UserCard = ({ user }: Props) => {
             <p>{user.email}</p>
           </div>
         </div>
-        <Button onClick={open} className="w-full" color="primary">
+        <Button onClick={open} className='w-full' size='lg' color='primary'>
           Сменить аккаунт
         </Button>
       </div>

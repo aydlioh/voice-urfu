@@ -11,7 +11,7 @@ export const IncomingFriendRequests = () => {
   });
 
   if (isError) {
-    return <FetchError message='Ошибка получения исходящих заявок' />;
+    return <FetchError message='Ошибка получения входящих заявок' />;
   }
 
   if (isLoading) {
@@ -25,13 +25,13 @@ export const IncomingFriendRequests = () => {
   return (
     <section className={styles.container}>
       <div className='overflow-hidden'>
-        <h4 className='sm:text-[18px] pb-6 pt-5 md:pl-0 pl-6'>
+        <h4 className='sm:text-[18px] pb-6 pt-5 xl:pl-0 pl-6'>
           Входящих заявок — {data?.length}
         </h4>
         {data?.length ? (
           <IncomingFriendList data={data} />
         ) : (
-          <NotFoundError message='Исходящие заявки не найдены!' />
+          <NotFoundError message='Входящие заявки не найдены!' />
         )}
       </div>
     </section>
