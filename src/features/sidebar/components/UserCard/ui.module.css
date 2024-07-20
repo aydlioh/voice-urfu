@@ -11,11 +11,11 @@
 }
 
 .iconWrapper {
-  @apply rounded-full bg-background;
+  @apply rounded-full bg-background p-2;
 }
 
 .icon {
-  @apply duration-250 text-sidebar text-[36px];
+  @apply duration-250 text-sidebar text-[26px];
 }
 
 .editBtn {

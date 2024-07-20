@@ -1,6 +1,6 @@
 import axios, { AxiosError, InternalAxiosRequestConfig } from 'axios';
 import { TokenService, UserService } from '../services';
-import { userHttp } from '../instance';
+import { authHttp } from '../instance';
 import { isResponseRefresh } from '../utils';
 import { refreshAuthStore } from '@/entities/auth';
 
@@ -16,7 +16,7 @@ const refreshTokens = async () => {
 
     if (!jwtToken || !refreshToken) return;
 
-    const response = await userHttp.post('/RefreshToken', {
+    const response = await authHttp.post('/RefreshToken', {
       jwtToken,
       refreshToken,
     });

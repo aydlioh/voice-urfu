@@ -5,3 +5,4 @@ export * from './PageSpinner';
 export * from './SearchInput';
 export * from './Textarea';
 export * from './Tabs';
+export * from './Tooltip';

@@ -11,7 +11,7 @@
 }
 
 .userIcon {
-  @apply duration-250 text-sidebar text-[32px];
+  @apply duration-250 text-sidebar text-[32px] p-1.5;
 }
 
 .userIconActive {

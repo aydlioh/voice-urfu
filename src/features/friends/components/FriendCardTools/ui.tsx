@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { FaEllipsisVertical } from 'react-icons/fa6';
 import { FriendCardToolsModal } from '../FriendCardToolsModal';
+import { FriendTooltip } from '@/features/friends';
 import styles from './ui.module.css';
 
 type Props = {
@@ -22,18 +23,14 @@ export const FriendCardTools = ({ user, withDelete }: Props) => {
   };
 
   return (
-    <div className='relative'>
+    <FriendTooltip
+      isOpen={isModal}
+      close={closeModal}
+      content={<FriendCardToolsModal withDelete={withDelete} user={user} />}
+    >
       <button onClick={toggleModal} className={styles.modalBtn}>
         <FaEllipsisVertical />
       </button>
-      {isModal && (
-        <FriendCardToolsModal
-          withDelete={withDelete}
-          user={user}
-          close={closeModal}
-          isOpen={isModal}
-        />
-      )}
-    </div>
+    </FriendTooltip>
   );
 };

@@ -1,9 +1,9 @@
 import { AiFillEdit } from 'react-icons/ai';
 import { Button } from '@/shared/ui';
-import { TiUser } from 'react-icons/ti';
+import { FaUser } from 'react-icons/fa';
 import { useModal } from '@/entities/modal';
-import styles from './ui.module.css';
 import { IUserInfo } from '@/entities/auth';
+import styles from './ui.module.css';
 
 type Props = {
   user: IUserInfo;
@@ -17,7 +17,7 @@ export const UserCard = ({ user }: Props) => {
       <div className={styles.wrapper}>
         <div className={styles.innerWrapper}>
           <div className={styles.iconWrapper}>
-            <TiUser className={styles.icon} />
+            <FaUser className={styles.icon} />
           </div>
           <button className={styles.editBtn}>
             <AiFillEdit />

@@ -1,7 +1,7 @@
 import { useAuthStatus } from '@/entities/auth';
 import clsx from 'clsx';
 import { useEffect, useState } from 'react';
-import { TiUser } from 'react-icons/ti';
+import { FaUser } from 'react-icons/fa';
 import { UserCard } from '../UserCard';
 import styles from './ui.module.css';
 
@@ -32,7 +32,7 @@ export const SidebarProfile = ({ isOpen, toggleSidebar }: Props) => {
       {isActive && <UserCard user={user} />}
       <div onClick={handleProfileToggle} className={styles.profileWrapper}>
         <div className={styles.userIconWrapper}>
-          <TiUser
+          <FaUser
             className={clsx(styles.userIcon, isOpen && styles.userIconActive)}
           />
         </div>

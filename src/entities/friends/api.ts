@@ -1,18 +1,10 @@
-import { friendsHttp } from '@/shared/api';
+import { friendsHttp, userHttp } from '@/shared/api';
 import { IFriend } from './model';
-import { FriendRequestParams, SearchParams } from '@/shared/types';
+import { FriendRequestParams } from '@/shared/types';
 
-export const getFriends = async ({ pageParam, query }: SearchParams) => {
-  // TODO
+export const getFriends = async () => {
   try {
-    const { data } = await friendsHttp.get<IFriend[]>('/getFriends', {
-      params: {
-        friendName: query,
-        page: pageParam,
-        pageSize: 2,
-      },
-    });
-
+    const { data } = await userHttp.get<IFriend[]>('/FriendList');
     return data;
   } catch (error) {
     console.error('Error fetching friends:', error);
