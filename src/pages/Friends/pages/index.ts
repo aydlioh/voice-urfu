@@ -1,4 +1,4 @@
 export * from './FriendsPage';
-export * from './IncomingFriendRequests';
-export * from './OutgoingFriendRequests';
+export * from './IncomingFriendPage';
+export * from './OutgoingFriendPage';
 export * from './AddFriendPage';

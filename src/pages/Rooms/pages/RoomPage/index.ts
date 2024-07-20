@@ -1,3 +1,3 @@
-import RoomPage from './ui';
+import RoomPage from './RoomPage';
 
 export default RoomPage;

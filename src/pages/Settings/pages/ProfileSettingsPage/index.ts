@@ -1,3 +1,3 @@
-import ProfileSettingsPage from './ui';
+import ProfileSettingsPage from './ProfileSettingsPage';
 
 export default ProfileSettingsPage;

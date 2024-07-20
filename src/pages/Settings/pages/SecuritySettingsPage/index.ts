@@ -1,3 +1,3 @@
-import SecuritySettingsPage from './ui';
+import SecuritySettingsPage from './SecuritySettingsPage';
 
 export default SecuritySettingsPage;

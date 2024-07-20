@@ -1,3 +1,3 @@
-import EmptySettingsPage from './ui';
+import EmptySettingsPage from './EmptySettingsPage';
 
 export default EmptySettingsPage

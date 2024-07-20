@@ -1,3 +1,3 @@
-import VideocallPage from './ui';
+import VideocallPage from './VideocallPage';
 
 export default VideocallPage;

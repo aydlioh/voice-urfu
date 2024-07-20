@@ -1,1 +1,1 @@
-export * from './ui.tsx';
+export * from './Sidebar.tsx';

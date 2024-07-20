@@ -1,3 +1,3 @@
-import ChatPage from './ui';
+import ChatPage from './ChatPage';
 
 export default ChatPage;

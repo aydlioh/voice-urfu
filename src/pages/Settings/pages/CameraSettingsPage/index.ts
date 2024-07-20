@@ -1,3 +1,3 @@
-import CameraSettingsPage from './ui';
+import CameraSettingsPage from './CameraSettingsPage';
 
 export default CameraSettingsPage

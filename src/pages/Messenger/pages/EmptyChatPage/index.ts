@@ -1,3 +1,3 @@
-import EmptyChatPage from './ui';
+import EmptyChatPage from './EmptyChatPage';
 
 export default EmptyChatPage;

@@ -3,8 +3,8 @@ import { RouteObject } from 'react-router-dom';
 import {
   AddFriendPage,
   FriendsPage,
-  IncomingFriendRequests,
-  OutgoingFriendRequests,
+  IncomingFriendPage,
+  OutgoingFriendPage,
 } from './pages';
 import { friendsNestedSidebarLinks } from '@/shared/const/nestedLinks';
 
@@ -27,11 +27,11 @@ export const friendsRoutes: RouteObject[] = [
       },
       {
         path: 'incoming',
-        element: <IncomingFriendRequests />,
+        element: <IncomingFriendPage />,
       },
       {
         path: 'outgoing',
-        element: <OutgoingFriendRequests />,
+        element: <OutgoingFriendPage />,
       },
     ],
   },
