@@ -6,13 +6,15 @@ import { useState } from 'react';
 import { FaUsers } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import styles from './FriendsPage.module.css';
+import { useDebounce } from '@/shared/hooks';
 
 export const FriendsPage = () => {
   const navigate = useNavigate();
   const [search, setSearch] = useState<string | null>(null);
-  const { data, isError, isLoading } = useFriends();
-  const mockCount = 4;
-
+  const debounceQuery = useDebounce(search, 300);
+  const { data, isError, isLoading, isFetching, hasNextPage, fetchNextPage } =
+    useFriends(debounceQuery);
+    
   if (isError) {
     return <FetchError message="Ошибка получения списка друзей" />;
   }
@@ -36,10 +38,15 @@ export const FriendsPage = () => {
       ) : (
         <div className="overflow-hidden">
           <h4 className="sm:text-[18px] pb-6 pt-5 xl:pl-0 pl-6">
-            Друзей в списке — {mockCount}
+            Друзей в списке — {data?.totalCount}
           </h4>
-          {data?.length ? (
-            <FriendList data={data} />
+          {data?.pages[0].length ? (
+            <FriendList
+              data={data}
+              isFetching={isFetching}
+              hasNext={hasNextPage}
+              fetchNext={fetchNextPage}
+            />
           ) : (
             <div className="h-[calc(100vh-240px)] flex justify-center items-center">
               <div className="flex flex-col items-center">
@@ -49,7 +56,11 @@ export const FriendsPage = () => {
                 <p className="text-[16px] text-secondary/60 mb-4">
                   Список друзей пуст!
                 </p>
-                <Button size='md' color="secondary" onClick={() => navigate('/friends/add')}>
+                <Button
+                  size="md"
+                  color="secondary"
+                  onClick={() => navigate('/friends/add')}
+                >
                   Добавить друга
                 </Button>
               </div>
