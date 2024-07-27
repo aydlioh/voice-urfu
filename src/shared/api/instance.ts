@@ -2,8 +2,8 @@ import { createAxiosWithInterceptors } from './helpers';
 import axios from 'axios';
 
 axios.defaults.timeout = 5000;
-axios.defaults.headers['Content-Type'] = 'application/json; charset=utf-8';
-axios.defaults.headers['Accept'] = 'text/plain';
+axios.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
+axios.defaults.headers.post['Accept'] = 'text/plain';
 
 export const chatHttp = createAxiosWithInterceptors('https://voice-backend.ru:9003');
 export const friendsHttp = createAxiosWithInterceptors('https://voice-backend.ru:9004');

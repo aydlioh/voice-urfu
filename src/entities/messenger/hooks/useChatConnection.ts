@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Stomp } from '@stomp/stompjs';
 import SockJS from 'sockjs-client/dist/sockjs';
-import { IMessage } from '../model';
+import { IMessage } from '../models';
 import dayjs from 'dayjs';
 import { useMessages } from '../queries';
 import { TokenService } from '@/shared/api/services';
@@ -14,16 +14,17 @@ const headers = {
 };
 
 export const useChatConnection = () => {
-  // TODO переделать через useNavigate, когда будет работать список
   const { id } = useParams();
   const { login } = useAuthStatus();
 
-  const { data, isFetching } = useMessages({
-    receiverId: String(id),
-  });
+  const { data, isFetching } = useMessages(String(id));
 
   const [messages, setMessages] = useState<IMessage[]>([]);
   const stompClient = useRef<any>(null);
+
+  const addMessage = (message: IMessage) => {
+    setMessages((prev) => [message, ...prev]);
+  };
 
   const sendMessage = (content: string) => {
     const newMessage: IMessage = {
@@ -35,7 +36,7 @@ export const useChatConnection = () => {
     };
 
     if (id !== login) {
-      setMessages((prev) => [newMessage, ...prev]);
+      addMessage(newMessage);
     }
 
     stompClient.current.send(
@@ -60,7 +61,7 @@ export const useChatConnection = () => {
             `/topic/chat/${id}/${login}`,
             (output: any) => {
               const message = JSON.parse(output.body);
-              setMessages((prev) => [message, ...prev]);
+              addMessage(message);
             }
           );
         });

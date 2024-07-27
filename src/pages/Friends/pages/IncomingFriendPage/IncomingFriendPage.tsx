@@ -29,7 +29,7 @@ export const IncomingFriendPage = () => {
           Входящих заявок — {data?.length}
         </h4>
         {data?.length ? (
-          <IncomingFriendList data={data} />
+          <IncomingFriendList data={data}  />
         ) : (
           <NotFoundError message='Входящие заявки не найдены!' />
         )}

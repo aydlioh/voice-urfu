@@ -12,7 +12,7 @@ export const getFriends = async ({ pageParam, query }: SearchParams) => {
       },
     });
     
-    const totalCount = headers['X-Total-Count'];
+    const totalCount = headers['x-total-count'];
 
     return { data, totalCount };
   } catch (error) {

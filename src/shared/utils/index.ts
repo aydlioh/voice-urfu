@@ -1,3 +1,4 @@
+export * from './dayjs';
 import { translatedPathnames } from '../const';
 
 export const getPathnameInfoString = (pathname: string) =>

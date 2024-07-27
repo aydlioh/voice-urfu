@@ -3,7 +3,7 @@ import { IconType } from 'react-icons';
 import styles from './FriendCardTool.module.css';
 
 type Props = {
-  onClick: () => void;
+  onClick?: () => void;
   Icon: IconType;
   className?: string;
 };

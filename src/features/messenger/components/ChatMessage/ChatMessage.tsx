@@ -1,7 +1,7 @@
 import { IMessage } from '@/entities/messenger';
 import clsx from 'clsx';
-import dayjs from 'dayjs';
 import styles from './ChatMessage.module.css';
+import { formatTime } from '@/shared/utils';
 
 type ChatMessageProps = {
   message: IMessage;
@@ -17,7 +17,7 @@ export const ChatMessage = ({ message, currentUser }: ChatMessageProps) => {
       <div className={styles.messageInfoWrapper}>
         <p className={styles.messageName}>{message.sender}</p>
         <p className={styles.messageTime}>
-          {dayjs(message.timestamp).format('HH:mm')}
+          {formatTime(message.timestamp)}
         </p>
       </div>
       <p className={styles.messageBody}>{message.content}</p>

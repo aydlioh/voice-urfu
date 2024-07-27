@@ -11,8 +11,8 @@ export const getUsers = async ({ pageParam, query }: SearchParams) => {
         pageSize: 5,
       },
     });
-    
-    const totalCount = headers['X-Total-Count'];
+
+    const totalCount = headers['x-total-count'];
 
     return { data, totalCount };
   } catch (error) {

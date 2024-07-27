@@ -38,7 +38,7 @@ export const FriendsPage = () => {
       ) : (
         <div className="overflow-hidden">
           <h4 className="sm:text-[18px] pb-6 pt-5 xl:pl-0 pl-6">
-            Друзей в списке — {data?.totalCount}
+            Друзей в списке — {data?.totalCount || 0}
           </h4>
           {data?.pages[0].length ? (
             <FriendList

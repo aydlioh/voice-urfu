@@ -1,52 +1,66 @@
-import { ChatItem, ChatSearch } from '@/features/messenger';
-import { UserProps } from '@/shared/types';
-import clsx from 'clsx';
+import { ChatItem } from '@/features/messenger';
 import { useNavigate } from 'react-router-dom';
+import { IChat } from '@/entities/messenger';
 import styles from './ChatList.module.css';
+import { Fragment, memo } from 'react';
+import { InfiniteData } from '@tanstack/react-query';
+import { Button, Spinner } from '@/shared/ui';
+import { useObserver } from '@/shared/hooks';
+import { FaUsers } from 'react-icons/fa';
 
-const mock = [
-  {
-    id: 'aydlioh',
-    imgSrc:
-      'https://chudo-prirody.com/uploads/posts/2023-04/1682578522_chudo-prirody-com-p-kak-spit-panda-foto-1.jpg',
-    name: 'Pavel',
-    lastMessage: '',
-    lastMessageTime: '10:42',
-  },
-  {
-    id: 'aydlioh1',
-    imgSrc:
-      'https://chudo-prirody.com/uploads/posts/2023-04/1682578522_chudo-prirody-com-p-kak-spit-panda-foto-1.jpg',
-    name: 'Pavel 2',
-    lastMessage: '',
-    lastMessageTime: '10:42',
-  },
-];
-
-export const ChatList = ({ isChat = false }: { isChat?: boolean }) => {
-  const navigate = useNavigate();
-
-  const handleNavigate = (user: UserProps) => {
-    navigate(`${user.id}`, {
-      state: { user },
-    });
-  };
-
-  return (
-    <aside
-      className={clsx(
-        styles.chatSidebar,
-        isChat && styles.active
-      )}
-    >
-      <div className={styles.wrapper}>
-        <ChatSearch />
-        <ul className={styles.chatList}>
-          {mock.map((user) => (
-            <ChatItem onClick={handleNavigate} user={user} key={user.id} />
-          ))}
-        </ul>
-      </div>
-    </aside>
-  );
+type Props = {
+  data?: InfiniteData<IChat[], unknown>;
+  isFetching: boolean;
+  hasNext: boolean;
+  fetchNext: () => Promise<unknown>;
 };
+
+export const ChatList = memo(
+  ({ data, fetchNext, isFetching, hasNext }: Props) => {
+    const observerRef = useObserver(fetchNext);
+    const navigate = useNavigate();
+
+    const handleNavigate = (user: string) => {
+      navigate(`${user}`, {
+        state: { user },
+      });
+    };
+
+    return (
+      <ul className={styles.chatList}>
+        {data?.pages[0].length ? (
+          data?.pages.map((group: IChat[], index: number) => (
+            <Fragment key={index}>
+              {group.map((item) => (
+                <ChatItem onClick={handleNavigate} data={item} key={item.id} />
+              ))}
+            </Fragment>
+          ))
+        ) : (
+          <div>
+            <div className="flex flex-col items-center mt-8">
+              <h2 className="text-[70px]">
+                <FaUsers />
+              </h2>
+              <p className="text-[16px] text-secondary/60 mb-4">
+                Список друзей пуст!
+              </p>
+              <Button
+                size="md"
+                onClick={() => navigate('/friends/add')}
+              >
+                Добавить друга
+              </Button>
+            </div>
+          </div>
+        )}
+        {isFetching && (
+          <li className="w-full flex justify-center items-center py-14">
+            <Spinner />
+          </li>
+        )}
+        {hasNext && <li ref={observerRef} />}
+      </ul>
+    );
+  }
+);

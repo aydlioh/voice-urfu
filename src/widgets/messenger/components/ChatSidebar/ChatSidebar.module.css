@@ -1,0 +1,11 @@
+.chatSidebar {
+  @apply bg-sidebarNested md:max-w-[340px] w-full text-secondary overflow-hidden;
+}
+
+.active {
+  @apply md:flex hidden;
+}
+
+.wrapper {
+  @apply p-2 w-full h-[calc(100vh-100px)];
+}

@@ -6,12 +6,14 @@ import SockJS from 'sockjs-client/dist/sockjs';
 import { useEffect, useRef } from 'react';
 import { CloseButton, FriendRequest } from '@/features/notification';
 import { toast } from 'react-toastify';
+import { useQueryClient } from '@tanstack/react-query';
 
 const headers = {
   Authorization: `Bearer ${TokenService.get()?.jwtToken}`,
 };
 
 export const useFriendsConnection = () => {
+  const queryClient = useQueryClient()
   const { login } = useAuthStatus();
   const friendshipClient = useRef<any>(null);
 
@@ -29,10 +31,12 @@ export const useFriendsConnection = () => {
 
   const handleAccept = (receiver: string) => {
     sendMessage({ user: receiver, status: 'accepted' });
+    queryClient.invalidateQueries({ queryKey: ['friendRequests', 'receiver', 'pending'] })
   };
 
   const handleRefuse = (receiver: string) => {
     sendMessage({ user: receiver, status: 'refused' });
+    queryClient.invalidateQueries({ queryKey: ['friendRequests', 'receiver', 'pending'] })
   };
 
   const handleRequest = (receiver: string) => {
@@ -61,17 +65,13 @@ export const useFriendsConnection = () => {
           `/topic/friendship/${login}`,
           (output: any) => {
             const message = JSON.parse(output.body);
-            if (message.type === 'friendRequest') {
-              toast(
-                <FriendRequest
-                  handleRefuse={handleRefuse}
-                  handleAccept={handleAccept}
-                  message={message}
-                />,
-                {
-                  closeButton: <CloseButton />,
-                }
-              );
+            if (
+              message.type === 'friendRequest' &&
+              message.status === 'pending'
+            ) {
+              toast(<FriendRequest message={message} />, {
+                closeButton: <CloseButton />,
+              });
             } else {
               console.log(message);
             }

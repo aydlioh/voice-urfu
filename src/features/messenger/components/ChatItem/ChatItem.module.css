@@ -23,7 +23,7 @@
 }
 
 .lastMessageWrapper {
-  @apply leading-[16px] text-[12px] font-light flex flex-row justify-between;
+  @apply leading-[16px] text-[13px] font-light flex flex-row justify-between;
 }
 
 .message {
@@ -31,5 +31,5 @@
 }
 
 .time {
-  @apply line-clamp-1;
+  @apply line-clamp-1 text-[12px];
 }

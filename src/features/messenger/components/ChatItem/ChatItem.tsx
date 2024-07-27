@@ -1,14 +1,18 @@
-import { UserProps } from '@/shared/types';
 import { useParams } from 'react-router-dom';
 import clsx from 'clsx';
 import styles from './ChatItem.module.css';
+import { IChat } from '@/entities/messenger';
+import { useAuthStatus } from '@/entities/auth';
+import { formatTime } from '@/shared/utils';
 
 type Props = {
-  user: UserProps;
-  onClick: (user: UserProps) => void;
+  data: IChat;
+  onClick: (user: string) => void;
 };
 
-export const ChatItem = ({ user, onClick }: Props) => {
+export const ChatItem = ({ data, onClick }: Props) => {
+  const { login } = useAuthStatus();
+  const { id, user, lastMessage } = data;
   const { id: currentId } = useParams();
 
   return (
@@ -16,20 +20,27 @@ export const ChatItem = ({ user, onClick }: Props) => {
       onClick={() => onClick(user)}
       className={clsx(
         styles.chatItemWrapper,
-        currentId === user.id && styles.active
+        currentId === id && styles.active
       )}
     >
       <div className={styles.innerWrapper}>
         <img
-          src={user.imgSrc}
+          src="https://chudo-prirody.com/uploads/posts/2023-04/1682578522_chudo-prirody-com-p-kak-spit-panda-foto-1.jpg"
           alt="avatar"
           className={styles.userImg}
         />
         <div className={styles.userWrapper}>
-          <p className={styles.name}>{user.name}</p>
+          <p className={styles.name}>{user}</p>
           <div className={styles.lastMessageWrapper}>
-            <p className={styles.message}>{user.lastMessage}</p>
-            <p className={styles.time}>{user.lastMessageTime}</p>
+            <p className={styles.message}>
+              <span className='font-normal'>
+                {login === lastMessage.sender ? 'Вы' : lastMessage.sender}:
+              </span>{' '}
+              {lastMessage.content}
+            </p>
+            <p className={styles.time}>
+              {formatTime(lastMessage.timestamp)}
+            </p>
           </div>
         </div>
       </div>
