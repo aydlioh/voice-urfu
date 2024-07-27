@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'MinecraftFont';
-  src: url('/src/shared/assets/fonts/minecraft/Minecraft.ttf')
+  src: url('/src/shared/assets/fonts/minecraft/Minecraft.woff2')
     format('truetype');
   font-weight: 400;
   font-display: swap;
@@ -8,14 +8,14 @@
 
 @font-face {
   font-family: 'MontserratFont';
-  src: url('/src/shared/assets/fonts/montserrat/Montserrat-Medium.ttf') format('truetype');
+  src: url('/src/shared/assets/fonts/montserrat/Montserrat-Medium.woff2') format('truetype');
   font-weight: 500;
   font-display: swap;
 }
 
 @font-face {
   font-family: 'MontserratFont';
-  src: url('/src/shared/assets/fonts/montserrat/Montserrat-SemiBold.ttf')
+  src: url('/src/shared/assets/fonts/montserrat/Montserrat-SemiBold.woff2')
     format('truetype');
   font-weight: 600;
   font-display: swap;
@@ -23,14 +23,14 @@
 
 @font-face {
   font-family: 'RobotoFont';
-  src: url('/src/shared/assets/fonts/roboto/Roboto-Light.ttf') format('truetype');
+  src: url('/src/shared/assets/fonts/roboto/Roboto-Light.woff2') format('truetype');
   font-weight: 300;
   font-display: swap;
 }
 
 @font-face {
   font-family: 'RobotoFont';
-  src: url('/src/shared/assets/fonts/roboto/Roboto-Regular.ttf')
+  src: url('/src/shared/assets/fonts/roboto/Roboto-Regular.woff2')
     format('truetype');
   font-weight: 400;
   font-display: swap;
