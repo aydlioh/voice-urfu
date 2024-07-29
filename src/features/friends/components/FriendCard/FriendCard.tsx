@@ -19,7 +19,7 @@ export const FriendCard = ({ user, endContent, withDelete = false }: Props) => {
         <div className={styles.cardInfoWrapper}>
           <div className={styles.imgWrapper}>
             <img
-              src='https://chudo-prirody.com/uploads/posts/2023-04/1682578522_chudo-prirody-com-p-kak-spit-panda-foto-1.jpg'
+              src='https://avatars.mds.yandex.net/get-entity_search/44973/850162673/orig'
               alt='avatar'
               className={styles.avatar}
             />

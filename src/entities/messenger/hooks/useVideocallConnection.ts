@@ -2,16 +2,18 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useAuthStatus } from '@/entities/auth';
 import { useEffect, useRef, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Stomp from 'stompjs';
 import SockJS from 'sockjs-client/dist/sockjs';
 import { TokenService } from '@/shared/api/services';
+import { useAudioVideocall } from './useAudioVideocall';
 
 const headers = {
   Authorization: `Bearer ${TokenService.get()?.jwtToken}`,
 };
 
 const intervalTime = 1000;
+const disconnectTimeMs = 30 * 1000;
 
 const configuration = {
   iceServers: [{ urls: 'stun:stun.l.google.com:19302' }],
@@ -21,28 +23,7 @@ export const useVideocallConnection = () => {
   const [isMicrophone, setMicrophone] = useState<boolean>(false);
   const [isCamera, setCamera] = useState<boolean>(false);
 
-  const toggleMicrophone = () => {
-    if (videoStream.current) {
-      const audioTracks = videoStream.current.getAudioTracks();
-      if (audioTracks.length > 0) {
-        const firstAudioTrack = audioTracks[0];
-        firstAudioTrack.enabled = !isMicrophone;
-        setMicrophone(prev => !prev);
-      }
-    }
-  };
-
-  const toggleCamera = () => {
-    if (videoStream.current) {
-      const videoTracks = videoStream.current.getVideoTracks();
-      if (videoTracks.length > 0) {
-        const firstVideoTrack = videoTracks[0];
-        firstVideoTrack.enabled = !isCamera;
-        setCamera(prev => !prev);
-      }
-    }
-  };
-
+  const navigate = useNavigate();
   const { id } = useParams();
   const { login } = useAuthStatus();
 
@@ -55,9 +36,50 @@ export const useVideocallConnection = () => {
   const cond = useRef<any>(null);
 
   const userVideo = useRef<any>(null);
-  const opponentVideo = useRef<any>(null);
+  const friendVideo = useRef<any>(null);
 
   const videoStream = useRef<any>(null);
+
+  const { startSounds, destroySounds, connectSounds } = useAudioVideocall();
+  const closeTimeout = useRef<NodeJS.Timeout | null>(null);
+
+  const toggleMicrophone = () => {
+    if (videoStream.current) {
+      const audioTracks = videoStream.current.getAudioTracks();
+      if (audioTracks.length > 0) {
+        const firstAudioTrack = audioTracks[0];
+        firstAudioTrack.enabled = !isMicrophone;
+        setMicrophone((prev) => !prev);
+      }
+    }
+  };
+
+  const toggleCamera = () => {
+    if (videoStream.current) {
+      const videoTracks = videoStream.current.getVideoTracks();
+      if (videoTracks.length > 0) {
+        const firstVideoTrack = videoTracks[0];
+        firstVideoTrack.enabled = !isCamera;
+        setCamera((prev) => !prev);
+      }
+    }
+  };
+
+  const handleUserConnect = () => {
+    startSounds();
+    closeTimeout.current = setTimeout(() => {
+      if (!answerReceived.current) {
+        navigate(-1);
+      }
+    }, disconnectTimeMs);
+  };
+
+  const handleFriendConnect = () => {
+    connectSounds();
+    if (closeTimeout.current) {
+      clearTimeout(closeTimeout.current);
+    }
+  };
 
   useEffect(() => {
     const pc = new RTCPeerConnection(configuration);
@@ -82,7 +104,8 @@ export const useVideocallConnection = () => {
     }, 1000);
 
     pc.ontrack = (e: any) => {
-      opponentVideo.current.srcObject = e.streams[0];
+      friendVideo.current.srcObject = e.streams[0];
+      setTimeout(handleFriendConnect, 200);
     };
 
     peerConnection.current = pc;
@@ -93,7 +116,7 @@ export const useVideocallConnection = () => {
     stompClient.current = Stomp.over(socket);
     const pc = peerConnection.current;
 
-    const addMediaStream = async () => {
+    const handleMediaCapture = async () => {
       try {
         const stream = await navigator.mediaDevices.getUserMedia({
           video: true,
@@ -115,7 +138,13 @@ export const useVideocallConnection = () => {
       }
     };
 
-    const createOffer = async () => {
+    const handleMediaDestroy = () => {
+      if (videoStream.current) {
+        videoStream.current.getTracks().forEach((track: any) => track.stop());
+      }
+    };
+
+    const handleOfferCreate = async () => {
       const offer = await peerConnection.current.createOffer();
       await peerConnection.current.setLocalDescription(offer);
       stompClient.current.send(
@@ -125,15 +154,9 @@ export const useVideocallConnection = () => {
       );
     };
 
-    const destroyMediaStream = () => {
-      if (videoStream.current) {
-        videoStream.current.getTracks().forEach((track: any) => track.stop());
-      }
-    };
-
-    const goVideo = async () => {
-      await addMediaStream();
-      connectionInterval.current = setInterval(createOffer, intervalTime);
+    const handleVideoCapture = async () => {
+      await handleMediaCapture();
+      connectionInterval.current = setInterval(handleOfferCreate, intervalTime);
     };
 
     const handleOffer = async (offer: any) => {
@@ -152,7 +175,7 @@ export const useVideocallConnection = () => {
       await pc.setRemoteDescription(answer);
     };
 
-    const addIceCandidate = async (candidate: any) => {
+    const handleIceCandidate = async (candidate: any) => {
       if (candidate.current) {
         await pc.addIceCandidate(new RTCIceCandidate(candidate.current));
       }
@@ -163,7 +186,8 @@ export const useVideocallConnection = () => {
         `/topic/signaling/${id}/${login}`,
         (output: any) => {
           const message = JSON.parse(output.body);
-          setTimeout(() => clearInterval(connectionInterval.current), 5000); // TODO + проверка 
+          setTimeout(() => clearInterval(connectionInterval.current), 1000); // TODO + проверка
+          setTimeout(handleFriendConnect, 200);
           switch (message.type) {
             case 'offer':
               handleOffer(message.offer);
@@ -173,7 +197,7 @@ export const useVideocallConnection = () => {
               answerReceived.current = true;
               break;
             case 'candidate':
-              addIceCandidate(message.candidate);
+              handleIceCandidate(message.candidate);
               break;
           }
         }
@@ -184,7 +208,8 @@ export const useVideocallConnection = () => {
       if (!stompClient.current.connected) {
         stompClient.current.connect(headers, () => {
           subscribe();
-          goVideo();
+          handleVideoCapture();
+          handleUserConnect();
         });
       }
     };
@@ -196,9 +221,14 @@ export const useVideocallConnection = () => {
         clearInterval(connectionInterval.current);
       }
 
+      if (closeTimeout.current) {
+        clearTimeout(closeTimeout.current);
+      }
+
       peerConnection.current.close();
       stompClient.current.disconnect();
-      destroyMediaStream();
+      handleMediaDestroy();
+      destroySounds();
     };
   }, []);
 
@@ -208,8 +238,8 @@ export const useVideocallConnection = () => {
     toggleCamera,
     toggleMicrophone,
     user: login,
-    opponent: id,
+    friend: id,
     userVideo,
-    opponentVideo,
+    friendVideo,
   };
 };

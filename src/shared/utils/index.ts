@@ -3,8 +3,8 @@ import { translatedPathnames } from '../const';
 
 export const getPathnameInfoString = (pathname: string) =>
   pathname
-    .replace('all', '')
     .split('/')
+    .filter((el) => el !== 'all')
     .filter(Boolean)
     .map(getTranslatePathname)
     .join(' / ');

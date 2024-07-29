@@ -6,9 +6,9 @@ import styles from './VideocallPage.module.css';
 const VideocallPage = () => {
   const {
     user,
-    opponent,
+    friend,
     userVideo,
-    opponentVideo,
+    friendVideo,
     toggleMicrophone,
     toggleCamera,
     isMicrophone,
@@ -20,7 +20,7 @@ const VideocallPage = () => {
       <div className={styles.wrapper}>
         <div className={styles.videoWrapper}>
           <UserVideo ref={userVideo} name={user} />
-          <UserVideo muted={false} ref={opponentVideo} name={opponent} />
+          <UserVideo muted={false} ref={friendVideo} name={friend} />
         </div>
         <VideocallTools
           isMicrophone={isMicrophone}
