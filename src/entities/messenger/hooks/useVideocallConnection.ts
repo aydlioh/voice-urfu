@@ -105,7 +105,7 @@ export const useVideocallConnection = () => {
 
     pc.ontrack = (e: any) => {
       friendVideo.current.srcObject = e.streams[0];
-      setTimeout(handleFriendConnect, 200);
+      handleFriendConnect();
     };
 
     peerConnection.current = pc;
@@ -187,7 +187,6 @@ export const useVideocallConnection = () => {
         (output: any) => {
           const message = JSON.parse(output.body);
           setTimeout(() => clearInterval(connectionInterval.current), 1000); // TODO + проверка
-          setTimeout(handleFriendConnect, 200);
           switch (message.type) {
             case 'offer':
               handleOffer(message.offer);

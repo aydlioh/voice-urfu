@@ -8,22 +8,29 @@ export const useSound = (
   sound: string,
   { loop = false }: useSoundOptions = {}
 ) => {
-  const soundRef = useRef<HTMLAudioElement>(new Audio(sound));
-  soundRef.current.loop = loop;
+  const soundRef = useRef<HTMLAudioElement | null>(new Audio(sound));
 
   const play = () => {
-    soundRef.current.play();
+    if (soundRef.current) {
+      soundRef.current.loop = loop;
+      soundRef.current.play();
+    }
   };
 
   const stop = () => {
-    soundRef.current.pause();
-    soundRef.current.currentTime = 0;
+    if (soundRef.current) {
+      soundRef.current.pause();
+      soundRef.current.currentTime = 0;
+    }
   };
 
   const destroy = () => {
-    soundRef.current.pause();
-    soundRef.current.currentTime = 0;
-    soundRef.current.remove();
+    if (soundRef.current) {
+      soundRef.current.pause();
+      soundRef.current.currentTime = 0;
+      soundRef.current.remove();
+      soundRef.current = null;
+    }
   };
 
   return { sound: soundRef.current, play, stop, destroy };

@@ -45,7 +45,7 @@ export const useAudioVideocall = () => {
     incomingCallTimeoutStart.current = setTimeout(playIncomingCall, 1000);
 
     incomingCallTimeoutEnd.current = setTimeout(() => {
-      if (incomingCallSound.currentTime !== 0) {
+      if (incomingCallSound?.currentTime !== 0) {
         destroyIncomingCall();
       }
     }, soundDestroyTimeMs);
