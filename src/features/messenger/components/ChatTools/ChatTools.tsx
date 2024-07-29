@@ -7,7 +7,7 @@ import styles from './ChatTools.module.css';
 
 const mockUser = {
   imgSrc:
-    'https://chudo-prirody.com/uploads/posts/2023-04/1682578522_chudo-prirody-com-p-kak-spit-panda-foto-1.jpg',
+    'https://avatars.mds.yandex.net/get-entity_search/44973/850162673/orig',
 };
 
 export const ChatTools = ({ userName }: { userName: string | undefined }) => {

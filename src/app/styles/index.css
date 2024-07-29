@@ -6,7 +6,7 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
+:root, body {
   background-color: var(--background);
   font-family: 'RobotoFont', 'MontserratFont';
 }
