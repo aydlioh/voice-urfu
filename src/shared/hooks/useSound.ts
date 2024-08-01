@@ -17,7 +17,13 @@ export const useSound = (
     }
   };
 
-  const stop = () => {
+  const pause = () => {
+    if (soundRef.current) {
+      soundRef.current.pause();
+    }
+  };
+
+  const restart = () => {
     if (soundRef.current) {
       soundRef.current.pause();
       soundRef.current.currentTime = 0;
@@ -33,5 +39,5 @@ export const useSound = (
     }
   };
 
-  return { sound: soundRef.current, play, stop, destroy };
+  return { sound: soundRef.current, play, restart, pause, destroy };
 };

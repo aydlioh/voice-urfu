@@ -24,7 +24,7 @@ export const useVideocallConnection = () => {
   const [isCamera, setCamera] = useState<boolean>(false);
 
   const navigate = useNavigate();
-  const { id } = useParams();
+  const { username } = useParams();
   const { login } = useAuthStatus();
 
   const connectionInterval = useRef<any>(null);
@@ -94,7 +94,7 @@ export const useVideocallConnection = () => {
       if (answerSent && answerReceived) {
         if (cond) {
           stompClient.current.send(
-            `/app/signaling/${login}/${id}`,
+            `/app/signaling/${login}/${username}`,
             {},
             JSON.stringify({ type: 'candidate', candidate: cond })
           );
@@ -148,7 +148,7 @@ export const useVideocallConnection = () => {
       const offer = await peerConnection.current.createOffer();
       await peerConnection.current.setLocalDescription(offer);
       stompClient.current.send(
-        `/app/signaling/${login}/${id}`,
+        `/app/signaling/${login}/${username}`,
         {},
         JSON.stringify({ type: 'offer', offer })
       );
@@ -164,7 +164,7 @@ export const useVideocallConnection = () => {
       const answer = await pc.createAnswer();
       await pc.setLocalDescription(answer);
       stompClient.current.send(
-        `/app/signaling/${login}/${id}`,
+        `/app/signaling/${login}/${username}`,
         {},
         JSON.stringify({ type: 'answer', answer })
       );
@@ -183,7 +183,7 @@ export const useVideocallConnection = () => {
 
     const subscribe = () => {
       stompClient.current.subscribe(
-        `/topic/signaling/${id}/${login}`,
+        `/topic/signaling/${username}/${login}`,
         (output: any) => {
           const message = JSON.parse(output.body);
           setTimeout(() => clearInterval(connectionInterval.current), 1000); // TODO + проверка
@@ -237,7 +237,7 @@ export const useVideocallConnection = () => {
     toggleCamera,
     toggleMicrophone,
     user: login,
-    friend: id,
+    friend: username,
     userVideo,
     friendVideo,
   };

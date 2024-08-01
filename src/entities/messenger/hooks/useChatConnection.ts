@@ -14,10 +14,10 @@ const headers = {
 };
 
 export const useChatConnection = () => {
-  const { id } = useParams();
+  const { username } = useParams();
   const { login } = useAuthStatus();
 
-  const { data, isFetching } = useMessages(String(id));
+  const { data, isFetching } = useMessages(String(username));
 
   const [messages, setMessages] = useState<IMessage[]>([]);
   const stompClient = useRef<any>(null);
@@ -31,16 +31,16 @@ export const useChatConnection = () => {
       id: crypto.randomUUID(),
       content,
       sender: login,
-      receiver: id ?? '',
+      receiver: username ?? '',
       timestamp: dayjs().format(),
     };
 
-    if (id !== login) {
+    if (username !== login) {
       addMessage(newMessage);
     }
 
     stompClient.current.send(
-      `/app/chat/${login}/${id}`,
+      `/app/chat/${login}/${username}`,
       {},
       JSON.stringify({ content })
     );
@@ -58,7 +58,7 @@ export const useChatConnection = () => {
       if (!stompClient.current.connected) {
         stompClient.current.connect(headers, () => {
           stompClient.current.subscribe(
-            `/topic/chat/${id}/${login}`,
+            `/topic/chat/${username}/${login}`,
             (output: any) => {
               const message = JSON.parse(output.body);
               addMessage(message);
@@ -74,11 +74,11 @@ export const useChatConnection = () => {
       stompClient.current.disconnect();
       setMessages([]);
     };
-  }, [id, login]);
+  }, [username, login]);
 
   return {
     user: login,
-    opponent: id,
+    opponent: username,
     sendMessage,
     messages,
     isLoading: isFetching,

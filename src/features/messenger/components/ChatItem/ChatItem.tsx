@@ -13,14 +13,14 @@ type Props = {
 export const ChatItem = ({ data, onClick }: Props) => {
   const { login } = useAuthStatus();
   const { id, user, lastMessage } = data;
-  const { id: currentId } = useParams();
+  const { username } = useParams();
 
   return (
     <li
       onClick={() => onClick(user)}
       className={clsx(
         styles.chatItemWrapper,
-        currentId === id && styles.active
+        username === id && styles.active
       )}
     >
       <div className={styles.innerWrapper}>

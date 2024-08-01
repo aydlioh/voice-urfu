@@ -12,11 +12,11 @@ export const messengerRoutes: RouteObject[] = [
         element: <EmptyChatPage />,
       },
       {
-        path: ':id',
+        path: ':username',
         element: <ChatPage />,
       },
       {
-        path: ':id/videocall',
+        path: ':username/videocall',
         element: <VideocallPage />,
       },
     ],

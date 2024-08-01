@@ -6,12 +6,12 @@ import clsx from 'clsx';
 import styles from './MessengerLayout.module.css';
 
 export const MessengerLayout = () => {
-  const { id } = useParams();
+  const { username } = useParams();
 
   return (
     <section className={styles.messengerContainer}>
-      <ChatSidebar isChat={Boolean(id)} />
-      <div className={clsx(styles.chatWrapper, !id && styles.active)}>
+      <ChatSidebar isChat={Boolean(username)} />
+      <div className={clsx(styles.chatWrapper, !username && styles.active)}>
         <Suspense fallback={<PageSpinner variant="sidebar" />}>
           <Outlet />
         </Suspense>

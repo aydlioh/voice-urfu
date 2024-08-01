@@ -4,7 +4,7 @@ import {
   ConnectionDeclined,
   IncomingCall,
 } from '@/shared/assets/sounds';
-import { useSound } from '@/shared/hooks/useSound';
+import { useSound } from '@/shared/hooks';
 import { useRef } from 'react';
 
 const soundDestroyTimeMs = 20 * 1000;
