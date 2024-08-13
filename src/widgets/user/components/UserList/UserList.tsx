@@ -8,13 +8,13 @@ import { FriendAddButton, FriendCard } from '@/features/friends';
 
 type Props = {
   data?: InfiniteData<IUser[], unknown>;
-  isFetching: boolean;
+  isFetchingNext: boolean;
   hasNext: boolean;
   fetchNext: () => Promise<unknown>;
 };
 
 export const UserList = memo(
-  ({ data, fetchNext, isFetching, hasNext }: Props) => {
+  ({ data, fetchNext, isFetchingNext, hasNext }: Props) => {
     const { handleRequest } = useFriendsContext();
     const observerRef = useObserver(fetchNext);
     
@@ -35,7 +35,7 @@ export const UserList = memo(
             ))}
           </Fragment>
         ))}
-        {isFetching && (
+        {isFetchingNext && (
           <li className="w-full flex justify-center items-center py-14">
             <Spinner />
           </li>

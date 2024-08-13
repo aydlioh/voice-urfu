@@ -9,7 +9,7 @@ import styles from './AddFriendPage.module.css';
 export const AddFriendPage = () => {
   const [search, setSearch] = useState<string | null>(null);
   const debounceQuery = useDebounce(search, 300);
-  const { data, isError, isLoading, isFetching, hasNextPage, fetchNextPage } =
+  const { data, isError, isLoading,  hasNextPage, fetchNextPage, isFetchingNextPage } =
     useUserList(debounceQuery);
 
   if (isError) {
@@ -46,7 +46,7 @@ export const AddFriendPage = () => {
           </h4>
           <UserList
             data={data}
-            isFetching={isFetching}
+            isFetchingNext={isFetchingNextPage}
             hasNext={hasNextPage}
             fetchNext={fetchNextPage}
           />

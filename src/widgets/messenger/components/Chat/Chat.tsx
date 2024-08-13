@@ -3,15 +3,27 @@ import { useChatConnection } from '@/entities/messenger';
 import { ChatInput, ChatMessages, ChatTools } from '@/features/messenger';
 
 export const Chat = () => {
-  const { user, opponent, messages, sendMessage, isLoading } = useChatConnection();
+  const {
+    user,
+    opponent,
+    messages,
+    sendMessage,
+    isFetching,
+    hasNextPage,
+    fetchNextPage,
+    isFetchingNextPage,
+  } = useChatConnection();
 
   return (
     <div className={styles.chatContainer}>
       <ChatTools userName={opponent} />
       <ChatMessages
-        messages={messages}
+        data={messages}
         currentUser={user}
-        isLoading={isLoading}
+        isFetching={isFetching}
+        hasNext={hasNextPage}
+        fetchNext={fetchNextPage}
+        isFetchingNext={isFetchingNextPage}
       />
       <ChatInput onSubmit={sendMessage} />
     </div>

@@ -12,9 +12,15 @@ export const FriendsPage = () => {
   const navigate = useNavigate();
   const [search, setSearch] = useState<string | null>(null);
   const debounceQuery = useDebounce(search, 300);
-  const { data, isError, isLoading, isFetching, hasNextPage, fetchNextPage } =
-    useFriends(debounceQuery);
-    
+  const {
+    data,
+    isError,
+    isLoading,
+    hasNextPage,
+    fetchNextPage,
+    isFetchingNextPage,
+  } = useFriends(debounceQuery);
+
   if (isError) {
     return <FetchError message="Ошибка получения списка друзей" />;
   }
@@ -43,7 +49,7 @@ export const FriendsPage = () => {
           {data?.pages[0].length ? (
             <FriendList
               data={data}
-              isFetching={isFetching}
+              isFetchingNext={isFetchingNextPage}
               hasNext={hasNextPage}
               fetchNext={fetchNextPage}
             />

@@ -13,7 +13,7 @@ const headers = {
 };
 
 export const useFriendsConnection = () => {
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
   const { login } = useAuthStatus();
   const friendshipClient = useRef<any>(null);
 
@@ -31,12 +31,16 @@ export const useFriendsConnection = () => {
 
   const handleAccept = (receiver: string) => {
     sendMessage({ user: receiver, status: 'accepted' });
-    queryClient.invalidateQueries({ queryKey: ['friendRequests', 'receiver', 'pending'] })
+    queryClient.invalidateQueries({
+      queryKey: ['friendRequests', { belonging: 'receiver', type: 'pending' }],
+    });
   };
 
   const handleRefuse = (receiver: string) => {
     sendMessage({ user: receiver, status: 'refused' });
-    queryClient.invalidateQueries({ queryKey: ['friendRequests', 'receiver', 'pending'] })
+    queryClient.invalidateQueries({
+      queryKey: ['friendRequests', { belonging: 'receiver', type: 'pending' }],
+    });
   };
 
   const handleRequest = (receiver: string) => {

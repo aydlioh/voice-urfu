@@ -10,13 +10,13 @@ import { FaUsers } from 'react-icons/fa';
 
 type Props = {
   data?: InfiniteData<IChat[], unknown>;
-  isFetching: boolean;
+  isFetchingNext: boolean;
   hasNext: boolean;
   fetchNext: () => Promise<unknown>;
 };
 
 export const ChatList = memo(
-  ({ data, fetchNext, isFetching, hasNext }: Props) => {
+  ({ data, fetchNext, isFetchingNext, hasNext }: Props) => {
     const observerRef = useObserver(fetchNext);
     const navigate = useNavigate();
 
@@ -54,7 +54,7 @@ export const ChatList = memo(
             </div>
           </div>
         )}
-        {isFetching && (
+        {isFetchingNext && (
           <li className="w-full flex justify-center items-center py-14">
             <Spinner />
           </li>

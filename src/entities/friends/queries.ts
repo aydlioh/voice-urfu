@@ -32,7 +32,7 @@ export const useFriends = (query: string | null) => {
 export const useFriendRequest = ({ belonging, type }: FriendRequestParams) => {
   // TODO useInfiniteQuery
   return useQuery({
-    queryKey: ['friendRequests', belonging, type],
+    queryKey: ['friendRequests', { belonging, type }],
     queryFn: () => getFriendRequests({ belonging, type }),
   });
 };

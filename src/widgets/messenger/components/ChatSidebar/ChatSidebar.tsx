@@ -9,7 +9,7 @@ import styles from './ChatSidebar.module.css';
 export const ChatSidebar = ({ isChat = false }: { isChat?: boolean }) => {
   const [search, setSearch] = useState('');
   const debounceQuery = useDebounce(search, 300);
-  const { data, isLoading, isFetching, hasNextPage, fetchNextPage } =
+  const { data, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } =
     useChats(debounceQuery);
 
   return (
@@ -29,7 +29,7 @@ export const ChatSidebar = ({ isChat = false }: { isChat?: boolean }) => {
         ) : (
           <ChatList
             data={data}
-            isFetching={!isLoading && isFetching}
+            isFetchingNext={isFetchingNextPage}
             hasNext={hasNextPage}
             fetchNext={fetchNextPage}
           />

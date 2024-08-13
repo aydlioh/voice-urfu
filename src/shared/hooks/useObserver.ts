@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { useInView } from "react-intersection-observer";
+import { useEffect, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
 
 export const useObserver = (callback: () => Promise<unknown>) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -8,9 +8,12 @@ export const useObserver = (callback: () => Promise<unknown>) => {
   useEffect(() => {
     if (inView && !isLoading) {
       setIsLoading(true);
-      callback().then(() => setIsLoading(false));
+      callback().then(() => {
+        setIsLoading(false);
+        setTimeout(() => !isLoading || setIsLoading(false), 100);
+      });
     }
-  }, [inView, callback]);
+  }, [inView, callback, isLoading]);
 
   return ref;
 };
