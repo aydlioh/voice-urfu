@@ -1,6 +1,6 @@
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import { getFriendRequests, getFriends } from './api';
-import { FriendRequestParams } from '@/shared/types';
+import { FriendRequestParams } from '@/shared/common/types';
 
 export const useFriends = (query: string | null) => {
   return useInfiniteQuery({

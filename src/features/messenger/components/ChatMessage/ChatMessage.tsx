@@ -1,7 +1,7 @@
 import { IMessage } from '@/entities/messenger';
 import clsx from 'clsx';
 import styles from './ChatMessage.module.css';
-import { formatTime } from '@/shared/utils';
+import { formatTime } from '@/shared/common/utils';
 
 type ChatMessageProps = {
   message: IMessage;

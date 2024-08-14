@@ -1,6 +1,6 @@
 import { chatHttp } from '@/shared/api';
 import { IChat, IMessage } from './models';
-import { SearchParams } from '@/shared/types';
+import { SearchParams } from '@/shared/common/types';
 
 export const getMessages = async ({ pageParam, query }: SearchParams) => {
   try {

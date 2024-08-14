@@ -1,6 +1,6 @@
 import { useModal } from '@/entities/modal';
 import { NestedSidebarLink } from '@/features/sidebar';
-import { SidebarLink } from '@/shared/types';
+import { SidebarLink } from '@/shared/common/types';
 import clsx from 'clsx';
 import styles from './NestedSidebar.module.css';
 

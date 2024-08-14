@@ -2,17 +2,11 @@
 import { useAuthStatus } from '@/entities/auth';
 import { useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
-import { Stomp } from '@stomp/stompjs';
-import SockJS from 'sockjs-client/dist/sockjs';
 import { IMessage } from '../models';
 import dayjs from 'dayjs';
 import { useMessages } from '../queries';
-import { TokenService } from '@/shared/api/services';
 import { InfiniteData, useQueryClient } from '@tanstack/react-query';
-
-const headers = {
-  Authorization: `Bearer ${TokenService.get()?.jwtToken}`,
-};
+import { StompService } from '@/shared/ws';
 
 export const useChatConnection = () => {
   const queryClient = useQueryClient();
@@ -22,7 +16,7 @@ export const useChatConnection = () => {
   const { data, isFetching, hasNextPage, fetchNextPage, isFetchingNextPage } =
     useMessages(user);
 
-  const stompClient = useRef<any>(null);
+  const stompClient = useRef<StompService | null>(null);
 
   const addMessage = (message: IMessage) => {
     queryClient.setQueryData<InfiniteData<IMessage[], unknown>>(
@@ -53,26 +47,27 @@ export const useChatConnection = () => {
       addMessage(newMessage);
     }
 
-    stompClient.current.send(
-      `/app/chat/${login}/${username}`,
-      {},
-      JSON.stringify({ content })
-    );
+    stompClient.current?.send({
+      url: `/app/chat/${login}/${username}`,
+      body: { content },
+    });
   };
 
   useEffect(() => {
-    const socket = new SockJS('https://voice-backend.ru:9003/chat');
-    stompClient.current = Stomp.over(() => socket);
+    stompClient.current = new StompService(
+      'https://voice-backend.ru:9003/chat',
+      {
+        debug: true,
+        debugName: `CHAT`,
+      }
+    );
 
     const connect = () => {
-      if (!stompClient.current.connected) {
-        stompClient.current.connect(headers, () => {
-          stompClient.current.subscribe(
-            `/topic/chat/${username}/${login}`,
-            (output: any) => {
-              const message = JSON.parse(output.body);
-              addMessage(message);
-            }
+      if (!stompClient.current?.connected) {
+        stompClient.current?.connect(() => {
+          stompClient.current?.subscribe(
+            { url: `/topic/chat/${username}/${login}` },
+            addMessage
           );
         });
       }
@@ -81,7 +76,7 @@ export const useChatConnection = () => {
     connect();
 
     return () => {
-      stompClient.current.disconnect();
+      stompClient.current?.disconnect();
     };
   }, [username, login]);
 

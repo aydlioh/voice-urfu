@@ -1,4 +1,4 @@
-import { sidebarLinks } from '@/shared/const';
+import { sidebarLinks } from '@/shared/common/const';
 import { SidebarLink } from '../SidebarLink';
 import styles from './SidebarContent.module.css';
 

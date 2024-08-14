@@ -8,7 +8,7 @@ import {
   SecuritySettingsPage,
   ThemeSettingsPage,
 } from './pages';
-import { settingsNestedSidebarLinks } from '@/shared/const/nestedLinks';
+import { settingsNestedSidebarLinks } from '@/shared/common/const/nestedLinks';
 
 export const settingsRoutes: RouteObject[] = [
   {

@@ -1,4 +1,4 @@
-import { getPathnameInfoString } from '@/shared/utils';
+import { getPathnameInfoString } from '@/shared/common/utils';
 import { useLocation } from 'react-router-dom';
 import styles from './PageInfo.module.css';
 

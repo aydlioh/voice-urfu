@@ -1,4 +1,4 @@
-import { ISecret } from '../../../entities/auth/models';
+import { ISecret } from '@/entities/auth';
 import { LocalStorageService } from './LocalStorageService';
 
 class TokenService extends LocalStorageService<ISecret> {

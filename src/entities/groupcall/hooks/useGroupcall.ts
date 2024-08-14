@@ -2,7 +2,6 @@
 import { useAuthStatus } from '@/entities/auth';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useGroupcallSocket } from './useGroupcallSocket';
-import { ACTIONS } from '@/shared/socket/groupcall';
 
 const mediaConfig = {
   audio: true,
@@ -156,7 +155,7 @@ export const useGroupcall = (room: string) => {
 
     if (socket) {
       const message = {
-        id: ACTIONS.JOIN,
+        id: 'join',
         name: login,
         room,
       };
@@ -191,7 +190,7 @@ export const useGroupcall = (room: string) => {
       if (socket) {
         socket.send(
           JSON.stringify({
-            id: ACTIONS.LEAVE,
+            id: 'leave',
           })
         );
       }

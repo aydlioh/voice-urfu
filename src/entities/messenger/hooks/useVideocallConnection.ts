@@ -3,14 +3,8 @@
 import { useAuthStatus } from '@/entities/auth';
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import Stomp from 'stompjs';
-import SockJS from 'sockjs-client/dist/sockjs';
-import { TokenService } from '@/shared/api/services';
 import { useAudioVideocall } from './useAudioVideocall';
-
-const headers = {
-  Authorization: `Bearer ${TokenService.get()?.jwtToken}`,
-};
+import { StompService } from '@/shared/ws';
 
 const intervalTime = 1000;
 const disconnectTimeMs = 30 * 1000;
@@ -28,7 +22,7 @@ export const useVideocallConnection = () => {
   const { login } = useAuthStatus();
 
   const connectionInterval = useRef<any>(null);
-  const stompClient = useRef<any>(null);
+  const stompClient = useRef<StompService | null>(null);
   const peerConnection = useRef<any>(null);
 
   const answerReceived = useRef<boolean>(false);
@@ -93,11 +87,10 @@ export const useVideocallConnection = () => {
     const checkAndSendCandidate = setInterval(() => {
       if (answerSent && answerReceived) {
         if (cond) {
-          stompClient.current.send(
-            `/app/signaling/${login}/${username}`,
-            {},
-            JSON.stringify({ type: 'candidate', candidate: cond })
-          );
+          stompClient.current?.send({
+            url: `/app/signaling/${login}/${username}`,
+            body: { type: 'candidate', candidate: cond },
+          });
           clearInterval(checkAndSendCandidate);
         }
       }
@@ -112,8 +105,14 @@ export const useVideocallConnection = () => {
   }, []);
 
   useEffect(() => {
-    const socket = new SockJS('https://voice-backend.ru:9000/signaling');
-    stompClient.current = Stomp.over(socket);
+    stompClient.current = new StompService(
+      'https://voice-backend.ru:9000/signaling',
+      {
+        debug: true,
+        debugName: 'VIDEOCALL',
+      }
+    );
+
     const pc = peerConnection.current;
 
     const handleMediaCapture = async () => {
@@ -147,11 +146,10 @@ export const useVideocallConnection = () => {
     const handleOfferCreate = async () => {
       const offer = await peerConnection.current.createOffer();
       await peerConnection.current.setLocalDescription(offer);
-      stompClient.current.send(
-        `/app/signaling/${login}/${username}`,
-        {},
-        JSON.stringify({ type: 'offer', offer })
-      );
+      stompClient.current?.send({
+        url: `/app/signaling/${login}/${username}`,
+        body: { type: 'offer', offer },
+      });
     };
 
     const handleVideoCapture = async () => {
@@ -163,11 +161,11 @@ export const useVideocallConnection = () => {
       await pc.setRemoteDescription(offer);
       const answer = await pc.createAnswer();
       await pc.setLocalDescription(answer);
-      stompClient.current.send(
-        `/app/signaling/${login}/${username}`,
-        {},
-        JSON.stringify({ type: 'answer', answer })
-      );
+      stompClient.current?.send({
+        url: `/app/signaling/${login}/${username}`,
+        body: { type: 'answer', answer },
+      });
+
       answerSent.current = true;
     };
 
@@ -182,11 +180,10 @@ export const useVideocallConnection = () => {
     };
 
     const subscribe = () => {
-      stompClient.current.subscribe(
-        `/topic/signaling/${username}/${login}`,
-        (output: any) => {
-          const message = JSON.parse(output.body);
-          setTimeout(() => clearInterval(connectionInterval.current), 1000); // TODO + проверка
+      stompClient.current?.subscribe<any>(
+        { url: `/topic/signaling/${username}/${login}` },
+        (message) => {
+          setTimeout(() => clearInterval(connectionInterval.current), 1000);
           switch (message.type) {
             case 'offer':
               handleOffer(message.offer);
@@ -204,8 +201,8 @@ export const useVideocallConnection = () => {
     };
 
     const connect = () => {
-      if (!stompClient.current.connected) {
-        stompClient.current.connect(headers, () => {
+      if (!stompClient.current?.connected) {
+        stompClient.current?.connect(() => {
           subscribe();
           handleVideoCapture();
           handleUserConnect();
@@ -225,7 +222,7 @@ export const useVideocallConnection = () => {
       }
 
       peerConnection.current.close();
-      stompClient.current.disconnect();
+      stompClient.current?.disconnect();
       handleMediaDestroy();
       destroySounds();
     };

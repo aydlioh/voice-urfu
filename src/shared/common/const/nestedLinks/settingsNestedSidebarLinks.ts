@@ -1,4 +1,4 @@
-import { SidebarLink } from "@/shared/types";
+import { SidebarLink } from "@/shared/common/types";
 
 export const settingsNestedSidebarLinks: Omit<SidebarLink, 'icon'>[] = [
   {

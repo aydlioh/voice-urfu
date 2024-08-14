@@ -1,5 +1,5 @@
 import { friendsHttp, userHttp } from '@/shared/api';
-import { FriendRequestParams, SearchParams } from '@/shared/types';
+import { FriendRequestParams, SearchParams } from '@/shared/common/types';
 import { IFriend } from './model';
 
 export const getFriends = async ({ pageParam, query }: SearchParams) => {

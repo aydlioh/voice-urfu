@@ -1,6 +1,6 @@
 import { userHttp } from '@/shared/api';
 import { IUser } from './model';
-import { SearchParams } from '@/shared/types';
+import { SearchParams } from '@/shared/common/types';
 
 export const getUsers = async ({ pageParam, query }: SearchParams) => {
   try {

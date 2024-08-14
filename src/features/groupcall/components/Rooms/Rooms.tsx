@@ -1,5 +1,4 @@
 import { useGroupcallSocket } from '@/entities/groupcall';
-import { ACTIONS } from '@/shared/socket/groupcall';
 import { Button } from '@/shared/ui';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -12,11 +11,11 @@ export const Rooms = () => {
 
   useEffect(() => {
     if (socket) {
-      socket.send(JSON.stringify({ id: ACTIONS.GET_ROOMS }));
+      socket.send(JSON.stringify({ id: 'get_room' }));
 
       socket.onmessage = (e) => {
         const message = JSON.parse(e.data);
-        if (message.id === ACTIONS.SHOW_ROOMS) {
+        if (message.id === 'show_rooms') {
           setRooms(message.data);
         }
       };

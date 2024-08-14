@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import styles from './ChatItem.module.css';
 import { IChat } from '@/entities/messenger';
 import { useAuthStatus } from '@/entities/auth';
-import { formatTime } from '@/shared/utils';
+import { formatTime } from '@/shared/common/utils';
 
 type Props = {
   data: IChat;

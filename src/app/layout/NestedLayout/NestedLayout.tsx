@@ -3,7 +3,7 @@ import { PageSpinner } from '@/shared/ui';
 import { NestedSidebar } from '@/widgets/main';
 import { Suspense } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
-import { SidebarLink } from '@/shared/types';
+import { SidebarLink } from '@/shared/common/types';
 import styles from './NestedLayout.module.css';
 import clsx from 'clsx';
 

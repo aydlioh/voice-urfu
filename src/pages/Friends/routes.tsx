@@ -6,7 +6,7 @@ import {
   IncomingFriendPage,
   OutgoingFriendPage,
 } from './pages';
-import { friendsNestedSidebarLinks } from '@/shared/const/nestedLinks';
+import { friendsNestedSidebarLinks } from '@/shared/common/const/nestedLinks';
 
 export const friendsRoutes: RouteObject[] = [
   {
