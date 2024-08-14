@@ -12,12 +12,6 @@ export const useUserList = (query: string | null) => {
       }
       return lastPageParam + 1;
     },
-    getPreviousPageParam: (_, __, firstPageParam) => {
-      if (firstPageParam <= 1) {
-        return undefined;
-      }
-      return firstPageParam - 1;
-    },
     select: (data) => {
       return {
         pages: [...data.pages].map(({ data }) => data),

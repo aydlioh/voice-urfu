@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { useState } from 'react';
 import { IconType } from 'react-icons';
-import styles from './ui.module.css';
+import styles from './VideocallTool.module.css';
 
 type Props = {
   defaultActive?: boolean;

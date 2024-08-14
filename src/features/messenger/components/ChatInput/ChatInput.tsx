@@ -13,15 +13,13 @@ export const ChatInput = ({
   const submitRef = useRef<HTMLButtonElement>(null);
 
   const [message, setMessage] = useState('');
-  const [file, setFile] = useState<File | null>(null);
+  const [, setFile] = useState<File | null>(null);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (message) {
       onSubmit(message);
       setMessage('');
-
-      console.log(file); // TODO
     }
   };
 

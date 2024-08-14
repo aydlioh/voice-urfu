@@ -1,5 +1,5 @@
 import { forwardRef } from 'react';
-import styles from './ui.module.css';
+import styles from './UserVideo.module.css';
 import clsx from 'clsx';
 
 type Props = { name?: string; muted?: boolean };

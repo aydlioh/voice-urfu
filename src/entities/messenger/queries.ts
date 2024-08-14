@@ -12,12 +12,6 @@ export const useMessages = (query: string) => {
       }
       return lastPageParam + 1;
     },
-    getPreviousPageParam: (_, __, firstPageParam) => {
-      if (firstPageParam <= 1) {
-        return undefined;
-      }
-      return firstPageParam - 1;
-    },
   });
 };
 
@@ -31,12 +25,6 @@ export const useChats = (query: string | null) => {
         return undefined;
       }
       return lastPageParam + 1;
-    },
-    getPreviousPageParam: (_, __, firstPageParam) => {
-      if (firstPageParam <= 1) {
-        return undefined;
-      }
-      return firstPageParam - 1;
     },
   });
 };
