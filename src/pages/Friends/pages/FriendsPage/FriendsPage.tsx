@@ -6,12 +6,10 @@ import { useState } from 'react';
 import { FaUsers } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import styles from './FriendsPage.module.css';
-import { useDebounce } from '@/shared/hooks';
 
 export const FriendsPage = () => {
   const navigate = useNavigate();
   const [search, setSearch] = useState<string | null>(null);
-  const debounceQuery = useDebounce(search, 300);
   const {
     data,
     isError,
@@ -19,7 +17,7 @@ export const FriendsPage = () => {
     hasNextPage,
     fetchNextPage,
     isFetchingNextPage,
-  } = useFriends(debounceQuery);
+  } = useFriends(search);
 
   if (isError) {
     return <FetchError message="Ошибка получения списка друзей" />;
@@ -29,12 +27,10 @@ export const FriendsPage = () => {
     <section className={styles.container}>
       <div className="flex flex-row justify-end pt-5">
         <SearchInput
+          setDebounceValue={setSearch}
           color="secondary"
           className="md:max-w-[400px]"
           placeholder="Найти друга"
-          value={search ? search : ''}
-          onChange={(e) => setSearch(e.target.value)}
-          onClear={() => setSearch('')}
         />
       </div>
       {isLoading ? (

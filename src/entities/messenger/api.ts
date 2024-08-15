@@ -25,7 +25,7 @@ export const getChats = async ({ pageParam, query }: SearchParams) => {
       params: {
         page: pageParam,
         length: 10,
-        receiver: query,
+        receiver: query ?? '',
       },
     });
 
