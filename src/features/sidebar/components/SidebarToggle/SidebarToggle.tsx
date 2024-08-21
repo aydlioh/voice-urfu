@@ -1,5 +1,6 @@
 import { TfiMenuAlt } from 'react-icons/tfi';
 import styles from './SidebarToggle.module.css';
+import { Link } from 'react-router-dom';
 
 type Props = {
   isOpen: boolean;
@@ -12,7 +13,11 @@ export const SidebarToggle = ({ isOpen, toggleSidebar }: Props) => {
       <button onClick={toggleSidebar} className={styles.toggleBtn}>
         <TfiMenuAlt />
       </button>
-      {isOpen && <h1 className={styles.logo}>Voice</h1>}
+      {isOpen && (
+        <Link to={'/welcome'} className={styles.logo}>
+          Voice
+        </Link>
+      )}
     </div>
   );
 };

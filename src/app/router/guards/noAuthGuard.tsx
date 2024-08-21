@@ -3,7 +3,7 @@ import { TokenService, UserService } from '@/shared/api/services';
 import { useEffect } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 
-export const PublicGuard = () => {
+export const NoAuthGuard = () => {
   const { signIn } = useAuth();
 
   useEffect(() => {

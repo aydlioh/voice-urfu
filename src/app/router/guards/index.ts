@@ -1,2 +1,2 @@
 export * from './authGuard';
-export * from './publicGuard';
+export * from './noAuthGuard';

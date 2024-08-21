@@ -3,7 +3,7 @@
 }
 
 .profileWrapper {
-  @apply py-3 px-4 flex items-center gap-4 hover:bg-primary/10 cursor-pointer rounded-md;
+  @apply text-primary py-3 px-4 flex items-center gap-4 hover:bg-primary/10 cursor-pointer rounded-md;
 }
 
 .userIconWrapper {

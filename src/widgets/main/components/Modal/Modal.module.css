@@ -1,5 +1,5 @@
 .wrapper {
-  @apply py-5; 
+  @apply py-5 text-primary; 
 }
 
 .innerWrapper {

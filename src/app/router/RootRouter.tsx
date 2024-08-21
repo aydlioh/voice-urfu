@@ -7,13 +7,14 @@ import {
   authRoutes,
   messengerRoutes,
   friendsRoutes,
+  homeRoutes,
 } from '@/pages';
-import { AuthGuard, PublicGuard } from './guards';
+import { AuthGuard, NoAuthGuard } from './guards';
 import { useRoutes } from 'react-router-dom';
 
 const routes = [
   {
-    element: <PublicGuard />,
+    element: <NoAuthGuard />,
     children: [...authRoutes],
   },
   {
@@ -31,6 +32,10 @@ const routes = [
         ],
       },
     ],
+  },
+  {
+    element: null,
+    children: [...homeRoutes],
   },
 ];
 

@@ -5,3 +5,4 @@ export * from './Errors';
 export * from './Auth';
 export * from './Messenger';
 export * from './Friends';
+export * from './Home';
